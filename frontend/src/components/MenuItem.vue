@@ -22,6 +22,6 @@ export default defineComponent({
 		<figure class="bg-yellow-300 h-28 overflow-hidden">
 			<img class="block w-full" :src="image" :alt="name" />
 		</figure>
-		<span class="bg-white text-xl p-4 text-center">{{ name }}</span>
+		<span class="bg-white text-lg p-4 text-center">{{ name }}</span>
 	</div>
 </template>
