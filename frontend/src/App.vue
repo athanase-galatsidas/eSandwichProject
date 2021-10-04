@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import AppHeader from './components/AppHeader.vue';
-import MenuItem from './components/MenuItem.vue';
 
 import './router';
 </script>
 
 <template>
 	<AppHeader title="Sand Witches eSandwiches Service&trade;" />
-	<MenuItem name="test" image="../assets/vue.png" />
 	<main>
-		<router-view />
+		<RouterView />
 	</main>
 </template>
 

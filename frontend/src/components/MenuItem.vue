@@ -18,8 +18,10 @@ export default defineComponent({
 </script>
 
 <template>
-	<div class="m-1 bg-white drop-shadow-sm flex flex-col rounded-sm">
-		<img :src="{ image }" :alt="{ name }" />
-		<span class="text-xl p-1 text-center">{{ name }}</span>
+	<div class="m-2 w-52 min-w-max bg-white shadow-md flex flex-col rounded-md overflow-hidden">
+		<figure class="bg-yellow-300 h-28 overflow-hidden">
+			<img class="block w-full" :src="image" :alt="name" />
+		</figure>
+		<span class="bg-white text-xl p-4 text-center">{{ name }}</span>
 	</div>
 </template>

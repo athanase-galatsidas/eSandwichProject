@@ -7,29 +7,42 @@ export default defineComponent({
 	setup() {
 		// todo: get this from api
 		const menuItems = reactive({
-			data: {},
+			data: [
+				{
+					name: 'Basic Sandwich',
+					image: 'src/assets/logo.png',
+				},
+				{
+					name: 'Less Basic Sandwich',
+					image: 'src/assets/logo.png',
+				},
+				{
+					name: 'Regular Sandwich',
+					image: 'src/assets/logo.png',
+				},
+				{
+					name: 'Special Sandwich',
+					image: 'src/assets/logo.png',
+				},
+				{
+					name: 'Extra Special Sandwich',
+					image: 'src/assets/logo.png',
+				},
+			],
 		});
-
-		menuItems.data = [
-			{
-				name: 'Basic Sandwich',
-				image: '../assets/logo.png',
-			},
-			{
-				name: 'Less Basic Sandwich',
-				image: '../assets/logo.png',
-			},
-		];
 
 		return {
 			menuItems,
 		};
 	},
+	components: {
+		MenuItem,
+	},
 });
 </script>
 
 <template>
-	<div class="flex flex-row h-100">
+	<div class="container max-w-screen-md mx-auto flex flex-row flex-wrap justify-center">
 		<MenuItem
 			v-for="(value, key) of menuItems.data"
 			:key="key"
