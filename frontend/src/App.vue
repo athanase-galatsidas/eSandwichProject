@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import AppHeader from './components/AppHeader.vue';
+
+import './router';
 </script>
 
 <template>
 	<AppHeader title="Sand Witches eSandwiches Service&trade;" />
+	<main>
+		<RouterView />
+	</main>
 </template>
 
 <style lang="postcss">
