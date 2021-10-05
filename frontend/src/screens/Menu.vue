@@ -66,7 +66,15 @@ export default defineComponent({
 		<!-- todo: put this in seperate components -->
 		<div
 			v-if="basketItems.length > 0"
-			class="bg-white shadow-md flex flex-col rounded-md w-56 m-2"
+			class="
+				bg-white
+				dark:bg-gray-700 dark:text-gray-200
+				shadow-md
+				flex flex-col
+				rounded-md
+				w-56
+				m-2
+			"
 		>
 			<h3 class="p-4 text-lg">Basket</h3>
 			<h4 v-for="(value, key) of basketItems" :key="key" class="px-4 text-lg">

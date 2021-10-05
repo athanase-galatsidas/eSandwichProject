@@ -13,6 +13,6 @@ import './router';
 
 <style lang="postcss">
 html {
-	@apply bg-gray-100 dark:bg-gray-800;
+	@apply bg-gray-100 dark:bg-gray-900;
 }
 </style>

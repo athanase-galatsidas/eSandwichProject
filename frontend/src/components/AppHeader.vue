@@ -14,7 +14,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<header class="bg-red-400 p-4">
-		<h1 class="text-2xl">{{ title }}</h1>
+	<header class="bg-yellow-400 dark:bg-gray-700 p-4">
+		<h1 class="text-2xl dark:text-gray-200">{{ title }}</h1>
 	</header>
 </template>
