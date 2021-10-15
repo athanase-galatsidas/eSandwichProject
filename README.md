@@ -16,8 +16,12 @@ Er zal ook ingelogt kunnen worden. Als de ingelogde user een admin is zal hij ge
 
 ### Nodige paswoorden
 
-Admin paswoord: **paswoord123**
-Root paswoord: **paswoord1234**
+| User      | Password          |
+|-----------|-------------------|
+| Sql Admin | ```paswoord123``` |
+| Web Admin | ```paswoord123``` |
+| Sql Root  | ```paswoord1234```|
+
 
 ### Werkverdeling
 
@@ -29,6 +33,7 @@ Root paswoord: **paswoord1234**
 | Project werk | 60 %         | 40 %       |
 |              |              |            |
 | Totaal werk  | ~50 %        | ~50 %      |
+
 
 ## Milestones
 
