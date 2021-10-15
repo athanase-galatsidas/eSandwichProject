@@ -38,7 +38,8 @@ Gedetaileerde lijst van geplande milestones voor dit project staan op [trello](h
 - [ ] Trello in orde brengen
 
 ### Backend
-- [x] Database design
+- [x] Database
+- [x] Docker setup
 - [ ] Api
 - [ ] User authentication
 - [ ] Process orders
