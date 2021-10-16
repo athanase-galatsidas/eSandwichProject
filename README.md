@@ -6,13 +6,13 @@ School project for fullstack web application
 
 ## Project Dossier
 
-Sand Witches Sandwich Service is een fullstack web project waarmee gebruikers sandwichen kunnen bestellen.
+Sand Witches Sandwich Service is een fullstack web project waarmee gebruikers sandwiches kunnen bestellen.
 
-Het doel is om in de frontend bestellingen te kunnen plaatsen. Op onze frontend zullen gebruikers een lijst van beschikbare sandwichen te zien krijgen. Gebruikers kunnen een of meerder sandwichen kiezen, deze customizen *(ingredient toevoegen of afhalen)* en vervolgens een bestelling plaatsen.
+Het doel is om in de frontend bestellingen te kunnen plaatsen. Op onze frontend zullen gebruikers een lijst van beschikbare sandwiches te zien krijgen. Gebruikers kunnen een of meerder sandwiches kiezen, deze customizen *(ingrediënt toevoegen of afhalen en soort broodje kiezen)* en vervolgens een bestelling plaatsen.
 
-De bestelling zal gepost worden naar de backend. Hier zal die worden opgeslagen in een database van order history en zal ook de lijst van ingredienten updaten. Als een ingredient in de database leeg is zullen de sandwichen die deze ingredienten nodig hebben niet meer beschikbaar zijn en zal er een waarschuwing geplaatst worden op de admin page.
+De bestelling zal gepost worden naar de backend. Hier zal die worden opgeslagen in een database van order history en zal ook de lijst van ingrediënten updaten. Als een ingrediënt in de database leeg is zullen de sandwiches die deze ingrediënten nodig hebben niet meer beschikbaar zijn en zal er een waarschuwing geplaatst worden op de admin page.
 
-Er zal ook ingelogt kunnen worden. Als de ingelogde user een admin is zal hij geredirect worden naar de admin page. Voor gewone users zullen die op een about page een lijst van hun orders te zien krijgen. Voor ingelogde users die bestellingen plaatsen zullen bepaalde velden in de checkout page automatisch ingevuld worden *(zoals adres, payment methods, etc)*.
+Er zal ook ingelogd kunnen worden. Als de ingelogde user een admin is zal hij geredirect worden naar de admin page. Voor gewone users zullen die op een about page een lijst van hun orders te zien krijgen. Voor ingelogde users die bestellingen plaatsen zullen bepaalde velden in de checkout page automatisch ingevuld worden *(zoals adres, payment methods, etc)*.
 
 ### Nodige paswoorden
 
