@@ -52,7 +52,16 @@ export default defineComponent({
 
 <template>
 	<div class="container max-w-screen-lg mx-auto flex flex-col lg:flex-row mt-8">
-		<div class="container max-w-screen-md mx-auto flex flex-row flex-wrap justify-center">
+		<div
+			class="
+				container
+				max-w-screen-md
+				mx-auto
+				flex flex-row flex-wrap
+				items-start
+				content-start
+			"
+		>
 			<MenuItem
 				v-for="(value, key) of menuItems.data"
 				:key="key"
