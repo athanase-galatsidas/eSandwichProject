@@ -12,6 +12,8 @@ import { seedDatabase } from './seeders/dataSeeder';
 
 (async () => {
 	const connectionOptions: ConnectionOptions = await getConnectionOptions();
+
+	// Create the database before we make the connection
 	createDatabase({ ifNotExist: true }, connectionOptions)
 		.then(() => console.log('database created'))
 		.then(createConnection)
@@ -28,15 +30,15 @@ import { seedDatabase } from './seeders/dataSeeder';
 
 			// ROUTES
 			app.get('/', (request: Request, response: Response) => {
-				response.send(`test test`);
+				response.send(`Welcome to Sandwitches Sandwich Service!`);
 			});
 
-			app.get('/v1/sandwich', async (request: Request, response: Response) => {
-				// quick test
-				// todo: move this to sandwich controller
-				const data = await getRepository(Sandwich).find();
-				response.send(JSON.stringify(data));
-			});
+			// app.get('/v1/sandwich', async (request: Request, response: Response) => {
+			// 	// quick test
+			// 	// todo: move this to sandwich controller
+			// 	const data = await getRepository(Sandwich).find();
+			// 	response.send(JSON.stringify(data));
+			// });
 
 			// APP START
 			app.listen(port, () => {
