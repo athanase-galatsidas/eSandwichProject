@@ -18,6 +18,12 @@ const routes: RouteRecordRaw[] = [
 		component: () => import('../screens/Login.vue'),
 		props: { signup: true },
 	},
+	{
+		name: 'admin',
+		path: '/admin',
+		component: () => import('../screens/Admin.vue'),
+		props: { signup: true },
+	},
 ];
 
 const router: Router = createRouter({

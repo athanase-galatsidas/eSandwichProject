@@ -2,6 +2,7 @@
 import { defineComponent, ref } from 'vue';
 import { UserIcon, MailIcon, LockClosedIcon, KeyIcon } from '@heroicons/vue/outline';
 import InputGroup from '../components/InputGroup.vue';
+import router from '../bootstrap/router';
 
 export default defineComponent({
 	name: 'Login',
@@ -29,6 +30,18 @@ export default defineComponent({
 		toggleSignin(value: boolean) {
 			this.showSignUp = value;
 		},
+
+		login() {
+			//TODO: login
+			// redirecting to admin for testing
+			const username = (document.querySelector('#username') as HTMLInputElement).value;
+			if (username == 'admin') router.push({ path: 'admin' });
+		},
+
+		signup() {
+			//TODO: sign up
+			// redirecting to admin for testing
+		},
 	},
 });
 </script>
@@ -45,6 +58,7 @@ export default defineComponent({
 			mx-auto
 			max-w-screen-sm
 			bg-white
+			shadow-md
 			mt-16
 		"
 	>
@@ -82,15 +96,17 @@ export default defineComponent({
 			"
 			type="submit"
 			value="Sign Up"
+			@click.stop.prevent="signup()"
 		/>
 
 		<p class="cursor-default">
 			Already have an account?
 			<span class="cursor-pointer text-red-600 font-semibold" @click="toggleSignin(false)">
-				Log in here!
+				Log in!
 			</span>
 		</p>
 	</form>
+
 	<form
 		v-else
 		class="
@@ -102,9 +118,12 @@ export default defineComponent({
 			mx-auto
 			max-w-screen-sm
 			bg-white
+			shadow-md
 			mt-16
 		"
 	>
+		<h3 class="text-2xl mb-2">Log In</h3>
+
 		<InputGroup id="username" text="Email / Username">
 			<UserIcon class="h-6 w-6 mr-2" />
 		</InputGroup>
@@ -112,6 +131,9 @@ export default defineComponent({
 		<InputGroup id="password" text="Password" type="password">
 			<LockClosedIcon class="h-6 w-6 mr-2" />
 		</InputGroup>
+		<span class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)">
+			Forgot password?
+		</span>
 
 		<input
 			class="
@@ -129,6 +151,7 @@ export default defineComponent({
 			"
 			type="submit"
 			value="Log In"
+			@click.stop.prevent="login()"
 		/>
 
 		<p class="cursor-default">
