@@ -28,7 +28,7 @@ Er zal ook ingelogd kunnen worden. Als de ingelogde user een admin is zal hij ge
 |              | Athanase     | Tibo       |
 |--------------|--------------|------------|
 | Backend      | 90 %         | 10 %       |
-| Frontwerk    | 50 %         | 50 %       |
+| Frontend     | 50 %         | 50 %       |
 | Design       | 40 %         | 60 %       |
 | Project werk | 60 %         | 40 %       |
 |              |              |            |
@@ -40,7 +40,7 @@ Er zal ook ingelogd kunnen worden. Als de ingelogde user een admin is zal hij ge
 Gedetaileerde lijst van geplande milestones voor dit project staan op [trello](https://trello.com/b/AwKfylrI/esandwich).
 
 ### General
-- [ ] Trello in orde brengen
+- [x] Trello in orde brengen
 
 ### Backend
 - [x] Database
