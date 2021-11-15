@@ -2,6 +2,7 @@
 import { defineComponent, reactive, ref } from 'vue';
 
 import MenuItem from '../components/MenuItem.vue';
+import SandwichPopup from '../components/SandwichPopup.vue';
 
 export default defineComponent({
 	setup() {
@@ -32,25 +33,37 @@ export default defineComponent({
 		});
 
 		const basketItems = ref(Array<String>());
+		const popupVisible = ref(false);
+
+		console.log(popupVisible);
 
 		return {
 			menuItems,
 			basketItems,
+			popupVisible,
 		};
 	},
 	components: {
 		MenuItem,
+		SandwichPopup,
 	},
 	methods: {
 		addItemToBasket(name: any) {
 			console.log(`clicked by ${name}`);
 			this.basketItems.push(name);
 		},
+
+		// TODO: make sandwich an interface
+		showPopup(sandwich: any) {
+			this.popupVisible = true;
+			console.log(this.popupVisible);
+		},
 	},
 });
 </script>
 
 <template>
+	<SandwichPopup v-show="popupVisible" name="test" image="test" />
 	<div class="container max-w-screen-lg mx-auto flex flex-col lg:flex-row mt-8">
 		<div
 			class="
@@ -67,7 +80,7 @@ export default defineComponent({
 				:key="key"
 				:name="value.name"
 				:image="value.image"
-				@click="addItemToBasket(value.name)"
+				@click="showPopup(value)"
 			/>
 		</div>
 
