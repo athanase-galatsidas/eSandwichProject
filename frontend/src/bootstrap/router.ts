@@ -15,7 +15,7 @@ const routes: RouteRecordRaw[] = [
 	{
 		name: 'signup',
 		path: '/signup',
-		component: () => import('../screens/Login.vue'),
+		component: () => import('../screens/Signup.vue'),
 		props: { signup: true },
 	},
 	{

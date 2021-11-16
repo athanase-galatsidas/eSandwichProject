@@ -12,6 +12,6 @@ import { RouterView } from 'vue-router';
 
 <style lang="postcss">
 html {
-	@apply bg-gray-100 dark:bg-gray-900;
+	@apply bg-gray-100 dark:bg-gray-800;
 }
 </style>

@@ -15,7 +15,7 @@ export default defineComponent({
 
 <template>
 	<header class="bg-yellow-400 dark:bg-gray-700 p-4 flex justify-between shadow-md">
-		<h1 class="text-2xl dark:text-gray-200">{{ title }}</h1>
+		<a class="text-2xl dark:text-gray-200" href="/">{{ title }}</a>
 		<!-- TODO: this needs to change to username when logged in -->
 		<nav class="flex">
 			<router-link

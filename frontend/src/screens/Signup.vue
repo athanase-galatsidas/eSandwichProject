@@ -30,17 +30,13 @@ export default defineComponent({
 		toggleSignin(value: boolean) {
 			this.showSignUp = value;
 		},
-
-		login() {
-			//TODO: login
+		signup() {
+			//TODO: sign up
 			// redirecting to admin for testing
-			const username = (document.querySelector('#username') as HTMLInputElement).value;
-			if (username == 'admin') router.push({ path: 'admin' });
 		},
 	},
 });
 </script>
-
 <template>
 	<form
 		class="
@@ -57,22 +53,27 @@ export default defineComponent({
 			mt-16
 		"
 	>
-		<h3 class="text-2xl mb-2 dark:text-white">Log In</h3>
+		<h3 class="text-2xl mb-2 dark:text-white">Sign up</h3>
 
-		<InputGroup id="username" text="Email / Username" class="cursor-pointer">
+		<InputGroup id="username" text="Username">
 			<UserIcon class="h-6 w-6 mr-2" />
 		</InputGroup>
 
-		<InputGroup id="password" text="Password" type="password" >
-			<LockClosedIcon class="h-6 w-6 mr-2" />
+		<InputGroup id="email" text="E-mail Adress" type="email">
+			<MailIcon class="h-6 w-6 mr-2" />
 		</InputGroup>
-		<span class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)">
-			Forgot password?
-		</span>
+
+		<InputGroup id="password" text="Password" type="password">
+			<KeyIcon class="h-6 w-6 mr-2" />
+		</InputGroup>
+
+		<InputGroup id="password-2" text="Repeat Password" type="password">
+			<KeyIcon class="h-6 w-6 mr-2" />
+		</InputGroup>
 
 		<input
 			class="
-			cursor-pointer
+                cursor-pointer
 				hide-on-input
 				my-2
 				mt-4
@@ -86,15 +87,13 @@ export default defineComponent({
 				shadow-sm
 			"
 			type="submit"
-			value="Log In"
-			@click.stop.prevent="login()"
+			value="Sign Up"
 		/>
 
 		<p class="cursor-default dark:text-white">
-			Don't have an account?
-			<router-link
-				to="/signup" class="cursor-pointer text-red-600 font-semibold" >
-				Sign up now!
+			Already have an account?
+			<router-link to="/login" class="cursor-pointer text-red-600 font-semibold">
+				Log in!
 			</router-link>
 		</p>
 	</form>

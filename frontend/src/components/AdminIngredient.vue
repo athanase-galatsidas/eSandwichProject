@@ -22,7 +22,9 @@ export default defineComponent({
 </script>
 
 <template>
-	<div class="flex w-full h-32 overflow-hidden bg-white rounded-md shadow-md my-2">
+	<div
+		class="flex w-full h-32 overflow-hidden bg-white dark:bg-gray-700 rounded-md shadow-md my-2"
+	>
 		<figure class="w-32 flex-shrink-0 bg-yellow-300 overflow-hidden">
 			<img class="w-full" :src="image" :alt="name" />
 		</figure>
@@ -46,8 +48,8 @@ export default defineComponent({
 			>
 				Low on {{ name }}!
 			</p>
-			<p class="text-xl">{{ name }}</p>
-			<p class="text-gray-600">{{ count }}</p>
+			<p class="text-xl dark:text-white">{{ name }}</p>
+			<p class="text-gray-400">{{ count }}</p>
 		</div>
 	</div>
 </template>

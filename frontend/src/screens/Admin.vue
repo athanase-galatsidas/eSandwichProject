@@ -45,7 +45,7 @@ export default defineComponent({
 
 <template>
 	<div class="flex flex-col mx-auto max-w-screen-md">
-		<h3 class="text-3xl text-center my-4">Stock</h3>
+		<h3 class="text-3xl text-center my-4 dark:text-white">Stock</h3>
 		<AdminIngredient
 			v-for="(value, key) of ingredients.data"
 			:key="key"
