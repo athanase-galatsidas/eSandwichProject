@@ -22,17 +22,38 @@ export default defineComponent({
 </script>
 
 <template>
-	<div class="relative my-2 ">
+	<div class="relative my-2">
 		<input
 			:id="id"
 			:type="type"
 			:v-model="id"
 			placeholder=" "
-			class="hide-on-input p-2 h-9 w-64 bg-gray-100 dark:bg-gray-800 dark:text-white rounded-md shadow-sm"
+			class="
+				hide-on-input
+				p-2
+				h-9
+				w-64
+				bg-gray-100
+				dark:bg-gray-800 dark:text-white
+				rounded-md
+				shadow-sm
+			"
 		/>
 		<label
 			:for="id"
-			class="cursor-text absolute h-9 px-2 left-0 top-0 flex items-center text-gray-500 dark:text-white select-none"
+			class="
+				cursor-text
+				absolute
+				h-9
+				px-2
+				left-0
+				top-0
+				flex
+				items-center
+				text-gray-500
+				dark:text-white
+				select-none
+			"
 		>
 			<slot></slot>
 			{{ text }}
