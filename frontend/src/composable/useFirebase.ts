@@ -1,6 +1,6 @@
 import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, getAuth, setPersistence, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
 import { initializeApp, FirebaseOptions, FirebaseApp } from 'firebase/app'
-
+import "../config"
 import { readonly, ref, Ref } from 'vue';
 
 
@@ -50,7 +50,7 @@ export default () => {
             .then(async userCredential => {
                 //Signed in -> succes -> let's add a record to our own database!
                 user.value = userCredential.user
-                
+
             })
             .catch(error => {
 

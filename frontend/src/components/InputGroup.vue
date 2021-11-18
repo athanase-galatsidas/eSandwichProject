@@ -26,6 +26,7 @@ export default defineComponent({
 		<input
 			:id="id"
 			:type="type"
+			:v-model="id"
 			placeholder=" "
 			class="
 				hide-on-input

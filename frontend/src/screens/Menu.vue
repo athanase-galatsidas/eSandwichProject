@@ -4,6 +4,7 @@ import store from '../bootstrap/store';
 
 import MenuItem from '../components/MenuItem.vue';
 import SandwichPopup from '../components/SandwichPopup.vue';
+import useFirebase from '../composable/useFirebase';
 
 export default defineComponent({
 	setup() {
@@ -15,6 +16,7 @@ export default defineComponent({
 		return {
 			basketItems,
 			popupVisible,
+			user
 		};
 	},
 	computed: {
@@ -83,5 +85,6 @@ export default defineComponent({
 				{{ value }}
 			</h4>
 		</div>
+		<p>{{ user?.email }}</p>
 	</div>
 </template>
