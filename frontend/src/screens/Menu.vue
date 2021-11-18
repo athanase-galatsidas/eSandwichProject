@@ -1,47 +1,27 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
+import store from '../bootstrap/store';
 
 import MenuItem from '../components/MenuItem.vue';
 import SandwichPopup from '../components/SandwichPopup.vue';
 
 export default defineComponent({
 	setup() {
-		// todo: get this from api
-		const menuItems = reactive({
-			data: [
-				{
-					name: 'Basic Sandwich',
-					image: 'src/assets/logo.png',
-				},
-				{
-					name: 'Less Basic Sandwich',
-					image: 'src/assets/logo.png',
-				},
-				{
-					name: 'Regular Sandwich',
-					image: 'src/assets/logo.png',
-				},
-				{
-					name: 'Special Sandwich',
-					image: 'src/assets/logo.png',
-				},
-				{
-					name: 'Extra Special Sandwich',
-					image: 'src/assets/logo.png',
-				},
-			],
-		});
+		store.dispatch('getData');
 
 		const basketItems = ref(Array<String>());
 		const popupVisible = ref(false);
 
-		console.log(popupVisible);
-
 		return {
-			menuItems,
 			basketItems,
 			popupVisible,
 		};
+	},
+	computed: {
+		menuItems() {
+			console.log(store.state.sandwitches.length);
+			return store.state.sandwitches;
+		},
 	},
 	components: {
 		MenuItem,
@@ -76,7 +56,7 @@ export default defineComponent({
 			"
 		>
 			<MenuItem
-				v-for="(value, key) of menuItems.data"
+				v-for="(value, key) of menuItems"
 				:key="key"
 				:name="value.name"
 				:image="value.image"
