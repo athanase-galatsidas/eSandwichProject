@@ -1,4 +1,3 @@
-
 window._env_ = {
   apiKey: "AIzaSyCvDZHwAQY2baYAircGfGgQNPBQsJDrhWc",
   authDomain: "sandwitchservice.firebaseapp.com",

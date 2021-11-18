@@ -3,9 +3,11 @@ import { defineComponent, reactive, ref } from 'vue';
 
 import MenuItem from '../components/MenuItem.vue';
 import SandwichPopup from '../components/SandwichPopup.vue';
+import useFirebase from '../composable/useFirebase';
 
 export default defineComponent({
 	setup() {
+		const {user} =useFirebase();
 		// todo: get this from api
 		const menuItems = reactive({
 			data: [
@@ -41,6 +43,7 @@ export default defineComponent({
 			menuItems,
 			basketItems,
 			popupVisible,
+			user
 		};
 	},
 	components: {
@@ -103,5 +106,6 @@ export default defineComponent({
 				{{ value }}
 			</h4>
 		</div>
+		<p>{{ user?.email }}</p>
 	</div>
 </template>

@@ -1,5 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
+import useFirebase from '../composable/useFirebase';
 
 export default defineComponent({
 	name: 'AppHeader',
@@ -9,7 +11,24 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	setup() {},
+	setup() {
+		const { user, logout } = useFirebase()
+    const { push } = useRouter()
+
+    const logOutAndRedirect = () => {
+      logout()
+        .then(() => {
+          push('/login')
+        })
+        .catch((error: Error) => {
+          console.error(error)
+        })
+    }
+    return {
+      user,
+      logOutAndRedirect,
+    }
+	},
 });
 </script>
 
@@ -62,6 +81,23 @@ export default defineComponent({
 			>
 				Sign Up
 			</router-link>
+			<button class="
+					flex
+					justify-center
+					items-center
+					bg-red-500
+					hover:bg-red-400
+					dark:bg-gray-200 dark:hover:bg-gray-400
+					text-white
+					dark:text-black
+					shadow-sm
+					transition-colors
+					font-semibold
+					rounded-md
+					px-4
+					ml-4
+					w-24
+				" @click="logOutAndRedirect">Log Out</button>
 		</nav>
 	</header>
 </template>
