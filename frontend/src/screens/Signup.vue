@@ -1,23 +1,51 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, reactive } from 'vue';
 import { UserIcon, MailIcon, LockClosedIcon, KeyIcon } from '@heroicons/vue/outline';
 import InputGroup from '../components/InputGroup.vue';
+import useFirebase from '../composable/useFirebase'
 import router from '../bootstrap/router';
+import { User } from '../interfaces/User'
 
 export default defineComponent({
-	name: 'Login',
+	name: 'Signup',
 	props: {
 		signup: {
 			type: Boolean,
 			required: true,
 		},
 	},
+	
 	setup(props) {
-		const showSignUp = ref(props.signup);
+		const {createUser} = useFirebase()
+		const userInput : User = reactive({
+            name: '',
+            email: '', 
+            password: '',
 
-		return {
+        })
+
+		const registerAccount = (event: Event) => {
+			event.preventDefault()
+            if(userInput.name && userInput.email && userInput.password) {
+				console.log('Correct with ', userInput)
+                createUser(
+					userInput.name,
+                    userInput.email as string,
+                    userInput.password as string,
+                )
+            } else {
+				console.log('Invalid input ', userInput)
+            }
+        }
+			const showSignUp = ref(props.signup);
+        return{
+			registerAccount,
+            userInput,
 			showSignUp,
-		};
+        }
+
+	
+		
 	},
 	components: {
 		InputGroup,
@@ -35,7 +63,9 @@ export default defineComponent({
 			// redirecting to admin for testing
 		},
 	},
+	
 });
+
 </script>
 <template>
 	<form
@@ -55,11 +85,11 @@ export default defineComponent({
 	>
 		<h3 class="text-2xl mb-2 dark:text-white">Sign up</h3>
 
-		<InputGroup id="username" text="Username">
+		<InputGroup id="username" text="Username" for="name" v-model="userInput.name">
 			<UserIcon class="h-6 w-6 mr-2" />
 		</InputGroup>
 
-		<InputGroup id="email" text="E-mail Adress" type="email">
+		<InputGroup id="email" text="E-mail Adress" v-model="userInput.email" type="email">
 			<MailIcon class="h-6 w-6 mr-2" />
 		</InputGroup>
 
