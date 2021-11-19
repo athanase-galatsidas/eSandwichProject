@@ -47,6 +47,6 @@ export default defineComponent({
 }
 
 .hover-effect:hover img {
-	transform: scale(1.2) rotate(-10deg);
+	transform: scale(1.1) rotate(-3deg);
 }
 </style>

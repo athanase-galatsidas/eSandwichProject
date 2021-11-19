@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import { get, post } from '../modules/network';
+import { get, post } from '@/modules/network';
 
 const url = 'http://localhost:3001/v1';
 

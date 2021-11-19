@@ -30,12 +30,12 @@ app.get('/v1/sandwiches', (request: Request, response: Response) => {
 		sandwiches: [
 			{
 				id: 0,
-				name: 'basic sandwich',
+				name: 'Basic Sandwich',
 				image: `${url}/img/basic-sandwich.webp`,
 			},
 			{
 				id: 1,
-				name: 'less basic sandwich',
+				name: 'Less Basic Sandwich',
 				image: `${url}/img/less-basic-sandwich.webp`,
 			},
 		],

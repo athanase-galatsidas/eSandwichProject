@@ -1,11 +1,11 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
 import { UserIcon, MailIcon, LockClosedIcon, KeyIcon } from '@heroicons/vue/outline';
-import InputGroup from '../components/InputGroup.vue';
-import router from '../bootstrap/router';
-import useFirebase from '../composable/useFirebase';
+import InputGroup from '@/components/InputGroup.vue';
+import router from '@/bootstrap/router';
+import useFirebase from '@/composable/useFirebase';
 import { useRouter } from 'vue-router';
-import { User } from '../interfaces/User';
+import { User } from '@/interfaces/User';
 
 export default defineComponent({
 	name: 'Login',
@@ -130,7 +130,6 @@ export default defineComponent({
 			"
 			type="submit"
 			value="Log In"
-			
 		/>
 		<!-- <input
 			class="
