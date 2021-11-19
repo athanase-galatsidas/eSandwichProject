@@ -19,8 +19,9 @@ export default defineComponent({
 
 <template>
 	<div class="flex justify-center items-center h-64 text-6xl">
+		<!-- wavy background uses computed bg style of h1, so put a background on it! -->
 		<h1 class="bg-yellow-400 z-10">Sandwitches</h1>
-		<WavyBackground />
+		<WavyBackground v-bind:speed="0.5" v-bind:size="16" />
 	</div>
 	<div class="flex justify-center items-center h-64">
 		<router-link
