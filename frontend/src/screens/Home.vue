@@ -1,32 +1,27 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
+import { LinkIcon } from '@heroicons/vue/outline';
 
 import LandingItem from '@/components/LandingItem.vue';
-import { LinkIcon } from '@heroicons/vue/outline';
+import WavyBackground from '@/components/WavyBackground.vue';
 
 export default defineComponent({
 	name: 'Home',
-	setup() {
-		// const c = document.getElementById('c') as HTMLCanvasElement;
-		// const ctx = c.getContext('2d');
-		// const fill = window
-		// 	.getComputedStyle(document.querySelector('.bg-yellow-400') as Element)
-		// 	.getPropertyValue('background-color');
-		// console.log(fill);
-	},
-	methods: {},
+	setup() {},
 	components: {
 		LandingItem,
 		LinkIcon,
+		WavyBackground,
 	},
 });
 </script>
 
 <template>
-	<div class="flex justify-center items-center h-64 bg-yellow-400 text-6xl">
-		<h1>Sandwitches</h1>
-		<!-- <canvas class="absolute w-full h-72" id="c"></canvas> -->
+	<div class="flex justify-center items-center h-64 text-6xl">
+		<!-- wavy background uses computed bg style of h1, so put a background on it! -->
+		<h1 class="bg-yellow-400 z-10">Sandwitches</h1>
+		<WavyBackground v-bind:speed="0.5" v-bind:size="16" />
 	</div>
 	<div class="flex justify-center items-center h-64">
 		<router-link
