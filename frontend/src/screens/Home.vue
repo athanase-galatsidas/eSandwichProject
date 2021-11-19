@@ -8,14 +8,12 @@ import { LinkIcon } from '@heroicons/vue/outline';
 export default defineComponent({
 	name: 'Home',
 	setup() {
-		const c = document.getElementById('c') as HTMLCanvasElement;
-		const ctx = c.getContext('2d');
-
-		const fill = window
-			.getComputedStyle(document.querySelector('.bg-yellow-400') as Element)
-			.getPropertyValue('background-color');
-
-		console.log(fill);
+		// const c = document.getElementById('c') as HTMLCanvasElement;
+		// const ctx = c.getContext('2d');
+		// const fill = window
+		// 	.getComputedStyle(document.querySelector('.bg-yellow-400') as Element)
+		// 	.getPropertyValue('background-color');
+		// console.log(fill);
 	},
 	methods: {},
 	components: {
@@ -28,7 +26,7 @@ export default defineComponent({
 <template>
 	<div class="flex justify-center items-center h-64 bg-yellow-400 text-6xl">
 		<h1>Sandwitches</h1>
-		<canvas class="absolute w-full h-72" id="c"></canvas>
+		<!-- <canvas class="absolute w-full h-72" id="c"></canvas> -->
 	</div>
 	<div class="flex justify-center items-center h-64">
 		<router-link
