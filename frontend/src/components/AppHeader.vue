@@ -36,7 +36,12 @@ export default defineComponent({
 	<header class="bg-yellow-400 dark:bg-gray-700 p-4 flex justify-between shadow-md">
 		<div class="flex items-center justify-center text-2xl dark:text-gray-200">
 			<router-link to="/menu">
-				<img class="h-12 -m-2" src="src/assets/DELETE_THIS_LATER.png" alt="a cool logo" />
+				<img class="light-logo h-8 -m-2" src="src/assets/logo_bg.png" alt="a cool logo" />
+				<img
+					class="dark-logo h-8 -m-2"
+					src="src/assets/logo_bg_dark.png"
+					alt="a cool logo"
+				/>
 			</router-link>
 			{{ title }}
 		</div>
@@ -111,3 +116,17 @@ export default defineComponent({
 		</nav>
 	</header>
 </template>
+
+<style scoped>
+.dark-logo {
+	display: none;
+}
+@media (prefers-color-scheme: dark) {
+	.light-logo {
+		display: none;
+	}
+	.dark-logo {
+		display: block;
+	}
+}
+</style>
