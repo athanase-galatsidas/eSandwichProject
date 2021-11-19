@@ -2,6 +2,7 @@
 import { defineComponent, reactive, ref } from 'vue';
 import { UserIcon, MailIcon, LockClosedIcon, KeyIcon } from '@heroicons/vue/outline';
 import InputGroup from '@/components/InputGroup.vue';
+import AppHeader from '@/components/AppHeader.vue';
 import router from '@/bootstrap/router';
 import useFirebase from '@/composable/useFirebase';
 import { useRouter } from 'vue-router';
@@ -33,6 +34,7 @@ export default defineComponent({
 			showSignUp,
 			loginUser,
 			loginInput,
+			AppHeader,
 		};
 	},
 	components: {
@@ -41,6 +43,7 @@ export default defineComponent({
 		MailIcon,
 		LockClosedIcon,
 		KeyIcon,
+		AppHeader,
 	},
 	methods: {
 		toggleSignin(value: boolean) {
@@ -59,6 +62,7 @@ export default defineComponent({
 </script>
 
 <template>
+	<AppHeader title="Login" />
 	<form
 		@submit="loginUser($event)"
 		class="
