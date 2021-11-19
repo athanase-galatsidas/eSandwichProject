@@ -34,8 +34,12 @@ export default defineComponent({
 
 <template>
 	<header class="bg-yellow-400 dark:bg-gray-700 p-4 flex justify-between shadow-md">
-		<!-- <a class="text-2xl dark:text-gray-200" href="/menu">{{ title }}</a> -->
-		<router-link to="/menu" class="text-2xl dark:text-gray-200">{{ title }}</router-link>
+		<div class="flex items-center justify-center text-2xl dark:text-gray-200">
+			<router-link to="/menu">
+				<img class="h-12 -m-2" src="src/assets/DELETE_THIS_LATER.png" alt="a cool logo" />
+			</router-link>
+			{{ title }}
+		</div>
 		<!-- TODO: this needs to change to username when logged in -->
 		<nav class="flex">
 			<router-link

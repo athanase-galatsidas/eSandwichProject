@@ -48,7 +48,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<AppHeader title="Sand Witches eSandwiches Service&trade;" />
+	<AppHeader title="Menu" />
 	<SandwichPopup v-show="popupVisible" name="test" image="test" />
 	<div class="container max-w-screen-lg mx-auto flex flex-col lg:flex-row mt-8">
 		<div

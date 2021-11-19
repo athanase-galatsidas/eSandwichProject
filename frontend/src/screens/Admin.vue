@@ -2,6 +2,8 @@
 import { defineComponent, reactive } from 'vue';
 import AdminIngredient from '@/components/AdminIngredient.vue';
 import useFirebase from '@/composable/useFirebase';
+import AppHeader from '@/components/AppHeader.vue';
+
 export default defineComponent({
 	name: 'Admin',
 	setup() {
@@ -40,11 +42,13 @@ export default defineComponent({
 	},
 	components: {
 		AdminIngredient,
+		AppHeader,
 	},
 });
 </script>
 
 <template>
+	<AppHeader title="Admin" />
 	<div class="flex flex-col mx-auto max-w-screen-md">
 		<h3 class="text-3xl text-center my-4 dark:text-white">Stock</h3>
 		<AdminIngredient
