@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
-import useFirebase from '../composable/useFirebase';
+import useFirebase from '@/composable/useFirebase';
 
 export default defineComponent({
 	name: 'AppHeader',
@@ -12,29 +12,30 @@ export default defineComponent({
 		},
 	},
 	setup() {
-		const { user, logout } = useFirebase()
-    const { push } = useRouter()
+		const { user, logout } = useFirebase();
+		const { push } = useRouter();
 
-    const logOutAndRedirect = () => {
-      logout()
-        .then(() => {
-          push('/login')
-        })
-        .catch((error: Error) => {
-          console.error(error)
-        })
-    }
-    return {
-      user,
-      logOutAndRedirect,
-    }
+		const logOutAndRedirect = () => {
+			logout()
+				.then(() => {
+					push('/login');
+				})
+				.catch((error: Error) => {
+					console.error(error);
+				});
+		};
+		return {
+			user,
+			logOutAndRedirect,
+		};
 	},
 });
 </script>
 
 <template>
 	<header class="bg-yellow-400 dark:bg-gray-700 p-4 flex justify-between shadow-md">
-		<a class="text-2xl dark:text-gray-200" href="/">{{ title }}</a>
+		<!-- <a class="text-2xl dark:text-gray-200" href="/menu">{{ title }}</a> -->
+		<router-link to="/menu" class="text-2xl dark:text-gray-200">{{ title }}</router-link>
 		<!-- TODO: this needs to change to username when logged in -->
 		<nav class="flex">
 			<router-link
@@ -81,7 +82,8 @@ export default defineComponent({
 			>
 				Sign Up
 			</router-link>
-			<button class="
+			<button
+				class="
 					flex
 					justify-center
 					items-center
@@ -97,7 +99,11 @@ export default defineComponent({
 					px-4
 					ml-4
 					w-24
-				" @click="logOutAndRedirect">Log Out</button>
+				"
+				@click="logOutAndRedirect"
+			>
+				Log Out
+			</button>
 		</nav>
 	</header>
 </template>

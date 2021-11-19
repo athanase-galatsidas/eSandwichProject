@@ -1,13 +1,13 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import AdminIngredient from '../components/AdminIngredient.vue';
-import useFirebase from '../composable/useFirebase';
+import AdminIngredient from '@/components/AdminIngredient.vue';
+import useFirebase from '@/composable/useFirebase';
 export default defineComponent({
 	name: 'Admin',
 	setup() {
 		// TODO: this page should not be accessible for non-admin users
 		const { createUser } = useFirebase();
-		
+
 		// TODO: test data
 		const ingredients = reactive({
 			data: [

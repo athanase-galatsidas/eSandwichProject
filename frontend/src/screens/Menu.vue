@@ -1,10 +1,12 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
-import store from '../bootstrap/store';
+import store from '@/bootstrap/store';
 
-import MenuItem from '../components/MenuItem.vue';
-import SandwichPopup from '../components/SandwichPopup.vue';
-import useFirebase from '../composable/useFirebase';
+// import AppHeader from '@/components/AppHeader.vue';
+import AppHeader from '@/components/AppHeader.vue';
+import MenuItem from '@/components/MenuItem.vue';
+import SandwichPopup from '@/components/SandwichPopup.vue';
+import useFirebase from '@/composable/useFirebase';
 
 export default defineComponent({
 	setup() {
@@ -16,7 +18,7 @@ export default defineComponent({
 		return {
 			basketItems,
 			popupVisible,
-			user
+			// user
 		};
 	},
 	computed: {
@@ -26,6 +28,7 @@ export default defineComponent({
 		},
 	},
 	components: {
+		AppHeader,
 		MenuItem,
 		SandwichPopup,
 	},
@@ -45,6 +48,7 @@ export default defineComponent({
 </script>
 
 <template>
+	<AppHeader title="Sand Witches eSandwiches Service&trade;" />
 	<SandwichPopup v-show="popupVisible" name="test" image="test" />
 	<div class="container max-w-screen-lg mx-auto flex flex-col lg:flex-row mt-8">
 		<div
@@ -85,6 +89,6 @@ export default defineComponent({
 				{{ value }}
 			</h4>
 		</div>
-		<p>{{ user?.email }}</p>
+		<!-- <p>{{ user?.email }}</p> -->
 	</div>
 </template>

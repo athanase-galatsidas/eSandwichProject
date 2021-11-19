@@ -1,10 +1,10 @@
 <script lang="ts">
 import { defineComponent, ref, reactive } from 'vue';
 import { UserIcon, MailIcon, LockClosedIcon, KeyIcon } from '@heroicons/vue/outline';
-import InputGroup from '../components/InputGroup.vue';
-import useFirebase from '../composable/useFirebase';
-import router from '../bootstrap/router';
-import { User } from '../interfaces/User';
+import InputGroup from '@/components/InputGroup.vue';
+import useFirebase from '@/composable/useFirebase';
+import router from '@/bootstrap/router';
+import { User } from '@/interfaces/User';
 
 export default defineComponent({
 	name: 'Signup',
@@ -58,7 +58,8 @@ export default defineComponent({
 });
 </script>
 <template>
-	<form @submit="registerAccount($event)"
+	<form
+		@submit="registerAccount($event)"
 		class="
 			flex flex-col
 			justify-center
@@ -105,31 +106,52 @@ export default defineComponent({
 
 		<label class="font-bold block mb-3" for="name">Name</label>
 		<input
-          v-model="userInput.name"
-          class="
-            hide-on-input p-2 h-9 w-64 bg-gray-100 dark:bg-gray-800 dark:text-white rounded-md shadow-sm
-          "
-          type="text"
-          id="name"
-        />
-        <label class="font-bold block mb-3" for="email">Email address</label>
-        <input
-          v-model="userInput.email"
-          class="
-            hide-on-input p-2 h-9 w-64 bg-gray-100 dark:bg-gray-800 dark:text-white rounded-md shadow-sm
-          "
-          type="text"
-          id="email"
-        />
-        <label class="font-bold block mb-3" for="password">Password</label>
-        <input
-          v-model="userInput.password"
-          class="
-            hide-on-input p-2 h-9 w-64 bg-gray-100 dark:bg-gray-800 dark:text-white rounded-md shadow-sm
-          "
-          type="password"
-          id="password"
-        />
+			v-model="userInput.name"
+			class="
+				hide-on-input
+				p-2
+				h-9
+				w-64
+				bg-gray-100
+				dark:bg-gray-800 dark:text-white
+				rounded-md
+				shadow-sm
+			"
+			type="text"
+			id="name"
+		/>
+		<label class="font-bold block mb-3" for="email">Email address</label>
+		<input
+			v-model="userInput.email"
+			class="
+				hide-on-input
+				p-2
+				h-9
+				w-64
+				bg-gray-100
+				dark:bg-gray-800 dark:text-white
+				rounded-md
+				shadow-sm
+			"
+			type="text"
+			id="email"
+		/>
+		<label class="font-bold block mb-3" for="password">Password</label>
+		<input
+			v-model="userInput.password"
+			class="
+				hide-on-input
+				p-2
+				h-9
+				w-64
+				bg-gray-100
+				dark:bg-gray-800 dark:text-white
+				rounded-md
+				shadow-sm
+			"
+			type="password"
+			id="password"
+		/>
 
 		<input
 			class="
@@ -148,7 +170,7 @@ export default defineComponent({
 			"
 			type="submit"
 			value="Sign Up"
-		>
+		/>
 		<p class="cursor-default dark:text-white">
 			Already have an account?
 			<router-link to="/login" class="cursor-pointer text-red-600 font-semibold">
