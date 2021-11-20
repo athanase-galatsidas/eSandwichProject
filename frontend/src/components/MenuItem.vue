@@ -21,7 +21,7 @@ export default defineComponent({
 	<div
 		class="
 			m-2
-			w-52
+			w-56
 			bg-white
 			dark:bg-gray-700
 			shadow-md

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
-import { UserIcon, MailIcon, LockClosedIcon, KeyIcon } from '@heroicons/vue/outline';
+import { UserIcon, LockClosedIcon } from '@heroicons/vue/outline';
 import InputGroup from '@/components/InputGroup.vue';
 import AppHeader from '@/components/AppHeader.vue';
 import router from '@/bootstrap/router';
@@ -20,8 +20,17 @@ export default defineComponent({
 		const showSignUp = ref(props.signup);
 		const { login } = useFirebase();
 		const { push } = useRouter();
+		const loginInput: User = reactive({ email: '', password: '' });
 		const loginUser = (event: Event) => {
 			event.preventDefault();
+
+			// vmodel doesnt work with child components :(
+			loginInput.email = (document.getElementById('username') as HTMLInputElement).value;
+			loginInput.password = (document.getElementById('password') as HTMLInputElement).value;
+
+			// TODO: error handling
+
+			console.log(loginInput.email);
 
 			if (loginInput.email && loginInput.password) {
 				login(loginInput.email, loginInput.password).then((success: boolean) => {
@@ -29,7 +38,6 @@ export default defineComponent({
 				});
 			}
 		};
-		const loginInput: User = reactive({ email: '', password: '' });
 		return {
 			showSignUp,
 			loginUser,
@@ -40,23 +48,8 @@ export default defineComponent({
 	components: {
 		InputGroup,
 		UserIcon,
-		MailIcon,
 		LockClosedIcon,
-		KeyIcon,
 		AppHeader,
-	},
-	methods: {
-		toggleSignin(value: boolean) {
-			this.showSignUp = value;
-		},
-
-		// login() {
-		// 	//TODO: login
-		// 	// redirecting to admin for testing
-		// 	const username = (document.querySelector('#username') as HTMLInputElement).value;
-		// 	const password = (document.querySelector('#password') as HTMLInputElement).value;
-		// 	if (username == 'admin' && password == 'admin') router.push({ path: 'admin' });
-		// },
 	},
 });
 </script>
@@ -81,7 +74,15 @@ export default defineComponent({
 	>
 		<h3 class="text-2xl mb-2 dark:text-white">Log In</h3>
 
-		<label class="font-bold block mb-3" for="email">Email address</label>
+		<InputGroup id="username" model="loginInput.email" text="Username / Email">
+			<UserIcon class="h-6 w-6 mr-2" />
+		</InputGroup>
+
+		<InputGroup id="password" model="loginInput.password" text="Password">
+			<LockClosedIcon class="h-6 w-6 mr-2" />
+		</InputGroup>
+
+		<!-- <label class="font-bold block mb-3" for="email">Email address</label>
 		<input
 			v-model="loginInput.email"
 			class="
@@ -112,10 +113,8 @@ export default defineComponent({
 			"
 			type="password"
 			id="password"
-		/>
-		<span class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)">
-			Forgot password?
-		</span>
+		/> -->
+		<span class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)"> Forgot password? </span>
 
 		<input
 			class="
@@ -135,31 +134,10 @@ export default defineComponent({
 			type="submit"
 			value="Log In"
 		/>
-		<!-- <input
-			class="
-				cursor-pointer
-				hide-on-input
-				my-2
-				mt-4
-				p-2
-				h-9
-				w-64
-				bg-red-500
-				text-white
-				font-semibold
-				rounded-md
-				shadow-sm
-			"
-			type="submit"
-			value="Log In"
-			@click.stop.prevent="login()"
-		/> -->
 
 		<p class="cursor-default dark:text-white">
 			Don't have an account?
-			<router-link to="/signup" class="cursor-pointer text-red-600 font-semibold">
-				Sign up now!
-			</router-link>
+			<router-link to="/signup" class="cursor-pointer text-red-600 font-semibold"> Sign up now! </router-link>
 		</p>
 	</form>
 </template>

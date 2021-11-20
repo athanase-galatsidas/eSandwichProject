@@ -43,7 +43,7 @@ export default defineComponent({
 					alt="a cool logo"
 				/>
 			</router-link>
-			{{ title }}
+			- {{ title }}
 		</div>
 		<!-- TODO: this needs to change to username when logged in -->
 		<nav class="flex">

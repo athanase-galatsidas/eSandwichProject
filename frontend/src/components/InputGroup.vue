@@ -8,6 +8,10 @@ export default defineComponent({
 			type: String,
 			required: true,
 		},
+		model: {
+			type: String,
+			required: true,
+		},
 		text: {
 			type: String,
 			required: true,
@@ -26,7 +30,7 @@ export default defineComponent({
 		<input
 			:id="id"
 			:type="type"
-			:v-model="id"
+			:v-model="model"
 			placeholder=" "
 			class="
 				hide-on-input
