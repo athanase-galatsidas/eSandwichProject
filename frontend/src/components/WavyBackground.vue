@@ -89,5 +89,5 @@ export default defineComponent({
 </script>
 
 <template>
-	<canvas class="absolute w-full h-72" id="c"></canvas>
+	<canvas class="absolute w-full h-72 " id="c"></canvas>
 </template>

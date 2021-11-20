@@ -27,7 +27,7 @@ export default defineComponent({
 		class="flex h-80 justify-between items-center max-w-screen-lg mx-auto mb-16"
 	>
 		<div class="w-96">
-			<h3 class="text-3xl my-4">{{ title }}</h3>
+			<h3 class="text-3xl my-4 dark:text-white">{{ title }}</h3>
 			<slot></slot>
 		</div>
 		<div class="flex h-full w-96 overflow-hidden rounded-lg">
