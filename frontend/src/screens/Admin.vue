@@ -16,22 +16,22 @@ export default defineComponent({
 				{
 					name: 'Bread',
 					count: 42,
-					image: 'src/assets/logo.png',
+					image: 'src/assets/images/admin-bread.jpeg',
 				},
 				{
 					name: 'Cheese',
 					count: 38,
-					image: 'src/assets/logo.png',
+					image: 'src/assets/images/admin-cheese.jpeg',
 				},
 				{
 					name: 'Salad',
 					count: 2,
-					image: 'src/assets/logo.png',
+					image: 'src/assets/images/admin-salad.jpeg',
 				},
 				{
 					name: 'Ham',
 					count: 8,
-					image: 'src/assets/logo.png',
+					image: 'src/assets/images/admin-ham.jpeg',
 				},
 			],
 		});

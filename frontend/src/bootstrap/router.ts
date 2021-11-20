@@ -44,7 +44,8 @@ const routes: RouteRecordRaw[] = [
 		path: '/admin',
 		component: () => import('@/screens/Admin.vue'),
 		props: { signup: true },
-		meta: { authRequired: true },
+		// Uncomment when admin login is implemented
+		// meta: { authRequired: true },
 	},
 ];
 
