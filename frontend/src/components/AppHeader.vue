@@ -35,15 +35,10 @@ export default defineComponent({
 <template>
 	<header class="bg-yellow-400 dark:bg-gray-700 p-4 flex justify-between shadow-md">
 		<div class="flex items-center justify-center text-2xl dark:text-gray-200">
-			<router-link to="/menu">
-				<img class="light-logo h-8 -m-2" src="src/assets/logo_bg.png" alt="a cool logo" />
-				<img
-					class="dark-logo h-8 -m-2"
-					src="src/assets/logo_bg_dark.png"
-					alt="a cool logo"
-				/>
+			<router-link to="/menu" class="w-12 h-12 -m-2 mr-4">
+				<img class="h-full w-full" src="src/assets/logo_sm.png" alt="a cool logo" />
 			</router-link>
-			- {{ title }}
+			{{ title }}
 		</div>
 		<!-- TODO: this needs to change to username when logged in -->
 		<nav class="flex">
@@ -116,17 +111,3 @@ export default defineComponent({
 		</nav>
 	</header>
 </template>
-
-<style scoped>
-.dark-logo {
-	display: none;
-}
-@media (prefers-color-scheme: dark) {
-	.light-logo {
-		display: none;
-	}
-	.dark-logo {
-		display: block;
-	}
-}
-</style>
