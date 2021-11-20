@@ -18,9 +18,15 @@ export default defineComponent({
 </script>
 
 <template>
-	<div class="flex justify-center items-center h-64 text-6xl">
+	<div class="flex justify-center items-center h-64">
+		<div to="/menu" class="z-10 w-16 h-16 mr-4">
+			<img class="light-logo h-full w-full" src="src/assets/logo_xl.png" alt="a cool logo" />
+			<img class="dark-logo h-full w-full" src="src/assets/logo_xl_dark.png" alt="a cool logo" />
+		</div>
 		<!-- wavy background uses computed bg style of h1, so put a background on it! -->
-		<h1 class="bg-yellow-400 z-10">Sandwitches</h1>
+		<h1 class="bg-yellow-400 dark:bg-gray-700 dark:text-white z-10 text-5xl">
+			eSand<span class="text-red-500 font-bold text-6xl">Witches</span>
+		</h1>
 		<WavyBackground v-bind:speed="0.5" v-bind:size="16" />
 	</div>
 	<div class="flex justify-center items-center h-64">
@@ -49,33 +55,26 @@ export default defineComponent({
 	</div>
 
 	<LandingItem title="Handled with care" image="src/assets/images/landing_cook.jpeg">
-		<p>
+		<p class="dark:text-gray-300">
 			When you order a Sandwitch Sandwichservice Sandwich you are
-			<span class="underline">guaranteed</span> the best quality sandwich created by our
-			beloved below-minimum wage workers.
+			<span class="underline">guaranteed</span> the best quality sandwich created by our beloved below-minimum
+			wage workers.
 		</p>
 	</LandingItem>
 
 	<div class="bg-element"></div>
 
-	<LandingItem
-		title="Only the best ingredients"
-		image="src/assets/images/landing_food.jpeg"
-		inverted="true"
-	>
-		<p>
-			Our sandwiches are crafted with only <span class="underline">the best</span> hand picked
-			ingredients that we could find at the local discount market.
+	<LandingItem title="Only the best ingredients" image="src/assets/images/landing_food.jpeg" inverted="true">
+		<p class="dark:text-gray-300">
+			Our sandwiches are crafted with only <span class="underline">the best</span> hand picked ingredients that we
+			could find at the local discount market.
 		</p>
 	</LandingItem>
 
-	<LandingItem
-		title="Shipped right to your doorstep"
-		image="src/assets/images/landing_delivery.jpeg"
-	>
-		<p>
-			We are commited to delivering our sandwiches to your doorstep so that you can enjoy our
-			sandwiches from the confort of your own home.
+	<LandingItem title="Shipped right to your doorstep" image="src/assets/images/landing_delivery.jpeg">
+		<p class="dark:text-gray-300">
+			We are commited to delivering our sandwiches to your doorstep so that you can enjoy our sandwiches from the
+			confort of your own home.
 		</p>
 	</LandingItem>
 
@@ -132,7 +131,7 @@ export default defineComponent({
 }
 
 .bg-element {
-	@apply bg-yellow-400 absolute w-full h-64;
+	@apply bg-yellow-400 dark:bg-gray-700 absolute w-full h-64;
 	z-index: -10;
 	transform: skewY(4deg);
 }

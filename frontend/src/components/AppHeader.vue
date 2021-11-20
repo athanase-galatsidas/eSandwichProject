@@ -112,17 +112,3 @@ export default defineComponent({
 		</nav>
 	</header>
 </template>
-
-<style scoped>
-.dark-logo {
-	display: none;
-}
-@media (prefers-color-scheme: dark) {
-	.light-logo {
-		display: none;
-	}
-	.dark-logo {
-		display: block;
-	}
-}
-</style>

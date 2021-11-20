@@ -18,21 +18,23 @@ export default defineComponent({
 		const ctx = c.getContext('2d');
 
 		// get the specific color of yellow
-		const fill = window
-			.getComputedStyle(document.querySelector('h1') as Element, null)
-			.getPropertyValue('background-color');
+		// const fill = window.getComputedStyle(document.querySelector('h1') as Element, null).getPropertyValue('background-color');
+		const fillElement = window.getComputedStyle(document.querySelector('h1') as Element, null);
 
 		// typescript is annoying
 		if (ctx === null) return;
 
-		this.init(c, ctx, fill);
+		this.init(c, ctx, fillElement);
 	},
 	methods: {
-		init(c: HTMLCanvasElement, ctx: CanvasRenderingContext2D, fill: string) {
+		init(c: HTMLCanvasElement, ctx: CanvasRenderingContext2D, fillElement: CSSStyleDeclaration) {
 			let offset = 0;
 
 			const draw = () => {
 				ctx.clearRect(0, 0, c.width, c.height);
+
+				// need to update this in case user switches to dark mode
+				const fill = fillElement.getPropertyValue('background-color');
 
 				ctx.beginPath();
 				ctx.moveTo(0, 0);
@@ -45,38 +47,19 @@ export default defineComponent({
 				ctx.lineTo(width, height);
 
 				// draw path
-				ctx.quadraticCurveTo(
-					width * 1.75 - offset,
-					height + this.size,
-					width * 1.5 - offset,
-					height,
-				);
-				ctx.quadraticCurveTo(
-					width * 1.25 - offset,
-					height - this.size,
-					width * 1.0 - offset,
-					height,
-				);
-				ctx.quadraticCurveTo(
-					width * 0.75 - offset,
-					height + this.size,
-					width * 0.5 - offset,
-					height,
-				);
-				ctx.quadraticCurveTo(
-					width * 0.25 - offset,
-					height - this.size,
-					width * 0.0 - offset,
-					height,
-				);
+				ctx.quadraticCurveTo(width * 1.75 - offset, height + this.size, width * 1.5 - offset, height);
+				ctx.quadraticCurveTo(width * 1.25 - offset, height - this.size, width * 1.0 - offset, height);
+				ctx.quadraticCurveTo(width * 0.75 - offset, height + this.size, width * 0.5 - offset, height);
+				ctx.quadraticCurveTo(width * 0.25 - offset, height - this.size, width * 0.0 - offset, height);
 
+				// close the path
 				ctx.lineTo(0, c.height);
 				ctx.closePath();
 				ctx.fillStyle = fill;
 				ctx.fill();
 
+				// animation stuff
 				offset += this.speed;
-
 				if (offset > width) offset = 0;
 
 				requestAnimationFrame(draw);
