@@ -48,15 +48,17 @@ export default defineComponent({
 </script>
 
 <template>
-	<AppHeader title="Admin" />
-	<div class="flex flex-col mx-auto max-w-screen-md">
-		<h3 class="text-3xl text-center my-4 dark:text-white">Stock</h3>
-		<AdminIngredient
-			v-for="(value, key) of ingredients.data"
-			:key="key"
-			:name="value.name"
-			:count="value.count"
-			:image="value.image"
-		/>
+	<div>
+		<AppHeader title="Admin" />
+		<div class="flex flex-col mx-auto max-w-screen-md">
+			<h3 class="text-3xl text-center my-4 dark:text-white">Stock</h3>
+			<AdminIngredient
+				v-for="(value, key) of ingredients.data"
+				:key="key"
+				:name="value.name"
+				:count="value.count"
+				:image="value.image"
+			/>
+		</div>
 	</div>
 </template>

@@ -60,42 +60,43 @@ export default defineComponent({
 });
 </script>
 <template>
-	<AppHeader title="Signup" />
-	<form
-		@submit="registerAccount($event)"
-		class="
-			flex flex-col
-			justify-center
-			items-center
-			p-4
-			rounded-md
-			mx-auto
-			max-w-screen-sm
-			dark:bg-gray-700
-			bg-white
-			shadow-md
-			mt-16
-		"
-	>
-		<h3 class="text-2xl mb-2 dark:text-white">Sign up</h3>
+	<div>
+		<AppHeader title="Signup" />
+		<form
+			@submit="registerAccount($event)"
+			class="
+				flex flex-col
+				justify-center
+				items-center
+				p-4
+				rounded-md
+				mx-auto
+				max-w-screen-sm
+				dark:bg-gray-700
+				bg-white
+				shadow-md
+				mt-16
+			"
+		>
+			<h3 class="text-2xl mb-2 dark:text-white">Sign up</h3>
 
-		<InputGroup id="username" model="userInput.name" text="Username">
-			<UserIcon class="h-6 w-6 mr-2" />
-		</InputGroup>
+			<InputGroup id="username" model="userInput.name" text="Username">
+				<UserIcon class="h-6 w-6 mr-2" />
+			</InputGroup>
 
-		<InputGroup id="email" model="userInput.email" text="E-mail Adress" type="email">
-			<MailIcon class="h-6 w-6 mr-2" />
-		</InputGroup>
+			<InputGroup id="email" model="userInput.email" text="E-mail Adress" type="email">
+				<MailIcon class="h-6 w-6 mr-2" />
+			</InputGroup>
 
-		<InputGroup id="password" model="userInput.password" text="Password" type="password">
-			<KeyIcon class="h-6 w-6 mr-2" />
-		</InputGroup>
+			<InputGroup id="password" model="userInput.password" text="Password" type="password">
+				<KeyIcon class="h-6 w-6 mr-2" />
+			</InputGroup>
 
-		<InputGroup id="password-repeat" model="password-repeat" text="Repeat Password" type="password">
-			<KeyIcon class="h-6 w-6 mr-2" />
-		</InputGroup>
+			<InputGroup id="password-repeat" model="password-repeat" text="Repeat Password" type="password">
+				<KeyIcon class="h-6 w-6 mr-2" />
+			</InputGroup>
 
-		<!-- <label class="font-bold block mb-3" for="name">Name</label>
+			<!-- <label class="font-bold block mb-3" for="name">Name</label>
 		<input
 			v-model="userInput.name"
 			class="
@@ -144,27 +145,28 @@ export default defineComponent({
 			id="password"
 		/> -->
 
-		<input
-			class="
-				cursor-pointer
-				hide-on-input
-				my-2
-				mt-4
-				p-2
-				h-9
-				w-64
-				bg-red-500
-				text-white
-				font-semibold
-				rounded-md
-				shadow-sm
-			"
-			type="submit"
-			value="Sign Up"
-		/>
-		<p class="cursor-default dark:text-white">
-			Already have an account?
-			<router-link to="/login" class="cursor-pointer text-red-600 font-semibold"> Log in! </router-link>
-		</p>
-	</form>
+			<input
+				class="
+					cursor-pointer
+					hide-on-input
+					my-2
+					mt-4
+					p-2
+					h-9
+					w-64
+					bg-red-500
+					text-white
+					font-semibold
+					rounded-md
+					shadow-sm
+				"
+				type="submit"
+				value="Sign Up"
+			/>
+			<p class="cursor-default dark:text-white">
+				Already have an account?
+				<router-link to="/login" class="cursor-pointer text-red-600 font-semibold"> Log in! </router-link>
+			</p>
+		</form>
+	</div>
 </template>
