@@ -10,7 +10,6 @@ import { createDatabase } from 'typeorm-extension';
 import { Sandwich } from './entities/sandwich';
 import { seedDatabase } from './seeders/dataSeeder';
 
-// TODO: temporary oplosing tot database trug werkt
 // APP
 const app = express(),
 	port = process.env.PORT || 3001;
@@ -25,18 +24,45 @@ app.get('/', (request: Request, response: Response) => {
 	response.send(`Welcome to Sandwitches Sandwich Service!`);
 });
 
+// TODO: temporary oplosing tot database trug werkt
 app.get('/v1/sandwiches', (request: Request, response: Response) => {
 	const data = {
 		sandwiches: [
 			{
 				id: 0,
 				name: 'Basic Sandwich',
-				image: `${url}/img/basic-sandwich.webp`,
+				image: `${url}/img/basic.webp`,
+				price: 11.5,
 			},
 			{
 				id: 1,
-				name: 'Less Basic Sandwich',
-				image: `${url}/img/less-basic-sandwich.webp`,
+				name: 'Regular Sandwich',
+				image: `${url}/img/regular.webp`,
+				price: 12.0,
+			},
+			{
+				id: 2,
+				name: 'Vegetarian Sandwich',
+				image: `${url}/img/vege.webp`,
+				price: 13.0,
+			},
+			{
+				id: 3,
+				name: 'Special Sandwich',
+				image: `${url}/img/special.webp`,
+				price: 14.0,
+			},
+			{
+				id: 4,
+				name: 'Grilled Sandwich',
+				image: `${url}/img/grilled.webp`,
+				price: 12.0,
+			},
+			{
+				id: 5,
+				name: 'Deluxe Sandwich',
+				image: `${url}/img/deluxe.webp`,
+				price: 14.0,
 			},
 		],
 	};
