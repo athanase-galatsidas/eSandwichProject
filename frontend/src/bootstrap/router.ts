@@ -28,6 +28,14 @@ const routes: RouteRecordRaw[] = [
 		},
 	},
 	{
+		name: 'checkout',
+		path: '/checkout',
+		component: () => import('@/screens/Checkout.vue'),
+		meta: {
+			guest: true,
+		},
+	},
+	{
 		name: 'login',
 		path: '/login',
 		component: () => import('@/screens/Login.vue'),
@@ -54,20 +62,18 @@ const router: Router = createRouter({
 	routes,
 });
 
-router.beforeEach(
-	(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-		//Check a property that you added to the route meta
-		if (to.meta.authRequired && to.meta.authRequired === true) {
-			if (user.value) {
-				if (user.value) next();
-				// Else redirect to error or path, etc.
-			} else {
-				next('/login');
-			}
+router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+	//Check a property that you added to the route meta
+	if (to.meta.authRequired && to.meta.authRequired === true) {
+		if (user.value) {
+			if (user.value) next();
+			// Else redirect to error or path, etc.
 		} else {
-			next();
+			next('/login');
 		}
-	},
-);
+	} else {
+		next();
+	}
+});
 
 export default router;
