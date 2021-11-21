@@ -41,9 +41,11 @@ export default defineComponent({
 			</router-link>
 			{{ title }}
 		</div>
+			<p class="dark:text-gray-200">{{ user?.email }}</p>
 		<!-- TODO: this needs to change to username when logged in -->
 		<nav class="flex">
 			<router-link
+			v-if=!user
 				to="/login"
 				class="
 					flex
@@ -66,6 +68,7 @@ export default defineComponent({
 				Log In
 			</router-link>
 			<router-link
+			v-if=!user
 				to="/signup"
 				class="
 					flex
@@ -88,6 +91,7 @@ export default defineComponent({
 				Sign Up
 			</router-link>
 			<button
+			v-if=user
 				class="
 					flex
 					justify-center

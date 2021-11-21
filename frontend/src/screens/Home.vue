@@ -75,7 +75,7 @@ export default defineComponent({
 		<LandingItem title="Shipped right to your doorstep" image="src/assets/images/landing_delivery.jpeg">
 			<p class="dark:text-gray-300">
 				We are commited to delivering our sandwiches to your doorstep so that you can enjoy our sandwiches from
-				the confort of your own home.
+				the comfort of your own home.
 			</p>
 		</LandingItem>
 
