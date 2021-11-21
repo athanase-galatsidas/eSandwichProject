@@ -3,7 +3,6 @@ import { defineComponent, reactive, ref } from 'vue';
 import store from '@/bootstrap/store';
 import router from '@/bootstrap/router';
 
-// import AppHeader from '@/components/AppHeader.vue';
 import AppHeader from '@/components/AppHeader.vue';
 import MenuItem from '@/components/MenuItem.vue';
 import SandwichPopup from '@/components/SandwichPopup.vue';
@@ -64,8 +63,6 @@ export default defineComponent({
 				/>
 			</div>
 
-			<!-- this is a quick & dirty test thingy -->
-			<!-- todo: put this in seperate components -->
 			<div
 				v-show="cartItems.length > 0"
 				class="bg-white dark:bg-gray-700 dark:text-gray-200 shadow-md flex flex-col rounded-md w-56 m-2"

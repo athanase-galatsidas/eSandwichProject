@@ -25,18 +25,7 @@ export default defineComponent({
 
 <template>
 	<div
-		class="
-			fixed
-			top-0,
-			left-0
-			w-screen
-			h-screen
-			bg-black bg-opacity-30
-			z-20
-			flex
-			justify-center
-			items-center
-		"
+		class="fixed top-0, left-0 w-screen h-screen bg-black bg-opacity-30 z-20 flex justify-center items-center"
 		@click="$emit('closePopup')"
 	>
 		<div
@@ -54,41 +43,14 @@ export default defineComponent({
 			"
 			@click="$event.stopPropagation()"
 		>
-			<figure
-				class="
-					bg-yellow-300
-					flex
-					absolute
-					right-8
-					top-8
-					w-64
-					h-48
-					rounded-md
-					overflow-hidden
-				"
-			>
-				<img
-					class="block w-full justify-self-center self-center"
-					:src="sandwich.image"
-					:alt="sandwich.name"
-				/>
+			<figure class="bg-yellow-300 flex absolute right-8 top-8 w-64 h-48 rounded-md overflow-hidden">
+				<img class="block w-full justify-self-center self-center" :src="sandwich.image" :alt="sandwich.name" />
 			</figure>
 			<button
-				class="
-					absolute
-					bottom-8
-					right-8
-					w-64
-					text-xl
-					bg-red-500
-					text-white
-					font-semibold
-					rounded-md
-					p-4
-				"
+				class="absolute bottom-8 right-8 w-64 text-xl bg-red-500 text-white font-semibold rounded-md p-4"
 				@click="addToCart()"
 			>
-				Add to Cart
+				Add to Cart (€ {{ sandwich.price.toFixed(2) }})
 			</button>
 
 			<div class="absolute bottom-8 left-8 bg-gray-100 w-96 h-48 p-4 rounded-md">

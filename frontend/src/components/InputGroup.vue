@@ -32,16 +32,7 @@ export default defineComponent({
 			:type="type"
 			:v-model="model"
 			placeholder=" "
-			class="
-				hide-on-input
-				p-2
-				h-9
-				w-64
-				bg-gray-100
-				dark:bg-gray-800 dark:text-white
-				rounded-md
-				shadow-sm
-			"
+			class="hide-on-input p-2 h-9 w-64 bg-gray-100 dark:bg-gray-800 dark:text-white rounded-md shadow-sm"
 		/>
 		<label
 			:for="id"
@@ -75,5 +66,15 @@ important: for this to work the input must be placed before the label and it mus
 .hide-on-input:focus + label,
 .hide-on-input:not(:placeholder-shown) + label {
 	opacity: 0; /* using anything other than opacity to hide this causes weird behaviour */
+}
+
+/* browser defaults annoy me and i dont know how to change this in tailwind... */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type='number'] {
+	-moz-appearance: textfield;
 }
 </style>

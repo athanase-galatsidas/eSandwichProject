@@ -18,19 +18,7 @@ export default defineComponent({
 </script>
 
 <template>
-	<div
-		class="
-			m-2
-			w-56
-			bg-white
-			dark:bg-gray-700
-			shadow-md
-			flex flex-col
-			rounded-md
-			overflow-hidden
-			hover-effect
-		"
-	>
+	<div class="m-2 w-56 bg-white dark:bg-gray-700 shadow-md flex flex-col rounded-md overflow-hidden hover-effect">
 		<figure class="bg-yellow-300 h-28 overflow-hidden flex">
 			<img class="block w-full justify-self-center self-center" :src="image" :alt="name" />
 		</figure>
