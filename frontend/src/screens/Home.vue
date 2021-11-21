@@ -102,6 +102,29 @@ export default defineComponent({
 			>
 				Order now!
 			</router-link>
+			<router-link
+				
+				to="/admin"
+				class="
+					flex
+					justify-center
+					items-center
+					bg-red-500
+					hover:bg-red-400
+					dark:bg-gray-200 dark:hover:bg-gray-400
+					text-white
+					dark:text-black
+					shadow-sm
+					transition-colors
+					font-semibold
+					rounded-md
+					px-4
+					ml-4
+					w-24
+				"
+			>
+				Admin
+			</router-link>
 		</div>
 
 		<footer class="bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-white w-full h-32 p-8 flex items-end justify-between">
