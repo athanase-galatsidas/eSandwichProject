@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express, { Request, Response } from 'express';
 import {
 	Connection,
@@ -17,6 +18,7 @@ const url = `http://localhost:${port}`;
 
 // MIDDLEWARE
 app.use(express.json());
+app.use(cors())
 app.use('/img', express.static(`${__dirname}/assets/images`));
 
 // ROUTES
@@ -67,12 +69,15 @@ app.get('/v1/sandwiches', (request: Request, response: Response) => {
 		],
 	};
 	response.send(JSON.stringify(data));
+
 });
 
 // START
 app.listen(port, () => {
 	console.info(`\nServer listening on ${url}/`);
 });
+
+
 
 // TODO: fix de database
 
