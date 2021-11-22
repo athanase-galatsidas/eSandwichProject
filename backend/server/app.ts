@@ -19,6 +19,8 @@ import { seedDatabase } from './seeders/dataSeeder';
 		.then(
 			async () =>
 				await createConnection().then(async (connection: Connection) => {
+					seedDatabase(connection);
+
 					// APP
 					const app = express(),
 						port = process.env.PORT || 3001;
