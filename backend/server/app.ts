@@ -35,36 +35,49 @@ app.get('/v1/sandwiches', (request: Request, response: Response) => {
 				name: 'Basic Sandwich',
 				image: `${url}/img/basic.webp`,
 				price: 11.5,
+				toppings: "Cheese, lettuce, tomato, mayonaise",
+				description: "Just a basic sandwich"
+
 			},
 			{
 				id: 1,
 				name: 'Regular Sandwich',
 				image: `${url}/img/regular.webp`,
 				price: 12.0,
+				toppings: "Cheese, ham, lettuce, tomato, egg, mayonaise",
+				description: "Just a regular sandwich"
 			},
 			{
 				id: 2,
-				name: 'Vegetarian Sandwich',
+				name: 'Vegan Sandwich',
 				image: `${url}/img/vege.webp`,
 				price: 13.0,
+				toppings: "Beyond ham, vegan cheese, lettuce, tomato, vegan mayonaise",
+				description: "A vegan sandwich with beyond ham, vegan cheese and vegan mayonaise"
 			},
 			{
 				id: 3,
 				name: 'Special Sandwich',
 				image: `${url}/img/special.webp`,
 				price: 14.0,
+				toppings: 'Sausage, lettuce, tomato, "special sauce"',
+				description: 'A sandwich with our very own "special sauce"'
 			},
 			{
 				id: 4,
 				name: 'Grilled Sandwich',
 				image: `${url}/img/grilled.webp`,
 				price: 12.0,
+				toppings: "Cheese",
+				description: "A grilled cheese sandwich grilled with the butter made from the milk of a sad cow."
 			},
 			{
 				id: 5,
 				name: 'Deluxe Sandwich',
 				image: `${url}/img/deluxe.webp`,
 				price: 14.0,
+				toppings: "Cheese, bacon, tomato, egg, deluxe sauce",
+				description: "A sandwich for the people who think they are better than others"
 			},
 		],
 	};

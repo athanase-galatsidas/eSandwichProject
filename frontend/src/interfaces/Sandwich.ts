@@ -3,4 +3,6 @@ export interface Sandwich {
 	name: string;
 	image: string;
 	price: number;
+	toppings: string;
+	description: string;
 }
