@@ -1,4 +1,5 @@
 import {
+	BaseEntity,
 	Column,
 	Entity,
 	JoinTable,
@@ -10,8 +11,8 @@ import {
 import { Sandwich } from './sandwich';
 import { User } from './user';
 
-@Entity('order')
-export class Order {
+@Entity('Order')
+export class Order extends BaseEntity {
 	@PrimaryGeneratedColumn('uuid')
 	orderId?: string;
 

@@ -1,7 +1,7 @@
-import { Column, Entity } from 'typeorm';
+import { BaseEntity, Column, Entity } from 'typeorm';
 
-@Entity('config')
-export class Config {
+@Entity('Config')
+export class Config extends BaseEntity {
 	@Column({ unique: true, primary: true })
 	key?: string;
 

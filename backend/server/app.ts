@@ -1,15 +1,14 @@
-import cors from 'cors';
 import express, { Request, Response } from 'express';
-import {
-	Connection,
-	ConnectionOptions,
-	createConnection,
-	getConnectionOptions,
-	getRepository,
-} from 'typeorm';
+import { Connection, ConnectionOptions, createConnection, getConnectionOptions } from 'typeorm';
 import { createDatabase } from 'typeorm-extension';
-import { Sandwich } from './entities/sandwich';
+import { graphqlHTTP } from 'express-graphql';
+import { GraphQLSchema } from 'graphql';
+import { buildSchema } from 'type-graphql';
+import cors from 'cors';
+
 import { seedDatabase } from './seeders/dataSeeder';
+import { Sandwich } from './entities/sandwich';
+import { SandwichResolver } from './resolvers/sandwichResolver';
 
 (async () => {
 	const connectionOptions: ConnectionOptions = await getConnectionOptions();
@@ -21,6 +20,13 @@ import { seedDatabase } from './seeders/dataSeeder';
 				await createConnection().then(async (connection: Connection) => {
 					seedDatabase(connection);
 
+					let schema: GraphQLSchema = {} as GraphQLSchema;
+					await buildSchema({
+						resolvers: [SandwichResolver],
+					}).then((_) => {
+						schema = _;
+					});
+
 					// APP
 					const app = express(),
 						port = process.env.PORT || 3001;
@@ -30,6 +36,14 @@ import { seedDatabase } from './seeders/dataSeeder';
 					app.use(express.json());
 					app.use(cors());
 					app.use('/img', express.static(`${__dirname}/assets/images`));
+					app.use(
+						'/v1/',
+						graphqlHTTP((req, res) => ({
+							schema: schema,
+							context: { req, res },
+							graphiql: true,
+						})),
+					);
 
 					// ROUTES
 					app.get('/', (request: Request, response: Response) => {
