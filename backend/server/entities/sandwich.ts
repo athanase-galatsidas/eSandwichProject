@@ -23,8 +23,8 @@ export class Sandwich extends BaseEntity {
 	@Column('bool')
 	available?: boolean;
 
-	// @Field((type) => [Ingredient], { nullable: true })
-	// @ManyToMany(() => Ingredient)
-	// @JoinTable()
-	// ingredients?: Ingredient[];
+	@Field((type) => [Ingredient], { nullable: true })
+	@ManyToMany(() => Ingredient)
+	@JoinTable()
+	ingredients?: Ingredient[];
 }
