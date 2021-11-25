@@ -8,27 +8,36 @@ import WavyBackground from '@/components/WavyBackground.vue';
 
 export default defineComponent({
 	name: 'Home',
-	
+
 	setup() {},
 	components: {
 		LandingItem,
 		LinkIcon,
 		WavyBackground,
 	},
-	
 });
 </script>
 
 <template>
 	<div>
 		<div class="flex justify-center items-center h-64">
-			<div to="/menu" class="z-10 w-16 h-16 mr-4">
-				<img class="light-logo h-full w-full" src="src/assets/logo_xl.png" alt="a cool logo" />
-				<img class="dark-logo h-full w-full" src="src/assets/logo_xl_dark.png" alt="a cool logo" />
+			<div class="z-10 w-10 h-10 sm:w-12 sm:h-12 mr-4">
+				<img
+					class="light-logo h-10 w-10 sm:h-12 sm:w-12 md:h-13 md:w-13"
+					src="src/assets/logo_xl.png"
+					alt="a cool logo"
+				/>
+				<img
+					class="dark-logo h-10 w-10 sm:h-12 sm:w-12 md:h-13 md:w-13"
+					src="src/assets/logo_xl_dark.png"
+					alt="a cool logo"
+				/>
 			</div>
 			<!-- wavy background uses computed bg style of h1, so put a background on it! -->
-			<h1 class="bg-yellow-400 dark:bg-gray-700 dark:text-white z-10 text-5xl">
-				eSand<span class="text-red-500 font-bold text-6xl">Witches</span>
+			<h1
+				class="bg-yellow-400 dark:bg-gray-700 dark:text-white z-10 text-base sm:text-lg md:text-3xl xl:text-5xl"
+			>
+				eSand<span class="text-red-500 font-bold text-lg sm:text-xl md:text-4xl xl:text-6xl">Witches</span>
 			</h1>
 			<WavyBackground v-bind:speed="0.5" v-bind:size="16" />
 		</div>
@@ -105,7 +114,6 @@ export default defineComponent({
 				Order now!
 			</router-link>
 			<router-link
-				
 				to="/admin"
 				class="
 					flex
@@ -129,7 +137,19 @@ export default defineComponent({
 			</router-link>
 		</div>
 
-		<footer class="bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-white w-full h-32 p-8 flex items-end justify-between">
+		<footer
+			class="
+				bg-gray-200
+				text-gray-500
+				dark:bg-gray-700 dark:text-white
+				w-full
+				h-32
+				p-8
+				flex
+				items-end
+				justify-between
+			"
+		>
 			<div>
 				<p>&copy; Athanase Galatsidas & Tibo Verbeke</p>
 				<a class="flex" href="https://github.com/athanase-galatsidas">
