@@ -54,13 +54,13 @@ export default defineComponent({
 			</button>
 
 			<div class="absolute bottom-8 left-8 bg-gray-100 w-96 h-48 p-4 rounded-md">
-				<p>ingridient list goes here</p>
+				<p>{{ sandwich.toppings }}</p>
 			</div>
 
 			<h3 class="dark:text-gray-200 w-96 text-2xl px-8 pt-8 pb-4">
 				{{ sandwich.name }}
 			</h3>
-			<p class="dark:text-gray-200 w-96 px-8">Short description goes here.</p>
+			<p class="dark:text-gray-200 w-96 px-8">{{ sandwich.description }}</p>
 		</div>
 	</div>
 </template>

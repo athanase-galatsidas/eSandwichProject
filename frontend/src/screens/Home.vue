@@ -8,12 +8,14 @@ import WavyBackground from '@/components/WavyBackground.vue';
 
 export default defineComponent({
 	name: 'Home',
+	
 	setup() {},
 	components: {
 		LandingItem,
 		LinkIcon,
 		WavyBackground,
 	},
+	
 });
 </script>
 

@@ -34,7 +34,7 @@ export default defineComponent({
 
 			if (loginInput.email && loginInput.password) {
 				login(loginInput.email, loginInput.password).then((success: boolean) => {
-					if (success) push('/');
+					if (success) push('/menu');
 				});
 			}
 		};
