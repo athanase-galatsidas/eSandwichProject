@@ -22,7 +22,7 @@ export const seedDatabase = async (connection: Connection) => {
 		sandwich.name = 'Regular Sandwich';
 		sandwich.description = 'Standard issue sandwich';
 		sandwich.available = true;
-		sandwich.ingredients = [bread, cheese];
+		// sandwich.ingredients = [bread, cheese];
 		sandwich.image = '/regular';
 		await connection.manager.save(sandwich);
 
