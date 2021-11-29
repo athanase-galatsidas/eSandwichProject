@@ -22,8 +22,8 @@ export const seedDatabase = async (connection: Connection) => {
 		sandwich.name = 'Regular Sandwich';
 		sandwich.description = 'Standard issue sandwich';
 		sandwich.available = true;
-		// sandwich.ingredients = [bread, cheese];
 		sandwich.image = '/regular';
+		sandwich.ingredients = [bread, cheese];
 		await connection.manager.save(sandwich);
 
 		const seeded = new Config();
