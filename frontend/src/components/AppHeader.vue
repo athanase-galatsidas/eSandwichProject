@@ -28,6 +28,7 @@ export default defineComponent({
 			user,
 			logOutAndRedirect,
 		};
+			
 	},
 });
 </script>
@@ -41,7 +42,7 @@ export default defineComponent({
 			</router-link>
 			{{ title }}
 		</div>
-		<p class="dark:text-gray-200">Hello {{ user?.email }} 👋</p>
+		<!-- <p class="dark:text-gray-200 capitalize w-3/12">Hello {{ user?.email?.split("@")[0].replace("."," ") }} 👋</p> -->
 		
 		<nav class="flex">
 			<router-link
