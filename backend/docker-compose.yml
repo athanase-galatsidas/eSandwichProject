@@ -1,6 +1,7 @@
 services:
-    mariadb:
-        image: mariadb:latest
+    db:
+        # image: mysql:8.0.27
+        image: mariadb:10.7.1
         ports:
             - 3306:3306
         env_file:

@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import AppHeader from './components/AppHeader.vue';
 import { RouterView } from 'vue-router';
 </script>
 
 <template>
-	<AppHeader title="Sand Witches eSandwiches Service&trade;" />
 	<main>
 		<RouterView />
 	</main>
@@ -13,5 +11,17 @@ import { RouterView } from 'vue-router';
 <style lang="postcss">
 html {
 	@apply bg-gray-100 dark:bg-gray-800;
+}
+
+.dark-logo {
+	display: none;
+}
+@media (prefers-color-scheme: dark) {
+	.light-logo {
+		display: none;
+	}
+	.dark-logo {
+		display: block;
+	}
 }
 </style>

@@ -1,5 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
+import useFirebase from '@/composable/useFirebase';
 
 export default defineComponent({
 	name: 'AppHeader',
@@ -9,16 +11,42 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	setup() {},
+	setup() {
+		const { user, logout } = useFirebase();
+		const { push } = useRouter();
+
+		const logOutAndRedirect = () => {
+			logout()
+				.then(() => {
+					push('/login');
+				})
+				.catch((error: Error) => {
+					console.error(error);
+				});
+		};
+		return {
+			user,
+			logOutAndRedirect,
+		};
+			
+	},
 });
 </script>
 
 <template>
 	<header class="bg-yellow-400 dark:bg-gray-700 p-4 flex justify-between shadow-md">
-		<a class="text-2xl dark:text-gray-200" href="/">{{ title }}</a>
-		<!-- TODO: this needs to change to username when logged in -->
+		<div class="flex items-center justify-center text-2xl dark:text-gray-200">
+			<router-link to="/menu" class="w-12 h-12 -m-2 mr-4">
+				<img class="light-logo h-full w-full" src="src/assets/logo_sm.png" alt="a cool logo" />
+				<img class="dark-logo h-full w-full" src="src/assets/logo_sm_dark.png" alt="a cool logo" />
+			</router-link>
+			{{ title }}
+		</div>
+		<!-- <p class="dark:text-gray-200 capitalize w-3/12">Hello {{ user?.email?.split("@")[0].replace("."," ") }} 👋</p> -->
+		
 		<nav class="flex">
 			<router-link
+				v-if="!user"
 				to="/login"
 				class="
 					flex
@@ -41,6 +69,7 @@ export default defineComponent({
 				Log In
 			</router-link>
 			<router-link
+				v-if="!user"
 				to="/signup"
 				class="
 					flex
@@ -62,6 +91,29 @@ export default defineComponent({
 			>
 				Sign Up
 			</router-link>
+			<button
+				v-if="user"
+				class="
+					flex
+					justify-center
+					items-center
+					bg-red-500
+					hover:bg-red-400
+					dark:bg-gray-200 dark:hover:bg-gray-400
+					text-white
+					dark:text-black
+					shadow-sm
+					transition-colors
+					font-semibold
+					rounded-md
+					px-4
+					ml-4
+					w-24
+				"
+				@click="logOutAndRedirect"
+			>
+				Log Out
+			</button>
 		</nav>
 	</header>
 </template>
