@@ -10,6 +10,7 @@ import { seedDatabase } from './seeders/dataSeeder';
 import { Sandwich } from './entities/sandwich';
 import { SandwichResolver } from './resolvers/sandwichResolver';
 import { IngredientResolver } from './resolvers/ingredientResolver';
+import { ReviewResolver } from './resolvers/reviewResolver';
 
 (async () => {
 	const connectionOptions: ConnectionOptions = await getConnectionOptions();
