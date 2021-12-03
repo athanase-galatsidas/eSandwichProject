@@ -9,6 +9,7 @@ import cors from 'cors';
 import { seedDatabase } from './seeders/dataSeeder';
 import { Sandwich } from './entities/sandwich';
 import { SandwichResolver } from './resolvers/sandwichResolver';
+import { IngredientResolver } from './resolvers/ingredientResolver';
 
 (async () => {
 	const connectionOptions: ConnectionOptions = await getConnectionOptions();
@@ -22,7 +23,7 @@ import { SandwichResolver } from './resolvers/sandwichResolver';
 
 					let schema: GraphQLSchema = {} as GraphQLSchema;
 					await buildSchema({
-						resolvers: [SandwichResolver],
+						resolvers: [SandwichResolver, IngredientResolver],
 					}).then((_) => {
 						schema = _;
 					});

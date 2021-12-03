@@ -8,6 +8,6 @@ export class SandwichResolver {
 
 	@Query(() => [Sandwich], { nullable: true })
 	async getSandwiches(): Promise<Sandwich[]> {
-		return await this.manager.find(Sandwich);
+		return await this.manager.find();
 	}
 }

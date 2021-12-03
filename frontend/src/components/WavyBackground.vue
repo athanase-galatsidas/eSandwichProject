@@ -14,7 +14,7 @@ export default defineComponent({
 		},
 	},
 	mounted() {
-		const c = document.getElementById('c') as HTMLCanvasElement;
+		const c = this.$refs['c'] as HTMLCanvasElement;
 		const ctx = c.getContext('2d');
 
 		// get the specific color of yellow
@@ -72,5 +72,5 @@ export default defineComponent({
 </script>
 
 <template>
-	<canvas class="absolute w-full h-72" id="c"></canvas>
+	<canvas class="absolute w-full h-72" ref="c"></canvas>
 </template>
