@@ -1,27 +1,28 @@
 {
-  "name": "frontend",
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
-  },
-  "dependencies": {
-    "@heroicons/vue": "^1.0.5",
-    "firebase": "^9.4.1",
-    "vue": "^3.2.16",
-    "vue-router": "^4.0.11",
-    "vuex": "^4.0.2"
-  },
-  "devDependencies": {
-    "@mdi/font": "^6.5.95",
-    "@vitejs/plugin-vue": "^1.9.2",
-    "autoprefixer": "^10.3.6",
-    "font-awesome": "^4.7.0",
-    "postcss": "^8.3.8",
-    "tailwindcss": "^2.2.16",
-    "typescript": "^4.4.3",
-    "vite": "^2.6.0",
-    "vue-tsc": "^0.3.0"
-  }
+	"name": "frontend",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc --noEmit && vite build",
+		"serve": "vite preview"
+	},
+	"dependencies": {
+		"@heroicons/vue": "^1.0.5",
+		"firebase": "^9.4.1",
+		"vue": "^3.2.16",
+		"vue-router": "^4.0.11",
+		"vue3-animate-onscroll": "^1.0.6",
+		"vuex": "^4.0.2"
+	},
+	"devDependencies": {
+		"@mdi/font": "^6.5.95",
+		"@vitejs/plugin-vue": "^1.9.2",
+		"autoprefixer": "^10.3.6",
+		"font-awesome": "^4.7.0",
+		"postcss": "^8.3.8",
+		"tailwindcss": "^2.2.16",
+		"typescript": "^4.4.3",
+		"vite": "^2.6.0",
+		"vue-tsc": "^0.3.0"
+	}
 }

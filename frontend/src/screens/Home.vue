@@ -34,14 +34,12 @@ export default defineComponent({
 				/>
 			</div>
 			<!-- wavy background uses computed bg style of h1, so put a background on it! -->
-			<h1
-				class="bg-yellow-400 dark:bg-gray-700 dark:text-white z-10 text-2xl md:text-3xl xl:text-5xl"
-			>
-				eSand<span class="text-red-500 font-bold text-3xl  md:text-4xl xl:text-6xl">Witches</span>
+			<h1 class="bg-yellow-400 dark:bg-gray-700 dark:text-white z-10 text-2xl md:text-3xl xl:text-5xl">
+				eSand<span class="text-red-500 font-bold text-3xl md:text-4xl xl:text-6xl">Witches</span>
 			</h1>
 			<WavyBackground v-bind:speed="0.5" v-bind:size="16" />
 		</div>
-		<div class="flex justify-center items-center h-64 ">
+		<div class="flex justify-center items-center h-64">
 			<router-link
 				class="
 					flex
@@ -67,7 +65,7 @@ export default defineComponent({
 		</div>
 
 		<LandingItem title="Handled with care" image="src/assets/images/landing_cook.jpeg">
-			<p class="dark:text-gray-300 text-center md:text-left w-10/12 ml-8 text-sm">
+			<p class="dark:text-gray-300 text-left md:pl-4 text-sm md:text-lg">
 				When you order a Sandwitch Sandwichservice Sandwich you are
 				<span class="underline">guaranteed</span> the best quality sandwich created by our beloved below-minimum
 				wage workers.
@@ -76,35 +74,15 @@ export default defineComponent({
 
 		<div class="bg-element"></div>
 
-		<div
-		
-		class="flex h-80 justify-evenly items-center  max-w-50 mx-auto mb-16 flex-col md:flex-row-reverse"
-	>
-		<div class="w-96 pb-8 md:pb-0">
-			<h3 class="text-center md:ml-4 md:text-left text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold text-red-600 dark:text-white my-4">Only the best ingredients</h3>
-			<p class="dark:text-gray-300 text-center md:text-left w-10/12 ml-8 text-sm">
+		<LandingItem title="Only the best ingredients" image="src/assets/images/landing_food.jpeg" inverted="true">
+			<p class="dark:text-gray-300 text-sm md:pl-4 md:text-lg">
 				Our sandwiches are crafted with only <span class="underline">the best</span> hand picked ingredients
 				that we could find at the local discount market.
 			</p>
-			<slot></slot>
-		</div>
-		<div class="flex h-full w-30  sm:w-50 md:w-60 lg:w-70 xl:w-80 2xl:w-96   overflow-hidden rounded-lg">
-			<img
-				class="block  w-40 sm:w-60 md:w-70 lg:w-80 xl:w-90 2xl:w-96 h-full object-cover justify-self-center self-center shadow-md"
-				src="src/assets/images/landing_food.jpeg"
-				alt="landing_food"
-			/>
-		</div>
-	</div>
-		<!-- <LandingItem title="Only the best ingredients" image="src/assets/images/landing_food.jpeg" inverted="true">
-			<p class="dark:text-gray-300 w-10/12 ml-8 text-sm">
-				Our sandwiches are crafted with only <span class="underline">the best</span> hand picked ingredients
-				that we could find at the local discount market.
-			</p>
-		</LandingItem> -->
+		</LandingItem>
 
 		<LandingItem title="Shipped right to your doorstep" image="src/assets/images/landing_delivery.jpeg">
-			<p class="dark:text-gray-300 text-center md:text-left w-10/12 ml-8 text-sm">
+			<p class="dark:text-gray-300 text-center md:text-left md:pl-4 text-sm md:text-lg">
 				We are commited to delivering our sandwiches to your doorstep so that you can enjoy our sandwiches from
 				the comfort of your own home.
 			</p>
