@@ -53,7 +53,7 @@ export default defineComponent({
 		<SandwichPopup v-if="popupVisible" :sandwich="selectedSandwich" @closePopup="handlePopupClose()" />
 		<AppHeader title="Menu" />
 		<div class="container max-w-screen-lg mx-auto flex flex-col lg:flex-row mt-8">
-			<div class="container max-w-screen-md mx-auto flex flex-row flex-wrap items-start content-start">
+			<div class="container justify-center max-w-screen-md mx-auto flex flex-row flex-wrap items-center content-center">
 				<MenuItem
 					v-for="(value, key) of menuItems"
 					:key="key"

@@ -30,7 +30,7 @@ export default defineComponent({
 <template>
 	<div>
 		<AppHeader title="Checkout" />
-		<div class="container max-w-screen-lg mx-auto flex flex-col lg:flex-row mt-8">
+		<div class="container max-w-screen-lg mx-auto flex flex-col lg:flex-row mt-8 w-3/4">
 			<div
 				class="
 					bg-white
@@ -38,12 +38,14 @@ export default defineComponent({
 					container
 					rounded-md
 					p-4
-					max-w-screen-md
+					
 					mr-4
+					ml-4
 					flex flex-row flex-wrap
 					items-start
 					content-start
 					shadow-md
+					mb-5
 				"
 			>
 				<form action="">
@@ -61,7 +63,7 @@ export default defineComponent({
 					<h3 class="font-semibold text-xl my-4">Payment method</h3>
 
 					<div class="w-full flex">
-						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
+						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center ">
 							<input
 								type="radio"
 								name="payment"
@@ -83,7 +85,7 @@ export default defineComponent({
 							/>
 						</div>
 						<div
-							class="relative w-32 h-32 mx-8 overflow-hidden rounded-xl flex justify-center items-center"
+							class="relative w-32 h-32 mx-8 overflow-hidden rounded-xl flex justify-center items-center "
 						>
 							<input
 								type="radio"
@@ -136,6 +138,7 @@ export default defineComponent({
 					flex flex-col flex-shrink-0
 					rounded-md
 					w-80
+					ml-4
 				"
 			>
 				<h3 class="p-4 text-lg">Cart</h3>
