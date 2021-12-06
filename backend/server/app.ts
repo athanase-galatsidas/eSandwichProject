@@ -53,7 +53,7 @@ import { ReviewResolver } from './resolvers/reviewResolver';
 					});
 
 					// TODO: temporary oplosing tot database trug werkt
-					app.get('/v1/sandwiches', (request: Request, response: Response) => {
+					app.get('/sandwiches', (request: Request, response: Response) => {
 						const data = {
 							sandwiches: [
 								{

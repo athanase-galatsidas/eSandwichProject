@@ -24,7 +24,7 @@ export default defineComponent({
 
 <template>
 	<div
-		v-bind:class="{ 'flex-row-reverse ': inverted == true }"
+		v-bind:class="{ 'flex-col md:flex-row-reverse': inverted == true }"
 		class="opacity-0 flex h-80 justify-evenly items-center max-w-50 mx-auto my-64 flex-row"
 		v-animate-onscroll="{ down: 'appear' }"
 	>
