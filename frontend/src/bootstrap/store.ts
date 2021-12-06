@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 import { get, post } from '@/modules/network';
 import { Sandwich } from '@/interfaces/Sandwich';
 
-const url = 'http://localhost:3001/v1';
+const url = 'http://localhost:3001';
 
 export default createStore({
 	state: {

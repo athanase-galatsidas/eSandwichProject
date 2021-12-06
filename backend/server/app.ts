@@ -10,6 +10,7 @@ import { seedDatabase } from './seeders/dataSeeder';
 import { Sandwich } from './entities/sandwich';
 import { SandwichResolver } from './resolvers/sandwichResolver';
 import { IngredientResolver } from './resolvers/ingredientResolver';
+import { ReviewResolver } from './resolvers/reviewResolver';
 
 (async () => {
 	const connectionOptions: ConnectionOptions = await getConnectionOptions();
@@ -52,7 +53,7 @@ import { IngredientResolver } from './resolvers/ingredientResolver';
 					});
 
 					// TODO: temporary oplosing tot database trug werkt
-					app.get('/v1/sandwiches', (request: Request, response: Response) => {
+					app.get('/sandwiches', (request: Request, response: Response) => {
 						const data = {
 							sandwiches: [
 								{
