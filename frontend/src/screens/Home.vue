@@ -34,7 +34,7 @@ export default defineComponent({
 				/>
 			</div>
 			<!-- wavy background uses computed bg style of h1, so put a background on it! -->
-			<h1 class="bg-yellow-400 dark:bg-gray-700 dark:text-white z-10 text-2xl md:text-3xl xl:text-5xl">
+			<h1 class="dark:text-white z-10 text-2xl md:text-3xl xl:text-5xl">
 				eSand<span class="text-red-500 font-bold text-3xl md:text-4xl xl:text-6xl">Witches</span>
 			</h1>
 			<WavyBackground v-bind:speed="0.5" v-bind:size="16" />
@@ -161,7 +161,7 @@ export default defineComponent({
 				</a>
 			</div>
 
-			<p>royalty free stock images from pexels.com</p>
+			<p>images from pexels.com</p>
 		</footer>
 	</div>
 </template>

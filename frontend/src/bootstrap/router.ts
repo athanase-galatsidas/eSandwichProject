@@ -36,6 +36,14 @@ const routes: RouteRecordRaw[] = [
 		},
 	},
 	{
+		name: 'track',
+		path: '/track',
+		component: () => import('@/screens/Track.vue'),
+		meta: {
+			guest: true,
+		},
+	},
+	{
 		name: 'login',
 		path: '/login',
 		component: () => import('@/screens/Login.vue'),
