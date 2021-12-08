@@ -2,8 +2,10 @@ import { createStore } from 'vuex';
 import { get, post } from '@/modules/network';
 import { Sandwich } from '@/interfaces/Sandwich';
 import { OrderTrackStage } from '@/interfaces/OrderTrackStage';
+import useGraphql from '@/composable/useGraphql';
 
 const url = 'http://localhost:3001';
+const { query } = useGraphql();
 
 export default createStore({
 	state: {
@@ -26,13 +28,24 @@ export default createStore({
 
 	actions: {
 		async getData() {
-			await get(`${url}/sandwiches`)
-				.then((res) => res.json())
-				.then((data) => {
-					// TODO: doe iets met data
-					const sandwiches = data.sandwiches.map((res: Object) => res as Sandwich);
-					this.commit('setData', sandwiches);
-				});
+			await query(
+				`${url}/v1`,
+				'getSandwiches',
+				`{
+				getSandwiches
+					{
+						sandwichId,
+						name,
+						image,
+					}
+				}`,
+			).then((data) => {
+				const sandwiches: Sandwich[] = data.map((res: Object) => res as Sandwich);
+				sandwiches.forEach((sandwich) => (sandwich.image = `${url}${sandwich.image}`));
+				this.commit('setData', sandwiches);
+
+				console.log(sandwiches);
+			});
 		},
 	},
 });
