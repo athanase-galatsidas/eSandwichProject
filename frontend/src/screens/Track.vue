@@ -5,7 +5,6 @@ import AppHeader from '@/components/AppHeader.vue';
 import LoadingBar from '@/components/LoadingBar.vue';
 import { ClipboardListIcon, CogIcon, LocationMarkerIcon } from '@heroicons/vue/outline';
 import { StarIcon } from '@heroicons/vue/solid';
-import { OrderTrackStage } from '@/interfaces/OrderTrackStage';
 
 export default defineComponent({
 	name: 'Track',
@@ -25,11 +24,11 @@ export default defineComponent({
 	},
 	computed: {
 		orderStage() {
-			return store.state.trackStage.stage;
+			return store.state.trackStage.stage; // TODO: backend
 		},
 		orderDuration() {
 			// return store.state.trackStage.estimatedDuration;
-			return 1;
+			return 5;
 		},
 	},
 	methods: {
@@ -47,7 +46,7 @@ export default defineComponent({
 	<div>
 		<AppHeader title="Track your order" />
 		<div>
-			<div class="relativew-full h-32 mt-8 flex flex-row justify-around">
+			<div class="relativew-full h-32 mt-16 flex flex-row justify-around">
 				<LoadingBar
 					v-bind:class="{ 'scale-125': orderStage == 0 }"
 					:duration="orderDuration"
