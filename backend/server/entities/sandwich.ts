@@ -31,14 +31,12 @@ export class Sandwich extends BaseEntity {
 	@Field()
 	@Column('bool')
 	available?: boolean;
+	@Field()
+	@Column('int')
+	rating?: number;
 
 	@Field((type) => [Ingredient], { nullable: true })
 	@ManyToMany(() => Ingredient)
 	@JoinTable()
 	ingredients?: Ingredient[];
-
-	// TODO: dit crasht door graphql
-	// @Field((type) => [Review], { nullable: true })
-	// @OneToOne(() => Review)
-	// reviews?: Review;
 }

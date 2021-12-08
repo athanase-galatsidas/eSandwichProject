@@ -43,8 +43,6 @@ export default createStore({
 				const sandwiches: Sandwich[] = data.map((res: Object) => res as Sandwich);
 				sandwiches.forEach((sandwich) => (sandwich.image = `${url}${sandwich.image}`));
 				this.commit('setData', sandwiches);
-
-				console.log(sandwiches);
 			});
 		},
 	},
