@@ -7,6 +7,7 @@ import {
 	NavigationGuardNext,
 } from 'vue-router';
 import useFirebase from '@/composable/useFirebase';
+import store from './store';
 
 const { user } = useFirebase();
 
@@ -33,6 +34,11 @@ const routes: RouteRecordRaw[] = [
 		component: () => import('@/screens/Checkout.vue'),
 		meta: {
 			guest: true,
+		},
+		// redirect to menu if cart is empty
+		beforeEnter(to, from, next) {
+			if (store.state.cart.length == 0) next('/menu');
+			else next();
 		},
 	},
 	{

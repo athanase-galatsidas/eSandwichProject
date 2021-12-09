@@ -9,6 +9,7 @@ import SandwichPopup from '@/components/SandwichPopup.vue';
 import Cart from '@/components/Cart.vue';
 import useFirebase from '@/composable/useFirebase';
 import { Sandwich } from '@/interfaces/Sandwich';
+import router from '@/bootstrap/router';
 
 export default defineComponent({
 	setup() {
@@ -44,6 +45,9 @@ export default defineComponent({
 		handlePopupClose() {
 			this.selectedSandwich = undefined;
 		},
+		redirectToCheckout() {
+			router.push('/checkout');
+		},
 	},
 });
 </script>
@@ -62,7 +66,7 @@ export default defineComponent({
 					@click="showPopup(value)"
 				/>
 			</div>
-			<Cart />
+			<Cart text="Checkout" @onCheckout="redirectToCheckout()" />
 		</div>
 	</div>
 </template>
