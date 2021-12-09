@@ -12,8 +12,7 @@ export class IngredientResolver {
 		return await this.manager.find();
 	}
 
-	// TODO: dit crasht
-	@Query(() => [Ingredient], { nullable: true })
+	@Query(() => Ingredient, { nullable: true })
 	async getIngredientById(@Arg('id') id: string): Promise<Ingredient | undefined | null> {
 		return await this.manager.findOne(id);
 	}
