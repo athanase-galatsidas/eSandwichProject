@@ -6,6 +6,10 @@ import store from '@/bootstrap/store';
 export default defineComponent({
 	name: 'Cart',
 	props: {
+		text: {
+			type: String,
+			required: true,
+		},
 		checkout: {
 			type: Boolean,
 			required: false,
@@ -13,12 +17,20 @@ export default defineComponent({
 		},
 	},
 	setup() {},
+	emits: {
+		onCheckout: Boolean,
+	},
 	computed: {
 		cartItems() {
 			return store.state.cart;
 		},
 		subTotal() {
 			return store.state.cart.reduce((total, value) => total + value.price, 0).toFixed(2);
+		},
+	},
+	methods: {
+		emitOnCheckout() {
+			this.$emit('onCheckout', true);
 		},
 	},
 	components: {
@@ -78,8 +90,9 @@ export default defineComponent({
 				rounded-md
 				text-center
 			"
+			@click="emitOnCheckout()"
 		>
-			Checkout
+			{{ text }}
 		</button>
 	</div>
 </template>
