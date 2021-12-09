@@ -46,18 +46,49 @@ export default defineComponent({
 			"
 			@click="$event.stopPropagation()"
 		>
-			<figure class="bg-yellow-300 flex absolute right-8 top-8 w-64 h-48 rounded-md overflow-hidden">
-				<img class="block w-full justify-self-center self-center" :src="sandwich.image" :alt="sandwich.name" />
+			<figure
+				class="
+					bg-yellow-300
+					flex
+					absolute
+					sm:right-8 sm:top-8
+					top-20
+					right-1/4
+					w-40
+					sm:w-60
+					md:w-70
+					lg:w-89
+					h-30
+					lg:h-40
+					rounded-md
+					overflow-hidden
+				"
+			>
+				<img class="w-full justify-self-center self-center" :src="sandwich.image" :alt="sandwich.name" />
 			</figure>
 			<button
-				class="absolute bottom-8 right-8 w-64 text-xl bg-red-500 text-white font-semibold rounded-md p-4"
+				class="
+					absolute
+					bottom-8
+					sm:right-8
+					right-1/4
+					w-40
+					sm:w-60
+					md:w-64
+					text-xl
+					bg-red-500
+					text-white
+					font-semibold
+					rounded-md
+					p-4
+				"
 				@click="addToCart()"
 			>
-				Add to Cart (€ {{ sandwich.price }})
+				Add to Cart (€ {{ sandwich.price.toFixed(2) }})
 			</button>
 
-			<div class="absolute bottom-8 left-8 bg-gray-100 w-96 h-48 p-4 rounded-md">
-				<p>{{ sandwich.ingredients }}</p>
+			<div class="absolute bottom-8 left-8 bg-gray-100 w-35 sm:w-80 md:w-96 h-48 rounded-md">
+				<p>{{ sandwich.toppings }}</p>
 			</div>
 
 			<h3 class="dark:text-gray-200 w-96 text-2xl px-8 pt-8 pb-4">
