@@ -32,6 +32,9 @@ export class Sandwich extends BaseEntity {
 	@Column('bool')
 	available?: boolean;
 	@Field()
+	@Column('double')
+	price?: number;
+	@Field()
 	@Column('int')
 	rating?: number;
 

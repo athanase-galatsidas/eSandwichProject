@@ -25,6 +25,7 @@ export const seedDatabase = async (connection: Connection) => {
 		regularSandwich.description = 'A simple and delicious sandwich.';
 		regularSandwich.image = '/img/regular.webp';
 		regularSandwich.available = true;
+		regularSandwich.price = 9.99;
 		regularSandwich.rating = 9;
 		regularSandwich.ingredients = [bread, cheese];
 		await connection.manager.save(regularSandwich);
@@ -34,6 +35,7 @@ export const seedDatabase = async (connection: Connection) => {
 		deluxeSandwich.description = 'An exotic sandwich.';
 		deluxeSandwich.image = '/img/deluxe.webp';
 		deluxeSandwich.available = true;
+		deluxeSandwich.price = 14.99;
 		deluxeSandwich.rating = 7;
 		deluxeSandwich.ingredients = [bread, cheese];
 		await connection.manager.save(deluxeSandwich);
@@ -43,6 +45,7 @@ export const seedDatabase = async (connection: Connection) => {
 		specialSandwich.description = 'A special sandwich for special people.';
 		specialSandwich.image = '/img/special.webp';
 		specialSandwich.available = true;
+		specialSandwich.price = 15.99;
 		specialSandwich.rating = 8;
 		specialSandwich.ingredients = [bread, cheese];
 		await connection.manager.save(specialSandwich);
@@ -52,6 +55,7 @@ export const seedDatabase = async (connection: Connection) => {
 		basicSandwich.description = 'Sandwich with basic ingredients.';
 		basicSandwich.image = '/img/basic.webp';
 		basicSandwich.available = true;
+		basicSandwich.price = 7.99;
 		basicSandwich.rating = 6;
 		basicSandwich.ingredients = [bread, cheese];
 		await connection.manager.save(basicSandwich);
@@ -61,6 +65,7 @@ export const seedDatabase = async (connection: Connection) => {
 		grilledSandwich.description = 'Sandwich with grilled cheese.';
 		grilledSandwich.image = '/img/grilled.webp';
 		grilledSandwich.available = true;
+		grilledSandwich.price = 19.99;
 		grilledSandwich.rating = 10;
 		grilledSandwich.ingredients = [bread, cheese];
 		await connection.manager.save(grilledSandwich);
@@ -70,6 +75,7 @@ export const seedDatabase = async (connection: Connection) => {
 		vegeSandwich.description = 'Sandwich with no animal products.';
 		vegeSandwich.image = '/img/vege.webp';
 		vegeSandwich.available = true;
+		vegeSandwich.price = 12.99;
 		vegeSandwich.rating = 8;
 		vegeSandwich.ingredients = [bread, cheese];
 		await connection.manager.save(vegeSandwich);

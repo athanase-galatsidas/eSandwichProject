@@ -11,6 +11,9 @@ export default defineComponent({
 			required: true,
 		},
 	},
+	mounted() {
+		console.log(this.sandwich);
+	},
 	emits: {
 		closePopup: null,
 	},
@@ -50,11 +53,11 @@ export default defineComponent({
 				class="absolute bottom-8 right-8 w-64 text-xl bg-red-500 text-white font-semibold rounded-md p-4"
 				@click="addToCart()"
 			>
-				Add to Cart (€ {{ sandwich.price.toFixed(2) }})
+				Add to Cart (€ {{ sandwich.price }})
 			</button>
 
 			<div class="absolute bottom-8 left-8 bg-gray-100 w-96 h-48 p-4 rounded-md">
-				<p>{{ sandwich.toppings }}</p>
+				<p>{{ sandwich.ingredients }}</p>
 			</div>
 
 			<h3 class="dark:text-gray-200 w-96 text-2xl px-8 pt-8 pb-4">

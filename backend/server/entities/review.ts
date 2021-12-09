@@ -8,6 +8,6 @@ export class Review extends BaseEntity {
 	reviewId?: string;
 
 	@Field()
-	@Column('decimal')
+	@Column('int')
 	rating?: number;
 }

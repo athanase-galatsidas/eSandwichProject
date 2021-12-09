@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import store from '@/bootstrap/store';
 import AppHeader from '@/components/AppHeader.vue';
 import InputGroup from '@/components/InputGroup.vue';
 import { LocationMarkerIcon, CashIcon, CreditCardIcon, DeviceMobileIcon } from '@heroicons/vue/outline';
@@ -8,14 +7,6 @@ import { LocationMarkerIcon, CashIcon, CreditCardIcon, DeviceMobileIcon } from '
 export default defineComponent({
 	name: 'Checkout',
 	setup() {},
-	computed: {
-		cartItems() {
-			return store.state.cart;
-		},
-		subTotal() {
-			return store.state.cart.reduce((total, value) => total + value.price, 0).toFixed(2);
-		},
-	},
 	components: {
 		AppHeader,
 		InputGroup,
@@ -126,37 +117,6 @@ export default defineComponent({
 						</div>
 					</div>
 				</form>
-			</div>
-
-			<div
-				class="
-					bg-white
-					dark:bg-gray-700 dark:text-gray-200
-					shadow-md
-					flex flex-col flex-shrink-0
-					rounded-md
-					w-80
-				"
-			>
-				<h3 class="p-4 text-lg">Cart</h3>
-				<h4 v-for="(value, key) of cartItems" :key="key" class="px-4 text-lg font-medium flex justify-between">
-					{{ value.name }} <span class="text-right font-normal">€ {{ value.price }}</span>
-				</h4>
-				<h4 class="px-4 pt-2 text-lg font-medium flex justify-between">
-					Subtotal <span class="text-right font-normal">€ {{ subTotal }}</span>
-				</h4>
-				<h4 class="px-4 text-lg font-medium flex justify-between">
-					Btw (6%) <span class="text-right font-normal">€ {{ (subTotal * 0.06).toFixed(2) }}</span>
-				</h4>
-				<h4 class="px-4 pt-2 text-lg font-bold flex justify-between">
-					Total <span class="text-right font-semibold">€ {{ (subTotal * 1.06).toFixed(2) }}</span>
-				</h4>
-				<router-link
-					to="/checkout"
-					class="bg-red-500 text-white font-semibold shadow-sm p-2 m-4 rounded-md text-center"
-				>
-					Purchase
-				</router-link>
 			</div>
 		</div>
 	</div>

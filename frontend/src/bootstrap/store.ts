@@ -36,7 +36,9 @@ export default createStore({
 					{
 						sandwichId,
 						name,
+						description,
 						image,
+						price,
 					}
 				}`,
 			).then((data) => {

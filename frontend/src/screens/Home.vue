@@ -56,7 +56,9 @@ export default defineComponent({
 					font-semibold
 					rounded-md
 					shadow-sm
-					hover-effect
+					transition-transform
+					transform
+					hover:scale-125
 				"
 				to="/menu"
 			>
@@ -72,7 +74,7 @@ export default defineComponent({
 			</p>
 		</LandingItem>
 
-		<div class="bg-element"></div>
+		<div class="bg-yellow-400 dark:bg-gray-700 absolute w-full h-64 -z-10 transform skew-y-6"></div>
 
 		<LandingItem title="Only the best ingredients" image="src/assets/images/landing_food.jpeg" inverted="true">
 			<p class="dark:text-gray-300 text-sm md:pl-4 md:text-lg">
@@ -105,33 +107,13 @@ export default defineComponent({
 					font-semibold
 					rounded-md
 					shadow-sm
-					hover-effect
+					transition-transform
+					transform
+					hover:scale-125
 				"
 				to="/menu"
 			>
 				Order now!
-			</router-link>
-			<router-link
-				to="/admin"
-				class="
-					flex
-					justify-center
-					items-center
-					bg-red-500
-					hover:bg-red-400
-					dark:bg-gray-200 dark:hover:bg-gray-400
-					text-white
-					dark:text-black
-					shadow-sm
-					transition-colors
-					font-semibold
-					rounded-md
-					px-4
-					ml-4
-					w-24
-				"
-			>
-				Admin
 			</router-link>
 		</div>
 
@@ -165,20 +147,3 @@ export default defineComponent({
 		</footer>
 	</div>
 </template>
-
-<style lang="postcss" scoped>
-.hover-effect {
-	transform: none;
-	transition: transform 0.2s ease-in-out;
-}
-
-.hover-effect:hover {
-	transform: scale(1.2);
-}
-
-.bg-element {
-	@apply bg-yellow-400 dark:bg-gray-700 absolute w-full h-64;
-	z-index: -10;
-	transform: skewY(4deg);
-}
-</style>
