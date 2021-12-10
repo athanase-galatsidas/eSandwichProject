@@ -18,6 +18,11 @@ export default defineComponent({
 		DeviceMobileIcon,
 		Cart,
 	},
+	methods: {
+		redirectToTrack() {
+			router.push('/track');
+		},
+	},
 });
 </script>
 
@@ -103,7 +108,7 @@ export default defineComponent({
 					</div>
 				</div>
 			</form>
-			<Cart text="Purchase" :checkout="true" />
+			<Cart text="Purchase" :checkout="true" @onCheckout="redirectToTrack()" />
 		</div>
 	</div>
 </template>

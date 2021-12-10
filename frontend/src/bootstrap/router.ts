@@ -69,6 +69,14 @@ const routes: RouteRecordRaw[] = [
 		// Uncomment when admin login is implemented
 		// meta: { authRequired: true },
 	},
+	{
+		name: 'not-found',
+		path: '/:pathMatch(.*)*',
+		component: () => import('@/screens/404.vue'),
+		meta: {
+			guest: true,
+		},
+	},
 ];
 
 const router: Router = createRouter({
