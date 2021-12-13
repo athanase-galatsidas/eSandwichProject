@@ -7,5 +7,6 @@ export interface Sandwich {
 	image: string;
 	available: boolean;
 	price: number;
+	rating: number;
 	ingredients: Ingredient[];
 }
