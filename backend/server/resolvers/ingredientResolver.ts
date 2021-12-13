@@ -3,7 +3,7 @@ import { getRepository, Repository } from 'typeorm';
 import { Ingredient } from '../entities/ingredient';
 import { Sandwich } from '../entities/sandwich';
 
-@Resolver()
+@Resolver((of) => Ingredient)
 export class IngredientResolver {
 	manager = getRepository<Ingredient>('Ingredient');
 
