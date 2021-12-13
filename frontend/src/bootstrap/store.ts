@@ -38,7 +38,13 @@ export default createStore({
 						name,
 						description,
 						image,
+						available,
 						price,
+						rating,
+						ingredients {
+							ingredientId,
+							name,
+						}
 					}
 				}`,
 			).then((data) => {

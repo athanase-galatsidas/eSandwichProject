@@ -41,5 +41,5 @@ export class Sandwich extends BaseEntity {
 	@Field((type) => [Ingredient], { nullable: true })
 	@ManyToMany(() => Ingredient)
 	@JoinTable()
-	ingredients?: Ingredient[];
+	ingredients?: Promise<Ingredient[]>; // lazy relation
 }

@@ -90,7 +90,7 @@ export default defineComponent({
 			</p>
 		</LandingItem>
 
-		<div class="flex justify-center items-center h-64">
+		<div class="flex justify-center items-center h-64 my-32">
 			<router-link
 				class="
 					flex

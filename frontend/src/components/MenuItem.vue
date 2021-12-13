@@ -12,6 +12,10 @@ export default defineComponent({
 			type: String,
 			required: true,
 		},
+		available: {
+			type: Boolean,
+			required: true,
+		},
 	},
 	setup() {},
 });
@@ -20,6 +24,7 @@ export default defineComponent({
 <template>
 	<div
 		class="
+			relative
 			m-2
 			w-56
 			bg-white
@@ -35,6 +40,7 @@ export default defineComponent({
 	>
 		<figure class="bg-yellow-300 h-28 overflow-hidden flex">
 			<img
+				v-bind:class="{ 'filter blur-sm transform-none': !available }"
 				class="block w-full justify-self-center self-center transition-transform transform"
 				:src="image"
 				:alt="name"
@@ -43,6 +49,9 @@ export default defineComponent({
 		<span class="dark:text-gray-200 text-lg p-4 text-center">
 			{{ name }}
 		</span>
+		<div v-if="!available" class="bg-white opacity-60 w-full h-full absolute z-10 flex justify-center">
+			<span class="text-3xl text-gray-400 font-semibold mt-9">Sold out!</span>
+		</div>
 	</div>
 </template>
 

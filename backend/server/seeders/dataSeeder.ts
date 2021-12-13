@@ -27,7 +27,7 @@ export const seedDatabase = async (connection: Connection) => {
 		regularSandwich.available = true;
 		regularSandwich.price = 9.99;
 		regularSandwich.rating = 9;
-		regularSandwich.ingredients = [bread, cheese];
+		regularSandwich.ingredients = Promise.resolve([bread, cheese]);
 		await connection.manager.save(regularSandwich);
 
 		const deluxeSandwich = new Sandwich();
@@ -37,7 +37,7 @@ export const seedDatabase = async (connection: Connection) => {
 		deluxeSandwich.available = true;
 		deluxeSandwich.price = 14.99;
 		deluxeSandwich.rating = 7;
-		deluxeSandwich.ingredients = [bread, cheese];
+		deluxeSandwich.ingredients = Promise.resolve([bread, cheese]);
 		await connection.manager.save(deluxeSandwich);
 
 		const specialSandwich = new Sandwich();
@@ -47,7 +47,7 @@ export const seedDatabase = async (connection: Connection) => {
 		specialSandwich.available = true;
 		specialSandwich.price = 15.99;
 		specialSandwich.rating = 8;
-		specialSandwich.ingredients = [bread, cheese];
+		specialSandwich.ingredients = Promise.resolve([bread, cheese]);
 		await connection.manager.save(specialSandwich);
 
 		const basicSandwich = new Sandwich();
@@ -57,7 +57,7 @@ export const seedDatabase = async (connection: Connection) => {
 		basicSandwich.available = true;
 		basicSandwich.price = 7.99;
 		basicSandwich.rating = 6;
-		basicSandwich.ingredients = [bread, cheese];
+		basicSandwich.ingredients = Promise.resolve([bread, cheese]);
 		await connection.manager.save(basicSandwich);
 
 		const grilledSandwich = new Sandwich();
@@ -67,7 +67,7 @@ export const seedDatabase = async (connection: Connection) => {
 		grilledSandwich.available = true;
 		grilledSandwich.price = 19.99;
 		grilledSandwich.rating = 10;
-		grilledSandwich.ingredients = [bread, cheese];
+		grilledSandwich.ingredients = Promise.resolve([bread, cheese]);
 		await connection.manager.save(grilledSandwich);
 
 		const vegeSandwich = new Sandwich();
@@ -77,7 +77,7 @@ export const seedDatabase = async (connection: Connection) => {
 		vegeSandwich.available = true;
 		vegeSandwich.price = 12.99;
 		vegeSandwich.rating = 8;
-		vegeSandwich.ingredients = [bread, cheese];
+		vegeSandwich.ingredients = Promise.resolve([bread, cheese]);
 		await connection.manager.save(vegeSandwich);
 
 		// save seeded status
