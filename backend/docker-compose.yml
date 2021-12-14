@@ -1,9 +1,8 @@
 services:
     db:
-        # image: mysql:8.0.27
         image: mariadb:10.7.1
         ports:
-            - 3306:3306
+            - 31006:3306
         env_file:
             - .env
         volumes:
@@ -12,4 +11,14 @@ services:
     adminer:
         image: adminer:latest
         ports:
-            - 9999:8080
+            - 31099:8080
+
+    backend:
+        image: sandwitches-backend
+        build: .
+        ports:
+            - 31001:31001
+        env_file:
+          - .env
+        depends_on:
+          - db
