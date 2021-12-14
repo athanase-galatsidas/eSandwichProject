@@ -5,4 +5,4 @@ services:
     ports:
       - 31000:8080
     volumes:
-      - ./src/config.js:/usr/app/src/config.js
+      - ./src/config.ts:/usr/app/src/config.ts

@@ -5,5 +5,3 @@ dist-ssr
 *.local
 docker-compose.yml
 Dockerfile
-src/config.js
-src/config.ts
