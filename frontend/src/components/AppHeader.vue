@@ -36,8 +36,8 @@ export default defineComponent({
 	<header class="bg-yellow-400 dark:bg-gray-700 p-4 flex justify-between shadow-md">
 		<div class="flex items-center justify-center text-2xl dark:text-gray-200">
 			<router-link to="/" class="w-12 h-12 -m-2 mr-4">
-				<img class="light-logo h-full w-full" src="src/assets/logo_sm.png" alt="a cool logo" />
-				<img class="dark-logo h-full w-full" src="src/assets/logo_sm_dark.png" alt="a cool logo" />
+				<img class="light-logo h-full w-full" src="@/assets/logo_sm.png" alt="a cool logo" />
+				<img class="dark-logo h-full w-full" src="@/assets/logo_sm_dark.png" alt="a cool logo" />
 			</router-link>
 			{{ title }}
 		</div>

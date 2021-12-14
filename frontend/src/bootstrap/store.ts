@@ -4,7 +4,7 @@ import { Sandwich } from '@/interfaces/Sandwich';
 import { OrderTrackStage } from '@/interfaces/OrderTrackStage';
 import useGraphql from '@/composable/useGraphql';
 
-const url = 'http://localhost:3001';
+const url = 'http://localhost:31001';
 const { query } = useGraphql();
 
 export default createStore({
