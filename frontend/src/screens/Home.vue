@@ -24,12 +24,12 @@ export default defineComponent({
 			<div class="z-10 w-10 h-10 sm:w-12 sm:h-12 mr-4">
 				<img
 					class="light-logo h-10 w-10 sm:h-12 sm:w-12 md:h-13 md:w-13"
-					src="src/assets/logo_xl.png"
+					src="@/assets/logo_xl.png"
 					alt="a cool logo"
 				/>
 				<img
 					class="dark-logo h-10 w-10 sm:h-12 sm:w-12 md:h-13 md:w-13"
-					src="src/assets/logo_xl_dark.png"
+					src="@/assets/logo_xl_dark.png"
 					alt="a cool logo"
 				/>
 			</div>

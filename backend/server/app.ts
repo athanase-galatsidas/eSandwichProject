@@ -31,7 +31,7 @@ import { ReviewResolver } from './resolvers/reviewResolver';
 
 					// APP
 					const app = express(),
-						port = process.env.PORT || 3001;
+						port = process.env.PORT || 31001;
 					const url = `http://localhost:${port}`;
 
 					// MIDDLEWARE
