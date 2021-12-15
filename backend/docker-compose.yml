@@ -20,5 +20,6 @@ services:
             - 31001:31001
         env_file:
           - .env
+          - ormconfig.env
         depends_on:
           - db
