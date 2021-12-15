@@ -7,7 +7,6 @@ import { buildSchema } from 'type-graphql';
 import cors from 'cors';
 
 import { seedDatabase } from './seeders/dataSeeder';
-import { Sandwich } from './entities/sandwich';
 import { SandwichResolver } from './resolvers/sandwichResolver';
 import { IngredientResolver } from './resolvers/ingredientResolver';
 import { ReviewResolver } from './resolvers/reviewResolver';
