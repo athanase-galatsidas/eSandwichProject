@@ -16,6 +16,6 @@ export class User extends BaseEntity {
 	// @Column('bool')
 	// isAdmin?: boolean;
 
-	@ManyToOne(() => Order, (order) => order.user)
-	orders?: Order[];
+	// @ManyToOne(() => Order, (order) => order.user)
+	// orders?: Order[];
 }
