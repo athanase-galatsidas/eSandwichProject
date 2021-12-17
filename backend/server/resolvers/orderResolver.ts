@@ -34,7 +34,8 @@ export class OrderResolver {
 		// match ids to sandwiches
 		const sandwiches: Sandwich[] = [];
 		newOrder.sandwiches.forEach(async (id) => {
-			sandwiches.push((await this.sandwchRepo.findOne(id)) as Sandwich);
+			const sandwich = await this.sandwchRepo.findOne(id);
+			if (sandwich) sandwiches.push(sandwich);
 		});
 
 		order.sandwiches = Promise.resolve(sandwiches);

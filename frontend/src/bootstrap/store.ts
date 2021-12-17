@@ -5,6 +5,7 @@ import { OrderTrackStage } from '@/interfaces/OrderTrackStage';
 import useGraphql from '@/composable/useGraphql';
 
 const url = 'http://localhost:31001';
+const socketUrl = 'ws://localhost:31001';
 const { query } = useGraphql();
 
 export default createStore({
@@ -52,6 +53,10 @@ export default createStore({
 				sandwiches.forEach((sandwich) => (sandwich.image = `${url}${sandwich.image}`));
 				this.commit('setData', sandwiches);
 			});
+		},
+		async getOrder() {
+			// TODO: this
+			await query(socketUrl, 'getOrderById', ``);
 		},
 	},
 });
