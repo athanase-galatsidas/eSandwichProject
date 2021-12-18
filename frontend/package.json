@@ -4,7 +4,8 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"serve": "vite preview"
+		"serve": "vite preview",
+		"test:unit": "jest"
 	},
 	"dependencies": {
 		"@heroicons/vue": "^1.0.5",
@@ -18,15 +19,33 @@
 	},
 	"devDependencies": {
 		"@mdi/font": "^6.5.95",
+		"@types/jest": "^27.0.3",
 		"@vitejs/plugin-vue": "^1.9.2",
+		"@vue/test-utils": "^1.3.0",
 		"autoprefixer": "^10.3.6",
 		"font-awesome": "^4.7.0",
+		"jest": "^27.4.5",
 		"postcss": "^8.3.8",
 		"tailwindcss": "^2.2.16",
+		"ts-jest": "^27.1.2",
 		"typescript": "^4.4.3",
 		"vite": "^2.6.0",
 		"vite-plugin-pwa": "^0.11.12",
 		"vue-tsc": "^0.3.0",
 		"workbox-precaching": "^6.4.2"
+	},
+	"jest": {
+		"moduleFileExtensions": [
+			"js",
+			"ts",
+			"json",
+			"vue"
+		],
+		"transform": {
+			".*\\.(vue)$": "vue-jest",
+			"^.+\\.tsx?$": "ts-jest"
+		},
+		"testURL": "http://localhost:3000/",
+		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$"
 	}
 }
