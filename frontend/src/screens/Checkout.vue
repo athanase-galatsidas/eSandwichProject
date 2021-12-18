@@ -67,7 +67,7 @@ export default defineComponent({
 				"
 				action=""
 			>
-				<h3 class="font-semibold text-xl mb-4">Delivery address</h3>
+				<h3 class="font-semibold text-xl mb-4 text-gray-500 dark:text-white">Delivery address</h3>
 				<InputGroup id="city" text="City">
 					<LocationMarkerIcon class="h-6 w-6 mr-2" />
 				</InputGroup>
@@ -78,9 +78,9 @@ export default defineComponent({
 					<LocationMarkerIcon class="h-6 w-6 mr-2" />
 				</InputGroup>
 
-				<h3 class="font-semibold text-xl my-4">Payment method</h3>
+				<h3 class="font-semibold text-xl my-4 text-gray-500 dark:text-white">Payment method</h3>
 
-				<div class="w-full flex flex-row justify-center">
+				<div class="w-full flex flex-col justify-center">
 					<div class="flex flex-col justify-center items-center mx-2">
 						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
 							<input
@@ -105,7 +105,7 @@ export default defineComponent({
 								"
 							/>
 						</div>
-						<span class="text-lg text-center mt-2 font-medium">Cash</span>
+						<span class="text-lg text-center mt-2 font-medium text-gray-500 dark:text-white">Cash</span>
 					</div>
 
 					<div class="flex flex-col justify-center items-center mx-2">
@@ -126,12 +126,15 @@ export default defineComponent({
 									h-full
 									p-4
 									text-gray-500
+									dark:text-white
 									bg-gray-100
-									dark:bg-gray-800 dark:text-white
+									dark:bg-gray-800
 								"
 							/>
 						</div>
-						<span class="text-lg text-center mt-2 font-medium">Credit card</span>
+						<span class="text-lg text-center mt-2 font-medium text-gray-500 dark:text-white"
+							>Credit card</span
+						>
 					</div>
 
 					<div class="flex flex-col justify-center items-center mx-2">
@@ -157,7 +160,7 @@ export default defineComponent({
 								"
 							/>
 						</div>
-						<span class="text-lg text-center mt-2 font-medium">Bank app</span>
+						<span class="text-lg text-center mt-2 font-medium text-gray-500 dark:text-white">Bank app</span>
 					</div>
 				</div>
 
