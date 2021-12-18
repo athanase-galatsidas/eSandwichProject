@@ -1,5 +1,4 @@
 import express, { Request, Response } from 'express';
-import { Server, Socket } from 'socket.io';
 import { createServer } from 'http';
 
 import { Connection, ConnectionOptions, createConnection, getConnectionOptions } from 'typeorm';
@@ -14,7 +13,6 @@ import { SandwichResolver } from './resolvers/sandwichResolver';
 import { IngredientResolver } from './resolvers/ingredientResolver';
 import { OrderResolver } from './resolvers/orderResolver';
 import { ReviewResolver } from './resolvers/reviewResolver';
-import { SocketController } from './controllers/socketController';
 
 (async () => {
 	const connectionOptions: ConnectionOptions = await getConnectionOptions();
@@ -41,19 +39,12 @@ import { SocketController } from './controllers/socketController';
 					// APP
 					const port = process.env.PORT || 31001;
 					const app = express();
-					const httpServer = createServer(app);
-					const io = new Server(httpServer, {
-						cors: {
-							origin: '*',
-							methods: ['GET', 'POST'],
-						},
-					});
 
 					const url = `http://localhost:${port}`;
 
 					// MIDDLEWARE
 					app.use(express.json());
-					// app.use(cors());
+					app.use(cors());
 					app.use('/img', express.static(`${__dirname}/assets/images`));
 					app.use(
 						'/v1/',
@@ -72,27 +63,6 @@ import { SocketController } from './controllers/socketController';
 					// START
 					app.listen(port, () => {
 						console.info(`\nServer listening on ${url}/v1`);
-					});
-
-					// SOCKET
-					io.on('connection', (socket: Socket) => {
-						console.log('new socket connection');
-
-						const socketController = new SocketController(io, socket);
-
-						socket.on('order:status', socketController.broadcastOrderStatus);
-						socket.on('order:process', socketController.changeOrderStatus);
-
-						socket.on('disconnect', (reason: any) => {
-							console.log('socket disconnecting');
-						});
-
-						io.engine.on('connection_error', (err: any) => {
-							console.log(err.req);
-							console.log(err.code);
-							console.log(err.message);
-							console.log(err.context);
-						});
 					});
 				}),
 		)

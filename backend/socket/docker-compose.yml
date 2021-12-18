@@ -1,0 +1,6 @@
+services:
+    socket:
+        image: sandwitches-socket
+        build: .
+        ports:
+            - 31002:31002

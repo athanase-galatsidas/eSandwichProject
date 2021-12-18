@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-const socket = io('localhost:3001');
+const socket = io('ws://localhost:31002');
 
 export default () => {
 	const emit = async (event: string, payload: any) => {
