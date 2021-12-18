@@ -20,6 +20,10 @@ const store = createStore({
 		addCartItem(state, payload: Sandwich) {
 			state.cart.push(payload);
 		},
+		removeCartItem(state, payload: Sandwich) {
+			const index = state.cart.indexOf(payload);
+			if (index > -1) state.cart.splice(index, 1);
+		},
 		setOrderStage(state, payload: OrderTrackStage) {
 			state.trackStage = payload;
 		},

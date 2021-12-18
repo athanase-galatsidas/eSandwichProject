@@ -1,7 +1,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { ShoppingCartIcon } from '@heroicons/vue/outline';
+import { XIcon } from '@heroicons/vue/solid';
 import store from '@/bootstrap/store';
+import { Sandwich } from '@/interfaces/Sandwich';
 
 export default defineComponent({
 	name: 'Cart',
@@ -32,9 +34,13 @@ export default defineComponent({
 		emitOnCheckout() {
 			this.$emit('onCheckout', true);
 		},
+		removeItem(sandwich: Sandwich) {
+			store.commit('removeCartItem', sandwich);
+		},
 	},
 	components: {
 		ShoppingCartIcon,
+		XIcon,
 	},
 });
 </script>
@@ -62,7 +68,11 @@ export default defineComponent({
 			v-bind:class="{ 'bg-gray-200 dark:bg-gray-600': key % 2 == 0 }"
 			class="px-4 text-lg font-medium flex justify-between"
 		>
-			{{ value.name }} <span class="text-right font-normal">€ {{ value.price }}</span>
+			{{ value.name }}
+			<span class="text-right font-normal flex justify-center">
+				€ {{ value.price }}
+				<button v-if="!checkout" @click="removeItem(value)"><XIcon class="text-red-700 ml-2 w-4 h-4" /></button>
+			</span>
 		</h4>
 
 		<h4 class="px-4 pt-4 text-lg font-medium flex justify-between">
