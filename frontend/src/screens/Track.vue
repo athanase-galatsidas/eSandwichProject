@@ -8,10 +8,15 @@ import { StarIcon } from '@heroicons/vue/solid';
 
 export default defineComponent({
 	name: 'Track',
-	setup() {
-		// store.commit('setOrderStage', { stage: 0, estimatedDuration: 10 });
+	props: {
+		orderId: {
+			type: String,
+			required: true,
+		},
 	},
 	mounted() {
+		store.dispatch('getOrderStage', this.orderId);
+
 		this.updateStage(0);
 	},
 	components: {

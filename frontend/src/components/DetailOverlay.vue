@@ -4,6 +4,9 @@ import { Sandwich } from '@/interfaces/Sandwich';
 import store from '@/bootstrap/store';
 import DetailItem from '@/components/DetailItem.vue';
 
+import { StarIcon } from '@heroicons/vue/solid';
+import { StarIcon as StarOutline } from '@heroicons/vue/outline';
+
 export default defineComponent({
 	name: 'DetailOverlay',
 	props: {
@@ -23,6 +26,8 @@ export default defineComponent({
 	},
 	components: {
 		DetailItem,
+		StarIcon,
+		StarOutline,
 	},
 });
 </script>
@@ -51,10 +56,32 @@ export default defineComponent({
 		>
 			<section class="flex flex-col justify-between w-full mr-16">
 				<div>
-					<h3 class="dark:text-gray-200 w-full text-2xl">
-						{{ sandwich.name }}
-					</h3>
-					<p class="dark:text-gray-200 w-full mt-1">{{ sandwich.description }}</p>
+					<div class="flex flex-row justify-between items-center w-full">
+						<h3 class="dark:text-gray-200 text-2xl">
+							{{ sandwich.name }}
+						</h3>
+						<div class="relative block h-4 w-20 flex-shrink-0">
+							<div class="absolute z-20 top-0 left-0 flex text-yellow-400 opacity-50">
+								<StarOutline class="w-4 h-4" />
+								<StarOutline class="w-4 h-4" />
+								<StarOutline class="w-4 h-4" />
+								<StarOutline class="w-4 h-4" />
+								<StarOutline class="w-4 h-4" />
+							</div>
+							<div class="absolute z-0 top-0 left-0 flex text-yellow-400">
+								<StarIcon class="w-4 h-4" />
+								<StarIcon class="w-4 h-4" />
+								<StarIcon class="w-4 h-4" />
+								<StarIcon class="w-4 h-4" />
+								<StarIcon class="w-4 h-4" />
+							</div>
+							<div
+								class="absolute z-10 mx-auto top-0 right-0 bg-white dark:bg-gray-700 h-full"
+								v-bind:style="{ width: `${10 - sandwich.rating}0%` }"
+							/>
+						</div>
+					</div>
+					<p class="text-gray-600 dark:text-gray-300 w-full mt-1">{{ sandwich.description }}</p>
 				</div>
 
 				<div class="bg-gray-100 w-full h-52 rounded-md shadow-sm py-2">

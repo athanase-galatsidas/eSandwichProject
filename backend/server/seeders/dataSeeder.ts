@@ -77,7 +77,7 @@ export const seedDatabase = async (connection: Connection) => {
 			vegeSandwich.image = '/img/vege.webp';
 			vegeSandwich.available = true;
 			vegeSandwich.price = 12.99;
-			vegeSandwich.rating = 8;
+			vegeSandwich.rating = 4;
 			vegeSandwich.ingredients = Promise.resolve([bread, cheese]);
 			await connection.manager.save(vegeSandwich);
 

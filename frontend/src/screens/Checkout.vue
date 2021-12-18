@@ -30,83 +30,134 @@ export default defineComponent({
 	<div>
 		<AppHeader title="Checkout" />
 		<div class="mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
-			<form class="bg-white dark:bg-gray-700 mx-8 mb-6 p-4 lg:mb-0 lg:mx-auto rounded-md shadow-md" action="">
+			<form
+				class="
+					flex flex-col
+					items-center
+					bg-white
+					dark:bg-gray-700
+					w-full
+					mx-6
+					mb-6
+					p-4
+					lg:mb-0
+					rounded-md
+					shadow-md
+				"
+				action=""
+			>
 				<h3 class="font-semibold text-xl mb-4">Delivery address</h3>
-				<InputGroup id="city" model="city" text="City">
+				<InputGroup id="city" text="City">
 					<LocationMarkerIcon class="h-6 w-6 mr-2" />
 				</InputGroup>
-				<InputGroup id="street" model="street" text="Street Name">
+				<InputGroup id="street" text="Street Name">
 					<LocationMarkerIcon class="h-6 w-6 mr-2" />
 				</InputGroup>
-				<InputGroup id="adress" model="adress" text="Adress" type="number">
+				<InputGroup id="adress" text="Adress" type="number">
 					<LocationMarkerIcon class="h-6 w-6 mr-2" />
 				</InputGroup>
 
 				<h3 class="font-semibold text-xl my-4">Payment method</h3>
 
-				<div class="w-full flex">
-					<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
-						<input
-							type="radio"
-							name="payment"
-							id="cash"
-							checked="checked"
-							class="z-10 absolute left-0 top-0 w-full h-full opacity-0"
-						/>
-						<CashIcon
-							class="
-								iconbox
-								absolute
-								left-0
-								top-0
-								w-full
-								h-full
-								bg-gray-100
-								dark:bg-gray-800 dark:text-white
-							"
-						/>
+				<div class="w-full flex flex-row justify-center">
+					<div class="flex flex-col justify-center items-center mx-2">
+						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
+							<input
+								type="radio"
+								name="payment"
+								id="cash"
+								class="z-10 absolute left-0 top-0 w-full h-full opacity-0"
+								checked="checked"
+							/>
+							<CashIcon
+								class="
+									iconbox
+									absolute
+									left-0
+									top-0
+									w-full
+									h-full
+									p-4
+									text-gray-500
+									bg-gray-100
+									dark:bg-gray-800 dark:text-white
+								"
+							/>
+						</div>
+						<span class="text-lg text-center mt-2 font-medium">Cash</span>
 					</div>
-					<div class="relative w-32 h-32 mx-8 overflow-hidden rounded-xl flex justify-center items-center">
-						<input
-							type="radio"
-							name="payment"
-							id="credit"
-							class="z-10 absolute left-0 top-0 w-full h-full opacity-0"
-						/>
-						<CreditCardIcon
-							class="
-								iconbox
-								absolute
-								left-0
-								top-0
-								w-full
-								h-full
-								bg-gray-100
-								dark:bg-gray-800 dark:text-white
-							"
-						/>
+
+					<div class="flex flex-col justify-center items-center mx-2">
+						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
+							<input
+								type="radio"
+								name="payment"
+								id="card"
+								class="z-10 absolute left-0 top-0 w-full h-full opacity-0"
+							/>
+							<CreditCardIcon
+								class="
+									iconbox
+									absolute
+									left-0
+									top-0
+									w-full
+									h-full
+									p-4
+									text-gray-500
+									bg-gray-100
+									dark:bg-gray-800 dark:text-white
+								"
+							/>
+						</div>
+						<span class="text-lg text-center mt-2 font-medium">Credit card</span>
 					</div>
-					<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
-						<input
-							type="radio"
-							name="payment"
-							id="cash"
-							class="z-10 absolute left-0 top-0 w-full h-full opacity-0"
-						/>
-						<DeviceMobileIcon
-							class="
-								iconbox
-								absolute
-								left-0
-								top-0
-								w-full
-								h-full
-								bg-gray-100
-								dark:bg-gray-800 dark:text-white
-							"
-						/>
+
+					<div class="flex flex-col justify-center items-center mx-2">
+						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
+							<input
+								type="radio"
+								name="payment"
+								id="app"
+								class="z-10 absolute left-0 top-0 w-full h-full opacity-0"
+							/>
+							<DeviceMobileIcon
+								class="
+									iconbox
+									absolute
+									left-0
+									top-0
+									w-full
+									h-full
+									p-4
+									text-gray-500
+									bg-gray-100
+									dark:bg-gray-800 dark:text-white
+								"
+							/>
+						</div>
+						<span class="text-lg text-center mt-2 font-medium">Bank app</span>
 					</div>
 				</div>
+
+				<button
+					class="
+						bg-red-500
+						hover:bg-red-400
+						transition-colors
+						text-white
+						font-semibold
+						shadow-sm
+						p-2
+						m-4
+						rounded-md
+						text-center
+						w-64
+					"
+					@click="redirectToTrack()"
+				>
+					Purchase
+				</button>
 			</form>
 			<Cart text="Purchase" :checkout="true" @onCheckout="redirectToTrack()" />
 		</div>
