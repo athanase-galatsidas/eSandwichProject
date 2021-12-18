@@ -12,9 +12,6 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	mounted() {
-		console.log(this.sandwich);
-	},
 	emits: {
 		closePopup: null,
 	},

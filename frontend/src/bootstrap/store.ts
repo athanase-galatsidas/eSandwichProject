@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-import { get, post } from '@/modules/network';
 import { Sandwich } from '@/interfaces/Sandwich';
 import { OrderTrackStage } from '@/interfaces/OrderTrackStage';
 import useGraphql from '@/composable/useGraphql';
@@ -8,7 +7,7 @@ const url = 'http://localhost:31001';
 const socketUrl = 'ws://localhost:31001';
 const { query } = useGraphql();
 
-export default createStore({
+const store = createStore({
 	state: {
 		sandwitches: Array<Sandwich>(),
 		cart: Array<Sandwich>(),
@@ -51,7 +50,13 @@ export default createStore({
 			).then((data) => {
 				const sandwiches: Sandwich[] = data.map((res: Object) => res as Sandwich);
 				sandwiches.forEach((sandwich) => (sandwich.image = `${url}${sandwich.image}`));
-				this.commit('setData', sandwiches);
+
+				// TODO: remove this later, small delay for testing loading states
+				setTimeout(() => {
+					this.commit('setData', sandwiches);
+				}, 2000);
+
+				// this.commit('setData', sandwiches);
 			});
 		},
 		async getOrder() {
@@ -60,3 +65,5 @@ export default createStore({
 		},
 	},
 });
+
+export default store;

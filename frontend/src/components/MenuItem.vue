@@ -38,13 +38,14 @@ export default defineComponent({
 			hover-effect
 		"
 	>
-		<figure class="bg-yellow-300 h-28 overflow-hidden flex">
+		<figure class="bg-gray-200 dark:bg-gray-600 h-28 overflow-hidden flex justify-center">
 			<img
 				v-bind:class="{ 'filter blur-sm transform-none': !available }"
 				class="block w-full justify-self-center self-center transition-transform transform"
-				:src="image"
+				v-lazy="{ src: image }"
 				:alt="name"
 			/>
+			<img class="absolute w-20 h-20 mt-4" src="@/assets/loader.png" />
 		</figure>
 		<span class="dark:text-gray-200 text-lg p-4 text-center">
 			{{ name }}
@@ -58,5 +59,9 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .hover-effect:hover img {
 	@apply scale-110 -rotate-3;
+}
+
+img[lazy='loaded'] + img {
+	@apply hidden;
 }
 </style>

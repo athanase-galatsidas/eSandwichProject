@@ -1,11 +1,13 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineAsyncComponent, defineComponent, ref } from 'vue';
 import store from '@/bootstrap/store';
 
 import AppHeader from '@/components/AppHeader.vue';
-import MenuItem from '@/components/MenuItem.vue';
 import DetailOverlay from '@/components/DetailOverlay.vue';
+import MenuItem from '@/components/MenuItem.vue';
+import MenuItemSkeleton from '@/components/MenuItemSkelleton.vue';
 import Cart from '@/components/Cart.vue';
+
 import { Sandwich } from '@/interfaces/Sandwich';
 import router from '@/bootstrap/router';
 
@@ -29,14 +31,12 @@ export default defineComponent({
 	components: {
 		AppHeader,
 		MenuItem,
+		MenuItemSkeleton,
 		DetailOverlay,
 		Cart,
 	},
 	methods: {
-		// TODO: make sandwich an interface
 		showPopup(sandwich: Sandwich) {
-			console.log(sandwich);
-
 			this.selectedSandwich = sandwich;
 		},
 		handlePopupClose() {
@@ -54,7 +54,10 @@ export default defineComponent({
 		<DetailOverlay v-if="selectedSandwich" :sandwich="selectedSandwich" @closePopup="handlePopupClose()" />
 		<AppHeader title="Menu" />
 		<div class="mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
-			<div class="mx-6 mb-6 lg:mb-0 lg:mx-auto flex flex-row flex-wrap items-start content-start">
+			<div
+				v-if="menuItems.length > 0"
+				class="-mt-2 mx-6 mb-6 lg:mb-0 lg:mx-auto flex flex-row flex-wrap items-start content-start"
+			>
 				<MenuItem
 					v-for="(value, key) of menuItems"
 					:key="key"
@@ -63,6 +66,10 @@ export default defineComponent({
 					:available="value.available"
 					@click="showPopup(value)"
 				/>
+			</div>
+
+			<div v-else class="-mt-2 mx-6 mb-6 lg:mb-0 lg:mx-auto flex flex-row flex-wrap items-start content-start">
+				<MenuItemSkeleton v-for="i in 12" :key="i" />
 			</div>
 			<Cart text="Checkout" @onCheckout="redirectToCheckout()" />
 		</div>
