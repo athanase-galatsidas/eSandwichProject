@@ -14,6 +14,19 @@ export class SocketController {
 	}
 
 	broadcastOrderStatus = async (payload: any) => {
+		console.log(`received: ${payload}`);
+
+		try {
+			const order = await this.manager.findOne(payload.id);
+			this.socket.broadcast.emit(`order:${payload.id}`, order?.status);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	changeOrderStatus = async (payload: any) => {
+		console.log(`received: ${payload}`);
+
 		try {
 			const newOrder = await this.manager.findOne(payload.id);
 
@@ -22,7 +35,7 @@ export class SocketController {
 				await this.manager.update(payload.id, newOrder);
 			}
 
-			this.socket.broadcast.emit(`order:${payload.id}`, payload.status);
+			this.socket.broadcast.emit(`order:${payload.id}`, newOrder?.status);
 		} catch (err) {
 			console.error(err);
 		}

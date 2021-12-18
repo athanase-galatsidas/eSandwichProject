@@ -5,6 +5,8 @@ import InputGroup from '@/components/InputGroup.vue';
 import Cart from '@/components/Cart.vue';
 import { LocationMarkerIcon, CashIcon, CreditCardIcon, DeviceMobileIcon } from '@heroicons/vue/outline';
 import router from '@/bootstrap/router';
+import useGraphql from '@/composable/useGraphql';
+import store from '@/bootstrap/store';
 
 export default defineComponent({
 	name: 'Checkout',
@@ -19,8 +21,27 @@ export default defineComponent({
 		Cart,
 	},
 	methods: {
-		redirectToTrack() {
-			router.push('/track');
+		async redirectToTrack() {
+			// const { mutation } = useGraphql();
+			// const ids: string[] = [];
+			// store.state.cart.forEach((sandwich) => {
+			// 	ids.push(sandwich.sandwichId);
+			// });
+			// // TODO: if user is logged in add user id
+			// await mutation(
+			// 	'addOrder',
+			// 	`mutation {
+			// 		addOrder(data: {userId: null, sandwiches: []}) {
+			// 			orderId
+			// 		}
+			// 	}`,
+			// ).then((data) => {
+			// 	console.log(data);
+			// 	// router.push({ path: '/track', params: data.orderId });
+			// });
+
+			// TODO: fuck graphql
+			router.push({ name: 'track', params: { orderId: '46647f52-f67f-4d5f-a262-174cdd4b4a92' } });
 		},
 	},
 });
@@ -154,7 +175,7 @@ export default defineComponent({
 						text-center
 						w-64
 					"
-					@click="redirectToTrack()"
+					@click.prevent="redirectToTrack()"
 				>
 					Purchase
 				</button>

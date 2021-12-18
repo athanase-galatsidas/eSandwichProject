@@ -3,7 +3,7 @@ import { Sandwich } from '@/interfaces/Sandwich';
 import { OrderTrackStage } from '@/interfaces/OrderTrackStage';
 import useGraphql from '@/composable/useGraphql';
 
-const url = 'http://localhost:31001';
+const imgUrl = 'http://localhost:31001';
 const { query } = useGraphql();
 
 const store = createStore({
@@ -32,7 +32,6 @@ const store = createStore({
 	actions: {
 		async getData() {
 			await query(
-				`${url}/v1`,
 				'getSandwiches',
 				`{
 				getSandwiches
@@ -52,7 +51,7 @@ const store = createStore({
 				}`,
 			).then((data) => {
 				const sandwiches: Sandwich[] = data.map((res: Object) => res as Sandwich);
-				sandwiches.forEach((sandwich) => (sandwich.image = `${url}${sandwich.image}`));
+				sandwiches.forEach((sandwich) => (sandwich.image = `${imgUrl}${sandwich.image}`));
 
 				// TODO: remove this later, small delay for testing loading states
 				setTimeout(() => {

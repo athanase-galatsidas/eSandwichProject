@@ -53,7 +53,7 @@ import { SocketController } from './controllers/socketController';
 
 					// MIDDLEWARE
 					app.use(express.json());
-					app.use(cors());
+					// app.use(cors());
 					app.use('/img', express.static(`${__dirname}/assets/images`));
 					app.use(
 						'/v1/',
@@ -80,7 +80,8 @@ import { SocketController } from './controllers/socketController';
 
 						const socketController = new SocketController(io, socket);
 
-						socket.on('order:process', socketController.broadcastOrderStatus);
+						socket.on('order:status', socketController.broadcastOrderStatus);
+						socket.on('order:process', socketController.changeOrderStatus);
 
 						socket.on('disconnect', (reason: any) => {
 							console.log('socket disconnecting');

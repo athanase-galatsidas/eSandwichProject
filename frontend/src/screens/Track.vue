@@ -3,20 +3,25 @@ import { Component, defineComponent, ref } from 'vue';
 import store from '@/bootstrap/store';
 import AppHeader from '@/components/AppHeader.vue';
 import LoadingBar from '@/components/LoadingBar.vue';
+import useSocket from '@/composable/useSocket';
 import { ClipboardListIcon, CogIcon, LocationMarkerIcon } from '@heroicons/vue/outline';
 import { StarIcon } from '@heroicons/vue/solid';
 
 export default defineComponent({
 	name: 'Track',
-	props: {
-		orderId: {
-			type: String,
-			required: true,
-		},
-	},
+	setup() {},
 	mounted() {
-		store.dispatch('getOrderStage', this.orderId);
+		const { emit, on } = useSocket();
 
+		console.log(this.$route.params.orderId);
+
+		// get initial status
+		emit('order:status', this.$route.params.orderId);
+
+		// update when status changes
+		on(`order:${this.$route.params.orderId}`, (payload: any) => {
+			console.log(`received: ${payload}`);
+		});
 		this.updateStage(0);
 	},
 	components: {
