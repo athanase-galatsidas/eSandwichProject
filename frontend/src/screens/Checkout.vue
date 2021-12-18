@@ -1,21 +1,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import store from '@/bootstrap/store';
 import AppHeader from '@/components/AppHeader.vue';
 import InputGroup from '@/components/InputGroup.vue';
+import Cart from '@/components/Cart.vue';
 import { LocationMarkerIcon, CashIcon, CreditCardIcon, DeviceMobileIcon } from '@heroicons/vue/outline';
+import router from '@/bootstrap/router';
+import useGraphql from '@/composable/useGraphql';
+import store from '@/bootstrap/store';
 
 export default defineComponent({
 	name: 'Checkout',
 	setup() {},
-	computed: {
-		cartItems() {
-			return store.state.cart;
-		},
-		subTotal() {
-			return store.state.cart.reduce((total, value) => total + value.price, 0).toFixed(2);
-		},
-	},
 	components: {
 		AppHeader,
 		InputGroup,
@@ -23,6 +18,31 @@ export default defineComponent({
 		CashIcon,
 		CreditCardIcon,
 		DeviceMobileIcon,
+		Cart,
+	},
+	methods: {
+		async redirectToTrack() {
+			// const { mutation } = useGraphql();
+			// const ids: string[] = [];
+			// store.state.cart.forEach((sandwich) => {
+			// 	ids.push(sandwich.sandwichId);
+			// });
+			// // TODO: if user is logged in add user id
+			// await mutation(
+			// 	'addOrder',
+			// 	`mutation {
+			// 		addOrder(data: {userId: null, sandwiches: []}) {
+			// 			orderId
+			// 		}
+			// 	}`,
+			// ).then((data) => {
+			// 	console.log(data);
+			// 	// router.push({ path: '/track', params: data.orderId });
+			// });
+
+			// TODO: fuck graphql
+			router.push({ name: 'track', params: { orderId: 'c6d019a2-ed2c-4845-9174-597e8e0c0ecf' } });
+		},
 	},
 });
 </script>
@@ -30,44 +50,45 @@ export default defineComponent({
 <template>
 	<div>
 		<AppHeader title="Checkout" />
-		<div class="container max-w-screen-lg mx-auto flex flex-col lg:flex-row mt-8">
-			<div
+		<div class="mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
+			<form
 				class="
+					flex flex-col
+					items-center
 					bg-white
-					dark:bg-gray-700 dark:text-gray-200
-					container
-					rounded-md
+					dark:bg-gray-700
+					w-full
+					mx-6
+					mb-6
 					p-4
-					max-w-screen-md
-					mr-4
-					flex flex-row flex-wrap
-					items-start
-					content-start
+					lg:mb-0
+					rounded-md
 					shadow-md
 				"
+				action=""
 			>
-				<form action="">
-					<h3 class="font-semibold text-xl mb-4">Delivery address</h3>
-					<InputGroup id="city" model="city" text="City">
-						<LocationMarkerIcon class="h-6 w-6 mr-2" />
-					</InputGroup>
-					<InputGroup id="street" model="street" text="Street Name">
-						<LocationMarkerIcon class="h-6 w-6 mr-2" />
-					</InputGroup>
-					<InputGroup id="adress" model="adress" text="Adress" type="number">
-						<LocationMarkerIcon class="h-6 w-6 mr-2" />
-					</InputGroup>
+				<h3 class="font-semibold text-xl mb-4 text-gray-500 dark:text-white">Delivery address</h3>
+				<InputGroup id="city" text="City">
+					<LocationMarkerIcon class="h-6 w-6 mr-2" />
+				</InputGroup>
+				<InputGroup id="street" text="Street Name">
+					<LocationMarkerIcon class="h-6 w-6 mr-2" />
+				</InputGroup>
+				<InputGroup id="adress" text="Adress" type="number">
+					<LocationMarkerIcon class="h-6 w-6 mr-2" />
+				</InputGroup>
 
-					<h3 class="font-semibold text-xl my-4">Payment method</h3>
+				<h3 class="font-semibold text-xl my-4 text-gray-500 dark:text-white">Payment method</h3>
 
-					<div class="w-full flex">
+				<div class="w-full flex flex-col justify-center">
+					<div class="flex flex-col justify-center items-center mx-2">
 						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
 							<input
 								type="radio"
 								name="payment"
 								id="cash"
-								checked="checked"
 								class="z-10 absolute left-0 top-0 w-full h-full opacity-0"
+								checked="checked"
 							/>
 							<CashIcon
 								class="
@@ -77,18 +98,22 @@ export default defineComponent({
 									top-0
 									w-full
 									h-full
+									p-4
+									text-gray-500
 									bg-gray-100
 									dark:bg-gray-800 dark:text-white
 								"
 							/>
 						</div>
-						<div
-							class="relative w-32 h-32 mx-8 overflow-hidden rounded-xl flex justify-center items-center"
-						>
+						<span class="text-lg text-center mt-2 font-medium text-gray-500 dark:text-white">Cash</span>
+					</div>
+
+					<div class="flex flex-col justify-center items-center mx-2">
+						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
 							<input
 								type="radio"
 								name="payment"
-								id="credit"
+								id="card"
 								class="z-10 absolute left-0 top-0 w-full h-full opacity-0"
 							/>
 							<CreditCardIcon
@@ -99,16 +124,25 @@ export default defineComponent({
 									top-0
 									w-full
 									h-full
+									p-4
+									text-gray-500
+									dark:text-white
 									bg-gray-100
-									dark:bg-gray-800 dark:text-white
+									dark:bg-gray-800
 								"
 							/>
 						</div>
+						<span class="text-lg text-center mt-2 font-medium text-gray-500 dark:text-white"
+							>Credit card</span
+						>
+					</div>
+
+					<div class="flex flex-col justify-center items-center mx-2">
 						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
 							<input
 								type="radio"
 								name="payment"
-								id="cash"
+								id="app"
 								class="z-10 absolute left-0 top-0 w-full h-full opacity-0"
 							/>
 							<DeviceMobileIcon
@@ -119,45 +153,37 @@ export default defineComponent({
 									top-0
 									w-full
 									h-full
+									p-4
+									text-gray-500
 									bg-gray-100
 									dark:bg-gray-800 dark:text-white
 								"
 							/>
 						</div>
+						<span class="text-lg text-center mt-2 font-medium text-gray-500 dark:text-white">Bank app</span>
 					</div>
-				</form>
-			</div>
+				</div>
 
-			<div
-				class="
-					bg-white
-					dark:bg-gray-700 dark:text-gray-200
-					shadow-md
-					flex flex-col flex-shrink-0
-					rounded-md
-					w-80
-				"
-			>
-				<h3 class="p-4 text-lg">Cart</h3>
-				<h4 v-for="(value, key) of cartItems" :key="key" class="px-4 text-lg font-medium flex justify-between">
-					{{ value.name }} <span class="text-right font-normal">€ {{ value.price }}</span>
-				</h4>
-				<h4 class="px-4 pt-2 text-lg font-medium flex justify-between">
-					Subtotal <span class="text-right font-normal">€ {{ subTotal }}</span>
-				</h4>
-				<h4 class="px-4 text-lg font-medium flex justify-between">
-					Btw (6%) <span class="text-right font-normal">€ {{ (subTotal * 0.06).toFixed(2) }}</span>
-				</h4>
-				<h4 class="px-4 pt-2 text-lg font-bold flex justify-between">
-					Total <span class="text-right font-semibold">€ {{ (subTotal * 1.06).toFixed(2) }}</span>
-				</h4>
-				<router-link
-					to="/checkout"
-					class="bg-red-500 text-white font-semibold shadow-sm p-2 m-4 rounded-md text-center"
+				<button
+					class="
+						bg-red-500
+						hover:bg-red-400
+						transition-colors
+						text-white
+						font-semibold
+						shadow-sm
+						p-2
+						m-4
+						rounded-md
+						text-center
+						w-64
+					"
+					@click.prevent="redirectToTrack()"
 				>
 					Purchase
-				</router-link>
-			</div>
+				</button>
+			</form>
+			<Cart text="Purchase" :checkout="true" @onCheckout="redirectToTrack()" />
 		</div>
 	</div>
 </template>

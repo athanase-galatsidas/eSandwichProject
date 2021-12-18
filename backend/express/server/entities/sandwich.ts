@@ -1,6 +1,15 @@
 import { Field, ID, InputType, ObjectType } from 'type-graphql';
-import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+	BaseEntity,
+	Column,
+	Entity,
+	JoinTable,
+	ManyToMany,
+	OneToOne,
+	PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Ingredient } from './ingredient';
+import { Review } from './review';
 
 @ObjectType()
 @InputType('SandwichInput')
@@ -22,9 +31,15 @@ export class Sandwich extends BaseEntity {
 	@Field()
 	@Column('bool')
 	available?: boolean;
+	@Field()
+	@Column('double')
+	price?: number;
+	@Field()
+	@Column('int')
+	rating?: number;
 
-	// @Field((type) => [Ingredient], { nullable: true })
-	// @ManyToMany(() => Ingredient)
-	// @JoinTable()
-	// ingredients?: Ingredient[];
+	@Field((type) => [Ingredient], { nullable: true })
+	@ManyToMany(() => Ingredient)
+	@JoinTable()
+	ingredients?: Promise<Ingredient[]>; // lazy relations
 }

@@ -1,8 +1,12 @@
+import { Ingredient } from './Ingredient';
+
 export interface Sandwich {
-	id: any;
+	sandwichId: any;
 	name: string;
-	image: string;
-	price: number;
-	toppings: string;
 	description: string;
+	image: string;
+	available: boolean;
+	price: number;
+	rating: number;
+	ingredients: Ingredient[];
 }

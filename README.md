@@ -54,6 +54,6 @@ Gedetaileerde lijst van geplande milestones voor dit project staan op [trello](h
 - [x] Basic frontend design (zie [figma](https://www.figma.com/file/d2dDQDZkVPz6MLHEAYZQXa/Untitled?node-id=0%3A1))
 - [x] Front page
 - [x] Menu/Order page
-- [ ] Details/Custumize sandwich page
+- [ ] Details/Customize sandwich page
 - [x] Checkout
 - [x] Admin page

@@ -24,12 +24,7 @@ export default defineComponent({
 		const loginUser = (event: Event) => {
 			event.preventDefault();
 
-			// vmodel doesnt work with child components :(
-			loginInput.email = (document.getElementById('username') as HTMLInputElement).value;
-			loginInput.password = (document.getElementById('password') as HTMLInputElement).value;
-
 			// TODO: error handling
-
 			console.log(loginInput.email);
 
 			if (loginInput.email && loginInput.password) {
@@ -55,35 +50,46 @@ export default defineComponent({
 </script>
 
 <template>
-<div>
-	<AppHeader title="Login" />
-	<form
-		@submit="loginUser($event)"
-		class="
-			flex flex-col
-			justify-center
-			items-center
-			p-4
-			rounded-md
-			mx-auto
-			max-w-screen-sm
-			dark:bg-gray-700
-			bg-white
-			shadow-md
-			mt-16
-		"
-	>
-		<h3 class="text-2xl mb-2 dark:text-white">Log In</h3>
+	<div>
+		<AppHeader title="Login" />
+		<form
+			@submit="loginUser($event)"
+			class="
+				flex flex-col
+				justify-center
+				items-center
+				p-4
+				rounded-md
+				mx-auto
+				max-w-screen-sm
+				dark:bg-gray-700
+				bg-white
+				shadow-md
+				mt-16
+			"
+		>
+			<h3 class="text-2xl mb-2 dark:text-white">Log In</h3>
 
-		<InputGroup id="username" model="loginInput.email" text="Username / Email">
-			<UserIcon class="h-6 w-6 mr-2" />
-		</InputGroup>
+			<InputGroup
+				id="username"
+				@onInput="loginInput.email = $event"
+				model="loginInput.email"
+				text="Username / Email"
+			>
+				<UserIcon class="h-6 w-6 mr-2" />
+			</InputGroup>
 
-		<InputGroup id="password" model="loginInput.password" text="Password" type="password">
-			<LockClosedIcon class="h-6 w-6 mr-2" />
-		</InputGroup>
+			<InputGroup
+				id="password"
+				@onInput="loginInput.password = $event"
+				model="loginInput.password"
+				text="Password"
+				type="password"
+			>
+				<LockClosedIcon class="h-6 w-6 mr-2" />
+			</InputGroup>
 
-		<!-- <label class="font-bold block mb-3" for="email">Email address</label>
+			<!-- <label class="font-bold block mb-3" for="email">Email address</label>
 		<input
 			v-model="loginInput.email"
 			class="
@@ -115,31 +121,31 @@ export default defineComponent({
 			type="password"
 			id="password"
 		/> -->
-		<span class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)"> Forgot password? </span>
+			<span class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)"> Forgot password? </span>
 
-		<input
-			class="
-				cursor-pointer
-				hide-on-input
-				my-2
-				mt-4
-				p-2
-				h-9
-				w-64
-				bg-red-500
-				text-white
-				font-semibold
-				rounded-md
-				shadow-sm
-			"
-			type="submit"
-			value="Log In"
-		/>
+			<input
+				class="
+					cursor-pointer
+					hide-on-input
+					my-2
+					mt-4
+					p-2
+					h-9
+					w-64
+					bg-red-500
+					text-white
+					font-semibold
+					rounded-md
+					shadow-sm
+				"
+				type="submit"
+				value="Log In"
+			/>
 
-		<p class="cursor-default dark:text-white">
-			Don't have an account?
-			<router-link to="/signup" class="cursor-pointer text-red-600 font-semibold"> Sign up now! </router-link>
-		</p>
-	</form>
+			<p class="cursor-default dark:text-white">
+				Don't have an account?
+				<router-link to="/signup" class="cursor-pointer text-red-600 font-semibold"> Sign up now! </router-link>
+			</p>
+		</form>
 	</div>
 </template>

@@ -28,4 +28,8 @@
 		font-weight: 700;
 		src: url('../fonts/Quicksand-Bold.ttf');
 	}
+
+	.-z-10 {
+		z-index: -10;
+	}
 }

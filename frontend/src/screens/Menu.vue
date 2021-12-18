@@ -1,25 +1,23 @@
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
+import { defineAsyncComponent, defineComponent, ref } from 'vue';
 import store from '@/bootstrap/store';
 
-// import AppHeader from '@/components/AppHeader.vue';
 import AppHeader from '@/components/AppHeader.vue';
+import DetailOverlay from '@/components/DetailOverlay.vue';
 import MenuItem from '@/components/MenuItem.vue';
-import SandwichPopup from '@/components/SandwichPopup.vue';
-import useFirebase from '@/composable/useFirebase';
+import MenuItemSkeleton from '@/components/MenuItemSkelleton.vue';
+import Cart from '@/components/Cart.vue';
+
 import { Sandwich } from '@/interfaces/Sandwich';
+import router from '@/bootstrap/router';
 
 export default defineComponent({
 	setup() {
 		store.dispatch('getData');
-		// const { user } = useFirebase();
-		const popupVisible = ref(false);
 		const selectedSandwich = ref<Sandwich>();
 
 		return {
-			popupVisible,
 			selectedSandwich,
-			// user
 		};
 	},
 	computed: {
@@ -33,16 +31,19 @@ export default defineComponent({
 	components: {
 		AppHeader,
 		MenuItem,
-		SandwichPopup,
+		MenuItemSkeleton,
+		DetailOverlay,
+		Cart,
 	},
 	methods: {
-		// TODO: make sandwich an interface
 		showPopup(sandwich: Sandwich) {
 			this.selectedSandwich = sandwich;
-			this.popupVisible = true;
 		},
 		handlePopupClose() {
-			this.popupVisible = false;
+			this.selectedSandwich = undefined;
+		},
+		redirectToCheckout() {
+			router.push('/checkout');
 		},
 	},
 });
@@ -50,34 +51,27 @@ export default defineComponent({
 
 <template>
 	<div>
-		<SandwichPopup v-if="popupVisible" :sandwich="selectedSandwich" @closePopup="handlePopupClose()" />
+		<DetailOverlay v-if="selectedSandwich" :sandwich="selectedSandwich" @closePopup="handlePopupClose()" />
 		<AppHeader title="Menu" />
-		<div class="container max-w-screen-lg mx-auto flex flex-col lg:flex-row mt-8">
-			<div class="container max-w-screen-md mx-auto flex flex-row flex-wrap items-start content-start">
+		<div class="mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
+			<div
+				v-if="menuItems.length > 0"
+				class="-mt-2 mx-6 mb-6 lg:mb-0 lg:mx-auto flex flex-row flex-wrap items-center content-center"
+			>
 				<MenuItem
 					v-for="(value, key) of menuItems"
 					:key="key"
 					:name="value.name"
 					:image="value.image"
+					:available="value.available"
 					@click="showPopup(value)"
 				/>
 			</div>
 
-			<!-- this is a quick & dirty test thingy -->
-			<!-- todo: put this in seperate components -->
-			<div
-				v-show="cartItems.length > 0"
-				class="bg-white dark:bg-gray-700 dark:text-gray-200 shadow-md flex flex-col rounded-md w-56 m-2"
-			>
-				<h3 class="p-4 text-lg">Cart</h3>
-				<h4 v-for="(value, key) of cartItems" :key="key" class="px-4 text-lg">
-					{{ value.name }}
-				</h4>
-				<router-link to="/checkout" class="bg-red-500 text-white font-semibold shadow-sm p-2 m-4 rounded-md text-center">
-					Check out
-				</router-link>
+			<div v-else class="-mt-2 mx-6 mb-6 lg:mb-0 lg:mx-auto flex flex-row flex-wrap items-start content-start">
+				<MenuItemSkeleton v-for="i in 12" :key="i" />
 			</div>
-			<!-- <p>{{ user?.email }}</p> -->
+			<Cart text="Checkout" @onCheckout="redirectToCheckout()" />
 		</div>
 	</div>
 </template>

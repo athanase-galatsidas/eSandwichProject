@@ -7,6 +7,7 @@ import {
 	NavigationGuardNext,
 } from 'vue-router';
 import useFirebase from '@/composable/useFirebase';
+import store from './store';
 
 const { user } = useFirebase();
 
@@ -34,6 +35,25 @@ const routes: RouteRecordRaw[] = [
 		meta: {
 			guest: true,
 		},
+		// redirect to menu if cart is empty
+		beforeEnter(to, from, next) {
+			if (store.state.cart.length == 0) next('/menu');
+			else next();
+		},
+	},
+	{
+		name: 'track',
+		path: '/track/:orderId',
+		component: () => import('@/screens/Track.vue'),
+		meta: {
+			guest: true,
+		},
+		beforeEnter(to, from, next) {
+			console.log(to.params.orderId);
+
+			if (!to.params.orderId) next('not-found');
+			else next();
+		},
 	},
 	{
 		name: 'login',
@@ -54,6 +74,14 @@ const routes: RouteRecordRaw[] = [
 		props: { signup: true },
 		// Uncomment when admin login is implemented
 		// meta: { authRequired: true },
+	},
+	{
+		name: 'not-found',
+		path: '/:pathMatch(.*)*',
+		component: () => import('@/screens/404.vue'),
+		meta: {
+			guest: true,
+		},
 	},
 ];
 

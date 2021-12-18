@@ -1,19 +1,28 @@
 import express, { Request, Response } from 'express';
+import { createServer } from 'http';
+
 import { Connection, ConnectionOptions, createConnection, getConnectionOptions } from 'typeorm';
-import { createDatabase } from 'typeorm-extension';
+import { createDatabase, dropDatabase } from 'typeorm-extension';
 import { graphqlHTTP } from 'express-graphql';
 import { GraphQLSchema } from 'graphql';
 import { buildSchema } from 'type-graphql';
 import cors from 'cors';
 
 import { seedDatabase } from './seeders/dataSeeder';
-import { Sandwich } from './entities/sandwich';
 import { SandwichResolver } from './resolvers/sandwichResolver';
+import { IngredientResolver } from './resolvers/ingredientResolver';
+import { OrderResolver } from './resolvers/orderResolver';
+import { ReviewResolver } from './resolvers/reviewResolver';
 
 (async () => {
 	const connectionOptions: ConnectionOptions = await getConnectionOptions();
 
-	createDatabase({ ifNotExist: true }, connectionOptions)
+	await dropDatabase({ ifExist: true }).then(() => {
+		console.log('db dropped');
+	});
+
+	// TODO: this creates a db even if it exists already
+	await createDatabase({ ifNotExist: true }, connectionOptions)
 		.then(() => console.log('db created'))
 		.then(
 			async () =>
@@ -22,14 +31,15 @@ import { SandwichResolver } from './resolvers/sandwichResolver';
 
 					let schema: GraphQLSchema = {} as GraphQLSchema;
 					await buildSchema({
-						resolvers: [SandwichResolver],
+						resolvers: [SandwichResolver, IngredientResolver, OrderResolver],
 					}).then((_) => {
 						schema = _;
 					});
 
 					// APP
-					const app = express(),
-						port = process.env.PORT || 3001;
+					const port = process.env.PORT || 31001;
+					const app = express();
+
 					const url = `http://localhost:${port}`;
 
 					// MIDDLEWARE
@@ -50,55 +60,13 @@ import { SandwichResolver } from './resolvers/sandwichResolver';
 						response.send(`Welcome to Sandwitches Sandwich Service!`);
 					});
 
-					// TODO: temporary oplosing tot database trug werkt
-					app.get('/v1/sandwiches', (request: Request, response: Response) => {
-						const data = {
-							sandwiches: [
-								{
-									id: 0,
-									name: 'Basic Sandwich',
-									image: `${url}/img/basic.webp`,
-									price: 11.5,
-								},
-								{
-									id: 1,
-									name: 'Regular Sandwich',
-									image: `${url}/img/regular.webp`,
-									price: 12.0,
-								},
-								{
-									id: 2,
-									name: 'Vegetarian Sandwich',
-									image: `${url}/img/vege.webp`,
-									price: 13.0,
-								},
-								{
-									id: 3,
-									name: 'Special Sandwich',
-									image: `${url}/img/special.webp`,
-									price: 14.0,
-								},
-								{
-									id: 4,
-									name: 'Grilled Sandwich',
-									image: `${url}/img/grilled.webp`,
-									price: 12.0,
-								},
-								{
-									id: 5,
-									name: 'Deluxe Sandwich',
-									image: `${url}/img/deluxe.webp`,
-									price: 14.0,
-								},
-							],
-						};
-						response.send(JSON.stringify(data));
-					});
-
 					// START
 					app.listen(port, () => {
-						console.info(`\nServer listening on ${url}/`);
+						console.info(`\nServer listening on ${url}/v1`);
 					});
 				}),
-		);
+		)
+		.catch((err) => {
+			console.error(`could not create connection\n${err}`);
+		});
 })();

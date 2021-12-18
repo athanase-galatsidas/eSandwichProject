@@ -1,0 +1,8 @@
+services:
+  frontend:
+    image: sandwitches-frontend
+    build: .
+    ports:
+      - 31000:8080
+    volumes:
+      - ./src/config.ts:/usr/app/src/config.ts

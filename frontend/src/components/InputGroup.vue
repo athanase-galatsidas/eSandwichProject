@@ -3,12 +3,11 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
 	name: 'InputGroup',
+	emits: {
+		onInput: String,
+	},
 	props: {
 		id: {
-			type: String,
-			required: true,
-		},
-		model: {
 			type: String,
 			required: true,
 		},
@@ -22,6 +21,11 @@ export default defineComponent({
 			default: 'text',
 		},
 	},
+	methods: {
+		emitInputStateChanged(e: Event) {
+			this.$emit('onInput', (e.currentTarget as HTMLInputElement).value);
+		},
+	},
 });
 </script>
 
@@ -30,7 +34,7 @@ export default defineComponent({
 		<input
 			:id="id"
 			:type="type"
-			:v-model="model"
+			@change="emitInputStateChanged($event)"
 			placeholder=" "
 			class="hide-on-input p-2 h-9 w-64 bg-gray-100 dark:bg-gray-800 dark:text-white rounded-md shadow-sm"
 		/>

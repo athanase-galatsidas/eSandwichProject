@@ -14,27 +14,26 @@ export default defineComponent({
 		},
 	},
 	mounted() {
-		const c = document.getElementById('c') as HTMLCanvasElement;
+		const c = this.$refs['c'] as HTMLCanvasElement;
 		const ctx = c.getContext('2d');
 
-		// get the specific color of yellow
-		// const fill = window.getComputedStyle(document.querySelector('h1') as Element, null).getPropertyValue('background-color');
-		const fillElement = window.getComputedStyle(document.querySelector('h1') as Element, null);
+		// for dark mode to work we need the color of the background
+		const bg = getComputedStyle(this.$refs['bg'] as HTMLCanvasElement, null);
 
 		// typescript is annoying
 		if (ctx === null) return;
 
-		this.init(c, ctx, fillElement);
+		this.init(c, ctx, bg);
 	},
 	methods: {
-		init(c: HTMLCanvasElement, ctx: CanvasRenderingContext2D, fillElement: CSSStyleDeclaration) {
+		init(c: HTMLCanvasElement, ctx: CanvasRenderingContext2D, bg: CSSStyleDeclaration) {
 			let offset = 0;
 
 			const draw = () => {
 				ctx.clearRect(0, 0, c.width, c.height);
 
 				// need to update this in case user switches to dark mode
-				const fill = fillElement.getPropertyValue('background-color');
+				const fill = bg.getPropertyValue('background-color');
 
 				ctx.beginPath();
 				ctx.moveTo(0, 0);
@@ -72,5 +71,6 @@ export default defineComponent({
 </script>
 
 <template>
-	<canvas class="absolute w-full h-72" id="c"></canvas>
+	<aside ref="bg" class="hidden bg-yellow-400 dark:bg-gray-700"></aside>
+	<canvas class="absolute w-full h-72" ref="c"></canvas>
 </template>

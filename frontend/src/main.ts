@@ -4,4 +4,7 @@ import './assets/styles/screen.css';
 import router from './bootstrap/router';
 import store from './bootstrap/store';
 
-createApp(App).use(router).use(store).mount('#app');
+import VueLazyLoad from 'vue3-lazyload';
+import VueAnimateOnScroll from 'vue3-animate-onscroll';
+
+createApp(App).use(router).use(store).use(VueLazyLoad).use(VueAnimateOnScroll).mount('#app');

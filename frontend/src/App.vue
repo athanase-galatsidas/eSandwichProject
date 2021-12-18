@@ -24,4 +24,23 @@ html {
 		display: block;
 	}
 }
+
+/* needed for appear plugin */
+@keyframes appear {
+	from {
+		opacity: 0;
+		transform: translateY(50%) scale(0.9);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.appear {
+	animation-name: appear;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
 </style>

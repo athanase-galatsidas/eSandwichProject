@@ -23,31 +23,37 @@ export default defineComponent({
 			email: '',
 			password: '',
 		});
+		const passwordRepeat = ref('');
 
-		const registerAccount = (event: Event) => {
+		return {
+			userInput,
+			createUser,
+			passwordRepeat,
+		};
+	},
+	methods: {
+		registerAccount(event: Event) {
 			event.preventDefault();
 
-			// vmodel doesnt work with child components :(
-			userInput.name = (document.getElementById('username') as HTMLInputElement).value;
-			userInput.email = (document.getElementById('email') as HTMLInputElement).value;
-			userInput.password = (document.getElementById('password') as HTMLInputElement).value;
-			const passwordRepeat = (document.getElementById('password-repeat') as HTMLInputElement).value;
+			console.log(this.userInput.name);
+			console.log(this.userInput.email);
+			console.log(this.userInput.password);
+			console.log(this.passwordRepeat);
 
 			// TODO: error handling
 
-			if (userInput.name && userInput.email && userInput.password) {
-				console.log('Correct with ', userInput);
-				createUser(userInput.name, userInput.email as string, userInput.password as string);
-			} else {
-				console.log('Invalid input ', userInput);
-			}
-		};
-		const showSignUp = ref(props.signup);
-		return {
-			registerAccount,
-			userInput,
-			showSignUp,
-		};
+			// if (
+			// 	this.userInput.name &&
+			// 	this.userInput.email &&
+			// 	this.userInput.password
+			// 	this.userInput.password == this.passwordRepeat
+			// ) {
+			// 	console.log('Correct with ', this.userInput);
+			// 	this.createUser(this.userInput.name, this.userInput.email as string, this.userInput.password as string);
+			// } else {
+			// 	console.log('Invalid input ', this.userInput);
+			// }
+		},
 	},
 	components: {
 		InputGroup,
@@ -80,19 +86,19 @@ export default defineComponent({
 		>
 			<h3 class="text-2xl mb-2 dark:text-white">Sign up</h3>
 
-			<InputGroup id="username" model="userInput.name" text="Username">
+			<InputGroup id="username" @onInput="userInput.name = $event" text="Username">
 				<UserIcon class="h-6 w-6 mr-2" />
 			</InputGroup>
 
-			<InputGroup id="email" model="userInput.email" text="E-mail Adress" type="email">
+			<InputGroup id="email" @onInput="userInput.email = $event" text="E-mail Adress" type="email">
 				<MailIcon class="h-6 w-6 mr-2" />
 			</InputGroup>
 
-			<InputGroup id="password" model="userInput.password" text="Password" type="password">
+			<InputGroup id="password" @onInput="userInput.password = $event" text="Password" type="password">
 				<KeyIcon class="h-6 w-6 mr-2" />
 			</InputGroup>
 
-			<InputGroup id="password-repeat" model="password-repeat" text="Repeat Password" type="password">
+			<InputGroup id="password-repeat" @onInput="passwordRepeat = $event" text="Repeat Password" type="password">
 				<KeyIcon class="h-6 w-6 mr-2" />
 			</InputGroup>
 

@@ -24,92 +24,21 @@ export default defineComponent({
 			<div class="z-10 w-10 h-10 sm:w-12 sm:h-12 mr-4">
 				<img
 					class="light-logo h-10 w-10 sm:h-12 sm:w-12 md:h-13 md:w-13"
-					src="src/assets/logo_xl.png"
+					src="@/assets/logo_xl.png"
 					alt="a cool logo"
 				/>
 				<img
 					class="dark-logo h-10 w-10 sm:h-12 sm:w-12 md:h-13 md:w-13"
-					src="src/assets/logo_xl_dark.png"
+					src="@/assets/logo_xl_dark.png"
 					alt="a cool logo"
 				/>
 			</div>
 			<!-- wavy background uses computed bg style of h1, so put a background on it! -->
-			<h1
-				class="bg-yellow-400 dark:bg-gray-700 dark:text-white z-10 text-2xl md:text-3xl xl:text-5xl"
-			>
-				eSand<span class="text-red-500 font-bold text-3xl  md:text-4xl xl:text-6xl">Witches</span>
+			<h1 class="dark:text-white z-10 text-2xl md:text-3xl xl:text-5xl">
+				eSand<span class="text-red-500 font-bold text-3xl md:text-4xl xl:text-6xl">Witches</span>
 			</h1>
 			<WavyBackground v-bind:speed="0.5" v-bind:size="16" />
 		</div>
-		<div class="flex justify-center items-center h-64 ">
-			<router-link
-				class="
-					flex
-					justify-center
-					text-2xl
-					items-center
-					cursor-pointer
-					m-4
-					p-6
-					h-9
-					w-64
-					bg-red-500
-					text-white
-					font-semibold
-					rounded-md
-					shadow-sm
-					hover-effect
-				"
-				to="/menu"
-			>
-				Order now!
-			</router-link>
-		</div>
-
-		<LandingItem title="Handled with care" image="src/assets/images/landing_cook.jpeg">
-			<p class="dark:text-gray-300 text-center md:text-left w-10/12 ml-8 text-sm">
-				When you order a Sandwitch Sandwichservice Sandwich you are
-				<span class="underline">guaranteed</span> the best quality sandwich created by our beloved below-minimum
-				wage workers.
-			</p>
-		</LandingItem>
-
-		<div class="bg-element"></div>
-
-		<div
-		
-		class="flex h-80 justify-evenly items-center  max-w-50 mx-auto mb-16 flex-col md:flex-row-reverse"
-	>
-		<div class="w-96 pb-8 md:pb-0">
-			<h3 class="text-center md:ml-4 md:text-left text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold text-red-600 dark:text-white my-4">Only the best ingredients</h3>
-			<p class="dark:text-gray-300 text-center md:text-left w-10/12 ml-8 text-sm">
-				Our sandwiches are crafted with only <span class="underline">the best</span> hand picked ingredients
-				that we could find at the local discount market.
-			</p>
-			<slot></slot>
-		</div>
-		<div class="flex h-full w-30  sm:w-50 md:w-60 lg:w-70 xl:w-80 2xl:w-96   overflow-hidden rounded-lg">
-			<img
-				class="block  w-40 sm:w-60 md:w-70 lg:w-80 xl:w-90 2xl:w-96 h-full object-cover justify-self-center self-center shadow-md"
-				src="src/assets/images/landing_food.jpeg"
-				alt="landing_food"
-			/>
-		</div>
-	</div>
-		<!-- <LandingItem title="Only the best ingredients" image="src/assets/images/landing_food.jpeg" inverted="true">
-			<p class="dark:text-gray-300 w-10/12 ml-8 text-sm">
-				Our sandwiches are crafted with only <span class="underline">the best</span> hand picked ingredients
-				that we could find at the local discount market.
-			</p>
-		</LandingItem> -->
-
-		<LandingItem title="Shipped right to your doorstep" image="src/assets/images/landing_delivery.jpeg">
-			<p class="dark:text-gray-300 text-center md:text-left w-10/12 ml-8 text-sm">
-				We are commited to delivering our sandwiches to your doorstep so that you can enjoy our sandwiches from
-				the comfort of your own home.
-			</p>
-		</LandingItem>
-
 		<div class="flex justify-center items-center h-64">
 			<router-link
 				class="
@@ -127,33 +56,64 @@ export default defineComponent({
 					font-semibold
 					rounded-md
 					shadow-sm
-					hover-effect
+					transition-transform
+					transform
+					hover:scale-125
 				"
 				to="/menu"
 			>
 				Order now!
 			</router-link>
+		</div>
+
+		<LandingItem title="Handled with care" image="src/assets/images/landing_cook.jpeg">
+			<p class="dark:text-gray-300 text-left md:pl-4 text-sm md:text-lg">
+				When you order a Sandwitch Sandwichservice Sandwich you are
+				<span class="underline">guaranteed</span> the best quality sandwich created by our beloved below-minimum
+				wage workers.
+			</p>
+		</LandingItem>
+
+		<div class="bg-yellow-400 dark:bg-gray-700 absolute w-full h-64 -z-10 transform skew-y-6"></div>
+
+		<LandingItem title="Only the best ingredients" image="src/assets/images/landing_food.jpeg" inverted="true">
+			<p class="dark:text-gray-300 text-sm md:pl-4 md:text-lg">
+				Our sandwiches are crafted with only <span class="underline">the best</span> hand picked ingredients
+				that we could find at the local discount market.
+			</p>
+		</LandingItem>
+
+		<LandingItem title="Shipped right to your doorstep" image="src/assets/images/landing_delivery.jpeg">
+			<p class="dark:text-gray-300 text-center md:text-left md:pl-4 text-sm md:text-lg">
+				We are commited to delivering our sandwiches to your doorstep so that you can enjoy our sandwiches from
+				the comfort of your own home.
+			</p>
+		</LandingItem>
+
+		<div class="flex justify-center items-center h-64 my-32">
 			<router-link
-				to="/admin"
 				class="
 					flex
 					justify-center
+					text-2xl
 					items-center
+					cursor-pointer
+					m-4
+					p-6
+					h-9
+					w-64
 					bg-red-500
-					hover:bg-red-400
-					dark:bg-gray-200 dark:hover:bg-gray-400
 					text-white
-					dark:text-black
-					shadow-sm
-					transition-colors
 					font-semibold
 					rounded-md
-					px-4
-					ml-4
-					w-24
+					shadow-sm
+					transition-transform
+					transform
+					hover:scale-125
 				"
+				to="/menu"
 			>
-				Admin
+				Order now!
 			</router-link>
 		</div>
 
@@ -183,24 +143,7 @@ export default defineComponent({
 				</a>
 			</div>
 
-			<p>royalty free stock images from pexels.com</p>
+			<p>images from <a class="underline" href="https://www.pexels.com/nl-nl/">pexels.com</a></p>
 		</footer>
 	</div>
 </template>
-
-<style lang="postcss" scoped>
-.hover-effect {
-	transform: none;
-	transition: transform 0.2s ease-in-out;
-}
-
-.hover-effect:hover {
-	transform: scale(1.2);
-}
-
-.bg-element {
-	@apply bg-yellow-400 dark:bg-gray-700 absolute w-full h-64;
-	z-index: -10;
-	transform: skewY(4deg);
-}
-</style>
