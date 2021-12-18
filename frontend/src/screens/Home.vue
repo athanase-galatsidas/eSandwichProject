@@ -143,7 +143,7 @@ export default defineComponent({
 				</a>
 			</div>
 
-			<p>images from pexels.com</p>
+			<p>images from <a class="underline" href="https://www.pexels.com/nl-nl/">pexels.com</a></p>
 		</footer>
 	</div>
 </template>
