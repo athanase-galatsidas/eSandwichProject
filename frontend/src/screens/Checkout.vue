@@ -22,26 +22,18 @@ export default defineComponent({
 	},
 	methods: {
 		async redirectToTrack() {
-			// const { mutation } = useGraphql();
-			// const ids: string[] = [];
-			// store.state.cart.forEach((sandwich) => {
-			// 	ids.push(sandwich.sandwichId);
-			// });
-			// // TODO: if user is logged in add user id
-			// await mutation(
-			// 	'addOrder',
-			// 	`mutation {
-			// 		addOrder(data: {userId: null, sandwiches: []}) {
-			// 			orderId
-			// 		}
-			// 	}`,
-			// ).then((data) => {
-			// 	console.log(data);
-			// 	// router.push({ path: '/track', params: data.orderId });
-			// });
-
-			// TODO: fuck graphql
-			router.push({ name: 'track', params: { orderId: 'c6d019a2-ed2c-4845-9174-597e8e0c0ecf' } });
+			const { mutation } = useGraphql();
+			const ids: string[] = [];
+			store.state.cart.forEach((sandwich) => {
+				ids.push(sandwich.sandwichId);
+			});
+			// TODO: if user is logged in add user id
+			await mutation(
+				'addOrder',
+				`mutation AddOrder { addOrder(data: {userId: null, sandwiches: []}) {orderId} }`,
+			).then((data) => {
+				router.push({ path: '/track', params: data.orderId });
+			});
 		},
 	},
 });
