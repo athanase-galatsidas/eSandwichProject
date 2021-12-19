@@ -34,8 +34,6 @@ export default defineComponent({
 				'addOrder',
 				`mutation AddOrder { addOrder(data: { userId: null, sandwiches: [${ids}] }) {orderId} }`,
 			).then((data) => {
-				console.log(data);
-
 				router.push({ name: 'track', params: { orderId: data.orderId } });
 			});
 		},

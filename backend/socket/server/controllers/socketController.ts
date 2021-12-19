@@ -15,11 +15,17 @@ export class SocketController {
 	broadcastOrderStatus = async (payload: any) => {
 		console.log(`received: ${payload}`);
 
+		// get the current status
 		await axios
-			.post(url, `{getOrderById(id: "393d45f8-c4c8-4ee1-a738-6618c10424aa") {status}}`)
-			// .then((res) => console.log(res.data.json()))
-			.then((data) => {
-				console.log(data);
+			.post(url, {
+				query: `{ getOrderById(id: "${payload}") {status} }`,
+			})
+			.then((res) => {
+				// and broadcast it
+				const status = res.data.data.getOrderById.status;
+				console.log(status);
+
+				this.socket.broadcast.emit(`order:${payload}`, status);
 			})
 			.catch((err) => console.error('error'));
 	};

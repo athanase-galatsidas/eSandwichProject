@@ -13,7 +13,7 @@ export default defineComponent({
 	mounted() {
 		const { emit, on } = useSocket();
 
-		console.log(this.$route.params.orderId);
+		console.log(`id: ${this.$route.params.orderId}`);
 
 		// get initial status
 		emit('order:status', this.$route.params.orderId);
@@ -22,6 +22,7 @@ export default defineComponent({
 		on(`order:${this.$route.params.orderId}`, (payload: any) => {
 			console.log(`received: ${payload}`);
 		});
+
 		this.updateStage(0);
 	},
 	components: {
