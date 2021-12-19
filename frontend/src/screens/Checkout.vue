@@ -23,16 +23,20 @@ export default defineComponent({
 	methods: {
 		async redirectToTrack() {
 			const { mutation } = useGraphql();
+
 			const ids: string[] = [];
 			store.state.cart.forEach((sandwich) => {
-				ids.push(sandwich.sandwichId);
+				ids.push(`"${sandwich.sandwichId}"`); // graphql wants VERY specific string formats
 			});
+
 			// TODO: if user is logged in add user id
 			await mutation(
 				'addOrder',
-				`mutation AddOrder { addOrder(data: {userId: null, sandwiches: []}) {orderId} }`,
+				`mutation AddOrder { addOrder(data: { userId: null, sandwiches: [${ids}] }) {orderId} }`,
 			).then((data) => {
-				router.push({ path: '/track', params: data.orderId });
+				console.log(data);
+
+				router.push({ name: 'track', params: { orderId: data.orderId } });
 			});
 		},
 	},

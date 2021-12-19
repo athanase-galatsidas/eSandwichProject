@@ -49,8 +49,6 @@ const routes: RouteRecordRaw[] = [
 			guest: true,
 		},
 		beforeEnter(to, from, next) {
-			console.log(to.params.orderId);
-
 			if (!to.params.orderId) next('not-found');
 			else next();
 		},

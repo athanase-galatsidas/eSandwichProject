@@ -22,7 +22,6 @@ export class OrderResolver {
 	@Mutation(() => Order)
 	async addOrder(@Arg('data') newOrder: AddOrderInput): Promise<Order | undefined | null> {
 		try {
-			console.log(`received order: ${newOrder}`);
 			console.log(`received order: ${JSON.stringify(newOrder)}`);
 
 			// error checking

@@ -1,4 +1,7 @@
 import { Server, Socket } from 'socket.io';
+import axios from 'axios';
+
+const url = 'http://localhost:31001/v1';
 
 export class SocketController {
 	public io: Server;
@@ -12,31 +15,31 @@ export class SocketController {
 	broadcastOrderStatus = async (payload: any) => {
 		console.log(`received: ${payload}`);
 
-		try {
-			// const order = await this.manager.findOne(payload.id);
-			// this.socket.broadcast.emit(`order:${payload.id}`, order?.status);
-			this.socket.broadcast.emit(`order:${payload.id}`, 0);
-		} catch (err) {
-			console.error(err);
-		}
+		await axios
+			.post(url, `{getOrderById(id: "393d45f8-c4c8-4ee1-a738-6618c10424aa") {status}}`)
+			// .then((res) => console.log(res.data.json()))
+			.then((data) => {
+				console.log(data);
+			})
+			.catch((err) => console.error('error'));
 	};
 
 	changeOrderStatus = async (payload: any) => {
 		console.log(`received: ${payload}`);
 
-		try {
-			// const newOrder = await this.manager.findOne(payload.id);
+		// try {
+		// 	const newOrder = await this.manager.findOne(payload.id);
 
-			// if (newOrder) {
-			// 	newOrder.status = payload.status;
-			// 	await this.manager.update(payload.id, newOrder);
-			// }
+		// 	if (newOrder) {
+		// 		newOrder.status = payload.status;
+		// 		await this.manager.update(payload.id, newOrder);
+		// 	}
 
-			// this.socket.broadcast.emit(`order:${payload.id}`, newOrder?.status);
+		// 	this.socket.broadcast.emit(`order:${payload.id}`, newOrder?.status);
 
-			this.socket.broadcast.emit(`order:${payload.id}`, 1);
-		} catch (err) {
-			console.error(err);
-		}
+		// 	this.socket.broadcast.emit(`order:${payload.id}`, 1);
+		// } catch (err) {
+		// 	console.error(err);
+		// }
 	};
 }

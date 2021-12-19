@@ -23,11 +23,6 @@ const url = `ws://localhost:${port}`;
 app.use(express.json());
 app.use(cors());
 
-// ROUTES
-app.get('/', (request: Request, response: Response) => {
-	response.send(`Welcome to Sandwitches Sandwich Socket Server!`);
-});
-
 // SOCKET
 io.on('connection', (socket: Socket) => {
 	console.log('new socket connection');
