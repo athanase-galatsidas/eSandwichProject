@@ -3,46 +3,21 @@ import { defineComponent, reactive } from 'vue';
 import AdminIngredient from '@/components/AdminIngredient.vue';
 import useFirebase from '@/composable/useFirebase';
 import AppHeader from '@/components/AppHeader.vue';
+import store from '@/bootstrap/store';
 
 export default defineComponent({
 	name: 'Admin',
 	setup() {
-		// TODO: this page should not be accessible for non-admin users
-		const { createUser } = useFirebase();
-
-		// TODO: test data
-		const ingredients = reactive({
-			data: [
-				{
-					name: 'Bread',
-					count: 42,
-					image: 'src/assets/images/admin-bread.jpeg',
-				},
-				{
-					name: 'Cheese',
-					count: 38,
-					image: 'src/assets/images/admin-cheese.jpeg',
-				},
-				{
-					name: 'Salad',
-					count: 2,
-					image: 'src/assets/images/admin-salad.jpeg',
-				},
-				{
-					name: 'Ham',
-					count: 8,
-					image: 'src/assets/images/admin-ham.jpeg',
-				},
-			],
-		});
-
-		return {
-			ingredients,
-		};
+		store.dispatch('getAdminData');
 	},
 	components: {
 		AdminIngredient,
 		AppHeader,
+	},
+	computed: {
+		ingredients() {
+			return store.state.ingredients;
+		},
 	},
 });
 </script>
@@ -52,13 +27,7 @@ export default defineComponent({
 		<AppHeader title="Admin" />
 		<div class="flex flex-col mx-auto max-w-screen-md">
 			<h3 class="text-3xl text-center my-4 dark:text-white">Stock</h3>
-			<AdminIngredient
-				v-for="(value, key) of ingredients.data"
-				:key="key"
-				:name="value.name"
-				:count="value.count"
-				:image="value.image"
-			/>
+			<AdminIngredient v-for="(value, key) of ingredients" :key="key" :name="value.name" :count="value.count" />
 		</div>
 	</div>
 </template>

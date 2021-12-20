@@ -33,19 +33,20 @@ export class SocketController {
 	changeOrderStatus = async (payload: any) => {
 		console.log(`received: ${payload}`);
 
-		// try {
-		// 	const newOrder = await this.manager.findOne(payload.id);
+		// get the current status
+		await axios
+			.post(url, {
+				query: `{ getOrderById(id: "${payload}") {status} }`,
+			})
+			.then((res) => {
+				// and broadcast it
 
-		// 	if (newOrder) {
-		// 		newOrder.status = payload.status;
-		// 		await this.manager.update(payload.id, newOrder);
-		// 	}
+				// TODO: change order and mutate it
+				const status = res.data.data.getOrderById.status;
+				console.log(status);
 
-		// 	this.socket.broadcast.emit(`order:${payload.id}`, newOrder?.status);
-
-		// 	this.socket.broadcast.emit(`order:${payload.id}`, 1);
-		// } catch (err) {
-		// 	console.error(err);
-		// }
+				this.socket.broadcast.emit(`order:${payload}`, status);
+			})
+			.catch((err) => console.error('error'));
 	};
 }
