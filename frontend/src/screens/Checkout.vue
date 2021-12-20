@@ -6,6 +6,7 @@ import Cart from '@/components/Cart.vue';
 import { LocationMarkerIcon, CashIcon, CreditCardIcon, DeviceMobileIcon } from '@heroicons/vue/outline';
 import router from '@/bootstrap/router';
 import useGraphql from '@/composable/useGraphql';
+import useFirebase from '@/composable/useFirebase';
 import store from '@/bootstrap/store';
 
 export default defineComponent({
@@ -23,6 +24,7 @@ export default defineComponent({
 	methods: {
 		async redirectToTrack() {
 			const { mutation } = useGraphql();
+			const { user } = useFirebase();
 
 			const ids: string[] = [];
 			store.state.cart.forEach((sandwich) => {
@@ -32,7 +34,9 @@ export default defineComponent({
 			// TODO: if user is logged in add user id
 			await mutation(
 				'addOrder',
-				`mutation AddOrder { addOrder(data: { userId: null, sandwiches: [${ids}] }) {orderId} }`,
+				`mutation AddOrder { addOrder(data: { userId: ${
+					user.value?.uid != undefined ? `"${user.value?.uid}"` : null
+				}, sandwiches: [${ids}] }) {orderId} }`,
 			).then((data) => {
 				router.push({ name: 'track', params: { orderId: data.orderId } });
 			});

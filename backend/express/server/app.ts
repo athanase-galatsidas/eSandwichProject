@@ -17,6 +17,7 @@ import { ReviewResolver } from './resolvers/reviewResolver';
 (async () => {
 	const connectionOptions: ConnectionOptions = await getConnectionOptions();
 
+	// TODO: we need to drop db at startup or typeorm causes crash :(
 	await dropDatabase({ ifExist: true }).then(() => {
 		console.log('db dropped');
 	});
@@ -44,7 +45,11 @@ import { ReviewResolver } from './resolvers/reviewResolver';
 
 					// MIDDLEWARE
 					app.use(express.json());
-					app.use(cors());
+					app.use(
+						cors({
+							origin: '*',
+						}),
+					);
 					app.use('/img', express.static(`${__dirname}/assets/images`));
 					app.use(
 						'/v1/',
