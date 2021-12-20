@@ -6,6 +6,7 @@ import AppHeader from '@/components/AppHeader.vue';
 import useFirebase from '@/composable/useFirebase';
 import router from '@/bootstrap/router';
 import { User } from '@/interfaces/User';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
 	name: 'Signup',
@@ -17,7 +18,41 @@ export default defineComponent({
 	},
 
 	setup(props) {
-		const { createUser } = useFirebase();
+		const { push } = useRouter();
+		
+		// const { createUser } = useFirebase();
+		// const userInput: User = reactive({
+		// 	name: '',
+		// 	email: '',
+		// 	password: '',
+		// });
+		// const passwordRepeat = ref('');
+		// const registerAccount = (event: Event) => {
+		// 	event.preventDefault();
+		// 	if (userInput.name && userInput.email && userInput.password && passwordRepeat.value == userInput.name) {
+		// 		console.log('Correct with ', userInput);
+		// 		createUser(userInput.name, userInput.email as string, userInput.password as string);
+		// 	} else {
+		// 		console.log('Invalid input ', userInput);
+		// 	}
+		// };
+		// const showSignUp = ref(props.signup);
+		// return {
+		// 	registerAccount,
+		// 	userInput,
+		// 	showSignUp,
+		// 	passwordRepeat,
+		// };
+
+		// // return {
+		// // 	userInput,
+		// // 	createUser,
+		// // 	
+		// // };
+
+		
+	// },
+	const { createUser } = useFirebase();
 		const userInput: User = reactive({
 			name: '',
 			email: '',
@@ -25,35 +60,21 @@ export default defineComponent({
 		});
 		const passwordRepeat = ref('');
 
-		return {
-			userInput,
-			createUser,
-			passwordRepeat,
-		};
-	},
-	methods: {
-		registerAccount(event: Event) {
+		const registerAccount = (event: Event) => {
 			event.preventDefault();
-
-			console.log(this.userInput.name);
-			console.log(this.userInput.email);
-			console.log(this.userInput.password);
-			console.log(this.passwordRepeat);
-
-			// TODO: error handling
-
-			// if (
-			// 	this.userInput.name &&
-			// 	this.userInput.email &&
-			// 	this.userInput.password
-			// 	this.userInput.password == this.passwordRepeat
-			// ) {
-			// 	console.log('Correct with ', this.userInput);
-			// 	this.createUser(this.userInput.name, this.userInput.email as string, this.userInput.password as string);
-			// } else {
-			// 	console.log('Invalid input ', this.userInput);
-			// }
-		},
+			if (userInput.name && userInput.email && userInput.password  ) {
+				console.log('Correct with ', userInput);
+				createUser(userInput.name, userInput.email as string, userInput.password as string);
+			} else {
+				console.log('Invalid input ', userInput);
+			}
+		};
+		const showSignUp = ref(props.signup);
+		return {
+			registerAccount,
+			userInput,
+			showSignUp,
+		};
 	},
 	components: {
 		InputGroup,
@@ -62,6 +83,16 @@ export default defineComponent({
 		LockClosedIcon,
 		KeyIcon,
 		AppHeader,
+	},
+	methods: {
+		toggleSignin(value: boolean) {
+			this.showSignUp = value;
+		},
+		signup() {
+			//TODO: sign up
+			// redirecting to admin for testing
+			push('/home');
+		},
 	},
 });
 </script>
