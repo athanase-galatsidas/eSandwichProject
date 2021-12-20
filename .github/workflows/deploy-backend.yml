@@ -1,0 +1,36 @@
+name: Docker Image CI Backend
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build Image
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
+    
+    - name: Build express Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./backend/express
+        file: ./backend/express/Dockerfile
+        tags: esandwitches-backend-express:$(date +%s)
+    
+    - name: Build socket Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./backend/socket
+        file: ./backend/socket/Dockerfile
+        tags: esandwitches-backend-socket:$(date +%s)
