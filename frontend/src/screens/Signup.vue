@@ -19,7 +19,7 @@ export default defineComponent({
 
 	setup(props) {
 		const { push } = useRouter();
-		
+
 		// const { createUser } = useFirebase();
 		// const userInput: User = reactive({
 		// 	name: '',
@@ -47,12 +47,11 @@ export default defineComponent({
 		// // return {
 		// // 	userInput,
 		// // 	createUser,
-		// // 	
+		// //
 		// // };
 
-		
-	// },
-	const { createUser } = useFirebase();
+		// },
+		const { createUser } = useFirebase();
 		const userInput: User = reactive({
 			name: '',
 			email: '',
@@ -62,11 +61,11 @@ export default defineComponent({
 
 		const registerAccount = (event: Event) => {
 			event.preventDefault();
-			if (userInput.name && userInput.email && userInput.password  ) {
-				console.log('Correct with ', userInput);
+			if (userInput.name && userInput.email && userInput.password) {
+				// console.log('Correct with ', userInput);
 				createUser(userInput.name, userInput.email as string, userInput.password as string);
 			} else {
-				console.log('Invalid input ', userInput);
+				// console.log('Invalid input ', userInput);
 			}
 		};
 		const showSignUp = ref(props.signup);
@@ -91,7 +90,7 @@ export default defineComponent({
 		signup() {
 			//TODO: sign up
 			// redirecting to admin for testing
-			push('/home');
+			// push('/home');
 		},
 	},
 });

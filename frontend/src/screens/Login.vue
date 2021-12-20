@@ -30,7 +30,7 @@ export default defineComponent({
 			event.preventDefault();
 
 			// TODO: error handling
-			console.log(loginInput.email);
+			// console.log(loginInput.email);
 
 			if (loginInput.email && loginInput.password) {
 				login(loginInput.email, loginInput.password).then((success: boolean) => {
@@ -134,7 +134,11 @@ export default defineComponent({
 			type="password"
 			id="password"
 		/> -->
-			<router-link to="/forgotPassword" class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)">
+			<router-link
+				to="/forgotPassword"
+				class="cursor-pointer text-red-600 font-medium text-sm"
+				@click="toggleSignin(false)"
+			>
 				Forgot password?
 			</router-link>
 

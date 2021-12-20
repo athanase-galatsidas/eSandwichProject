@@ -35,11 +35,13 @@ export default defineComponent({
 	},
 	methods: {
 		emitInputStateChanged(e: Event) {
-			// validate input
-			this.inputfield = this.inputfield.trim();
-			this.valid = this.inputfield != '';
+			this.validate();
 
 			this.$emit('onInput', this.inputfield);
+		},
+		validate() {
+			this.inputfield = this.inputfield.trim();
+			this.valid = this.inputfield != '';
 		},
 	},
 });
@@ -56,10 +58,12 @@ export default defineComponent({
 				@blur="emitInputStateChanged($event)"
 				placeholder=" "
 				class="hide-on-input p-2 h-9 w-64 bg-gray-100 dark:bg-gray-800 dark:text-white rounded-md shadow-sm"
+				autocomplete="off"
 			/>
+			<!-- for demo purposes disabled autocomplete -->
 			<label
 				:for="id"
-				v-bind:class="{ 'text-red-600': !valid }"
+				v-bind:class="{ 'text-red-600 dark:text-red-200': !valid }"
 				class="
 					cursor-text
 					absolute
@@ -75,12 +79,9 @@ export default defineComponent({
 				"
 			>
 				<slot></slot>
-				{{ text }}
+				<span v-show="!valid">Invalid&nbsp;</span> {{ text }}
 			</label>
 		</section>
-		<span v-bind:class="{ hidden: valid }" class="text-red-600 text-center text-sm w-full font-medium">
-			invalid {{ text }}!
-		</span>
 	</div>
 </template>
 

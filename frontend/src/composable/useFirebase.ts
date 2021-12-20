@@ -66,7 +66,7 @@ export default () => {
 		return new Promise((resolve, reject) => {
 			signInWithEmailAndPassword(auth, email, password)
 				.then(async (userCredential) => {
-					console.log(await userCredential.user.getIdToken());
+					// console.log(await userCredential.user.getIdToken());
 
 					user.value = userCredential.user;
 					resolve(true);
@@ -82,19 +82,16 @@ export default () => {
 		return signOut(auth);
 	};
 
-	const resetPassword = (email: string)  => {
-		
-			sendPasswordResetEmail(auth, email)
-		
-	
-}
-return {
-	createUser,
-	restoreAuth,
-	login,
-	logout,
-	resetPassword,
+	const resetPassword = (email: string) => {
+		sendPasswordResetEmail(auth, email);
+	};
+	return {
+		createUser,
+		restoreAuth,
+		login,
+		logout,
+		resetPassword,
 
-	user: readonly(user),
-};
+		user: readonly(user),
+	};
 };

@@ -20,16 +20,16 @@ export default defineComponent({
 		const showSignUp = ref(props.signup);
 		const { resetPassword } = useFirebase();
 		const { push } = useRouter();
-		const loginInput = reactive({ email: ''});
+		const loginInput = reactive({ email: '' });
 		const loginUser = (event: Event) => {
 			event.preventDefault();
 
 			// TODO: error handling
-			console.log(loginInput.email);
+			// console.log(loginInput.email);
 
 			if (loginInput.email) {
-				resetPassword(loginInput.email)
-				push('/login')
+				resetPassword(loginInput.email);
+				push('/login');
 			}
 		};
 		return {
@@ -79,7 +79,6 @@ export default defineComponent({
 				<UserIcon class="h-6 w-6 mr-2" />
 			</InputGroup>
 
-
 			<!-- <label class="font-bold block mb-3" for="email">Email address</label>
 		<input
 			v-model="loginInput.email"
@@ -112,7 +111,6 @@ export default defineComponent({
 			type="password"
 			id="password"
 		/> -->
-			
 
 			<input
 				class="
