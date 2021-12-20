@@ -58,12 +58,15 @@ export default () => {
 				user.value = userCredential.user;
 			})
 			.catch((error) => {
-				console.log({ error });
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				alert(errorMessage);
 			});
 	};
 
 	const login = (email: string, password: string): Promise<boolean> => {
 		return new Promise((resolve, reject) => {
+		
 			signInWithEmailAndPassword(auth, email, password)
 				.then(async (userCredential) => {
 					// console.log(await userCredential.user.getIdToken());
@@ -74,7 +77,7 @@ export default () => {
 				.catch((error) => {
 					const errorCode = error.code;
 					const errorMessage = error.message;
-					reject(error);
+					alert(errorMessage);
 				});
 		});
 	};
