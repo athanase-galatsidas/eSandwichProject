@@ -3,6 +3,7 @@ import {
 	browserLocalPersistence,
 	createUserWithEmailAndPassword,
 	getAuth,
+	sendPasswordResetEmail,
 	setPersistence,
 	signInWithEmailAndPassword,
 	signOut,
@@ -80,12 +81,20 @@ export default () => {
 	const logout = () => {
 		return signOut(auth);
 	};
-	return {
-		createUser,
-		restoreAuth,
-		login,
-		logout,
 
-		user: readonly(user),
-	};
+	const resetPassword = (email: string)  => {
+		
+			sendPasswordResetEmail(auth, email)
+		
+	
+}
+return {
+	createUser,
+	restoreAuth,
+	login,
+	logout,
+	resetPassword,
+
+	user: readonly(user),
+};
 };
