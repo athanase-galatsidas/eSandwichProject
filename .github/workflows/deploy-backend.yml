@@ -26,11 +26,11 @@ jobs:
       with:
         context: ./backend/express
         file: ./backend/express/Dockerfile
-        tags: esandwitches-backend-express:$(date +%s)
+        tags: esandwitches-backend-express:latest
     
     - name: Build socket Docker image
       uses: docker/build-push-action@v2
       with:
         context: ./backend/socket
         file: ./backend/socket/Dockerfile
-        tags: esandwitches-backend-socket:$(date +%s)
+        tags: esandwitches-backend-socket:latest
