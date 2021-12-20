@@ -26,15 +26,16 @@ export default defineComponent({
 		const { login, user } = useFirebase();
 		const { push } = useRouter();
 		const loginInput: User = reactive({ email: '', password: '' });
+
+		const emailRef = ref(InputGroup);
+		const passwordRef = ref(InputGroup);
+
 		const loginUser = (event: Event) => {
 			event.preventDefault();
 
-			// TODO: error handling
-			// console.log(loginInput.email);
-
 			if (loginInput.email && loginInput.password) {
 				login(loginInput.email, loginInput.password).then((success: boolean) => {
-					if (success)
+					if (success) {
 						if (
 							user?.value?.email == 'tibo.verbeke@gmail.com' ||
 							user?.value?.email == 'docent@howest.be'
@@ -43,6 +44,10 @@ export default defineComponent({
 						} else {
 							push('/menu');
 						}
+					} else {
+						emailRef.value.methods?.invalidate();
+						passwordRef.value.methods?.invalidate();
+					}
 				});
 			}
 		};
@@ -51,6 +56,8 @@ export default defineComponent({
 			loginUser,
 			loginInput,
 			AppHeader,
+			emailRef,
+			passwordRef,
 		};
 	},
 	components: {
@@ -58,11 +65,6 @@ export default defineComponent({
 		UserIcon,
 		LockClosedIcon,
 		AppHeader,
-	},
-	methods: {
-		validate(reference: string) {
-			this.$refs[reference]?.invalidate();
-		},
 	},
 });
 </script>
@@ -89,7 +91,7 @@ export default defineComponent({
 			<h3 class="text-2xl mb-2 dark:text-white">Log In</h3>
 
 			<InputGroup
-				ref="email"
+				ref="emailRef"
 				id="email"
 				type="email"
 				@onInput="loginInput.email = $event"
@@ -100,7 +102,7 @@ export default defineComponent({
 			</InputGroup>
 
 			<InputGroup
-				ref="password"
+				ref="passwordRef"
 				id="password"
 				@onInput="loginInput.password = $event"
 				model="loginInput.password"
@@ -110,43 +112,7 @@ export default defineComponent({
 				<LockClosedIcon class="h-6 w-6 mr-2" />
 			</InputGroup>
 
-			<!-- <label class="font-bold block mb-3" for="email">Email address</label>
-		<input
-			v-model="loginInput.email"
-			class="
-				hide-on-input
-				p-2
-				h-9
-				w-64
-				bg-gray-100
-				dark:bg-gray-800 dark:text-white
-				rounded-md
-				shadow-sm
-			"
-			type="text"
-			id="email"
-		/>
-		<label class="font-bold block mb-3" for="password">Password</label>
-		<input
-			v-model="loginInput.password"
-			class="
-				hide-on-input
-				p-2
-				h-9
-				w-64
-				bg-gray-100
-				dark:bg-gray-800 dark:text-white
-				rounded-md
-				shadow-sm
-			"
-			type="password"
-			id="password"
-		/> -->
-			<router-link
-				to="/forgotPassword"
-				class="cursor-pointer text-red-600 font-medium text-sm"
-				
-			>
+			<router-link to="/forgotPassword" class="cursor-pointer text-red-600 font-medium text-sm">
 				Forgot password?
 			</router-link>
 
