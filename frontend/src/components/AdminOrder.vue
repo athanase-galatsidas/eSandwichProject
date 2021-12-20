@@ -2,17 +2,13 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-	name: 'AdminIngredient',
+	name: 'AdminOrder',
 	props: {
-		name: {
+		id: {
 			type: String,
 			required: true,
 		},
-		count: {
-			type: Number,
-			required: true,
-		},
-		image: {
+		user: {
 			type: String,
 			required: true,
 		},

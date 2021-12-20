@@ -22,26 +22,20 @@ export default defineComponent({
 	},
 	methods: {
 		async redirectToTrack() {
-			// const { mutation } = useGraphql();
-			// const ids: string[] = [];
-			// store.state.cart.forEach((sandwich) => {
-			// 	ids.push(sandwich.sandwichId);
-			// });
-			// // TODO: if user is logged in add user id
-			// await mutation(
-			// 	'addOrder',
-			// 	`mutation {
-			// 		addOrder(data: {userId: null, sandwiches: []}) {
-			// 			orderId
-			// 		}
-			// 	}`,
-			// ).then((data) => {
-			// 	console.log(data);
-			// 	// router.push({ path: '/track', params: data.orderId });
-			// });
+			const { mutation } = useGraphql();
 
-			// TODO: fuck graphql
-			router.push({ name: 'track', params: { orderId: 'c6d019a2-ed2c-4845-9174-597e8e0c0ecf' } });
+			const ids: string[] = [];
+			store.state.cart.forEach((sandwich) => {
+				ids.push(`"${sandwich.sandwichId}"`); // graphql wants VERY specific string formats
+			});
+
+			// TODO: if user is logged in add user id
+			await mutation(
+				'addOrder',
+				`mutation AddOrder { addOrder(data: { userId: null, sandwiches: [${ids}] }) {orderId} }`,
+			).then((data) => {
+				router.push({ name: 'track', params: { orderId: data.orderId } });
+			});
 		},
 	},
 });
@@ -50,7 +44,7 @@ export default defineComponent({
 <template>
 	<div>
 		<AppHeader title="Checkout" />
-		<div class="mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
+		<div class="mx-8 lg:mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
 			<form
 				class="
 					flex flex-col
@@ -58,7 +52,7 @@ export default defineComponent({
 					bg-white
 					dark:bg-gray-700
 					w-full
-					mx-6
+					lg:mx-6
 					mb-6
 					p-4
 					lg:mb-0
@@ -80,9 +74,21 @@ export default defineComponent({
 
 				<h3 class="font-semibold text-xl my-4 text-gray-500 dark:text-white">Payment method</h3>
 
-				<div class="w-full flex flex-col justify-center">
-					<div class="flex flex-col justify-center items-center mx-2">
-						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
+				<div class="w-full flex flex-row justify-center">
+					<div class="flex flex-col justify-center items-center mx-2 md:mx-3">
+						<div
+							class="
+								relative
+								w-16
+								h-16
+								md:w-24 md:h-24
+								overflow-hidden
+								rounded-xl
+								flex
+								justify-center
+								items-center
+							"
+						>
 							<input
 								type="radio"
 								name="payment"
@@ -105,11 +111,25 @@ export default defineComponent({
 								"
 							/>
 						</div>
-						<span class="text-lg text-center mt-2 font-medium text-gray-500 dark:text-white">Cash</span>
+						<span class="text-sm md:text-lg text-center mt-2 font-medium text-gray-500 dark:text-white">
+							Cash
+						</span>
 					</div>
 
-					<div class="flex flex-col justify-center items-center mx-2">
-						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
+					<div class="flex flex-col justify-center items-center mx-2 md:mx-3">
+						<div
+							class="
+								relative
+								w-16
+								h-16
+								md:w-24 md:h-24
+								overflow-hidden
+								rounded-xl
+								flex
+								justify-center
+								items-center
+							"
+						>
 							<input
 								type="radio"
 								name="payment"
@@ -132,13 +152,25 @@ export default defineComponent({
 								"
 							/>
 						</div>
-						<span class="text-lg text-center mt-2 font-medium text-gray-500 dark:text-white"
-							>Credit card</span
-						>
+						<span class="text-sm md:text-lg text-center mt-2 font-medium text-gray-500 dark:text-white">
+							Credit card
+						</span>
 					</div>
 
-					<div class="flex flex-col justify-center items-center mx-2">
-						<div class="relative w-32 h-32 overflow-hidden rounded-xl flex justify-center items-center">
+					<div class="flex flex-col justify-center items-center mx-2 md:mx-3">
+						<div
+							class="
+								relative
+								w-16
+								h-16
+								md:w-24 md:h-24
+								overflow-hidden
+								rounded-xl
+								flex
+								justify-center
+								items-center
+							"
+						>
 							<input
 								type="radio"
 								name="payment"
@@ -160,7 +192,9 @@ export default defineComponent({
 								"
 							/>
 						</div>
-						<span class="text-lg text-center mt-2 font-medium text-gray-500 dark:text-white">Bank app</span>
+						<span class="text-sm md:text-lg text-center mt-2 font-medium text-gray-500 dark:text-white">
+							Bank app
+						</span>
 					</div>
 				</div>
 

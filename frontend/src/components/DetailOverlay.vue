@@ -47,15 +47,18 @@ export default defineComponent({
 				overflow-hidden
 				container
 				max-w-screen-sm
+				md:max-w-screen-md
 				h-96
 				p-8
-				flex flex-row
+				flex flex-col
+				md:flex-row
 				justify-between
-				
+				mx-8
+				md:mx-0
 			"
 			@click="$event.stopPropagation()"
 		>
-			<section class="flex flex-col justify-between w-full" >
+			<section class="flex flex-col justify-between w-full md:mr-16">
 				<div>
 					<div class="flex flex-row justify-between items-center w-full">
 						<h3 class="dark:text-gray-200 text-2xl">
@@ -85,26 +88,25 @@ export default defineComponent({
 					<p class="text-gray-600 dark:text-gray-300 w-full mt-1 pb-2">{{ sandwich.description }}</p>
 				</div>
 
-				<div class="bg-gray-100 w-full h-52 rounded-md shadow-sm py-2 mb-5">
+				<div class="bg-gray-100 dark:bg-gray-800 dark:text-white w-full h-52 rounded-md shadow-sm py-2">
 					<DetailItem v-for="(value, key) of sandwich.ingredients" :key="key" :ingredient="value" />
 				</div>
-				<button
-					class="w-full text-xl bg-red-500 text-white font-semibold rounded-md p-4 shadow-sm "
-					@click="addToCart()"
-				>
-					Add to Cart (€ {{ sandwich.price.toFixed(2) }})
-				</button>
 			</section>
 
 			<section class="flex flex-col justify-between items-end">
-				<figure class="bg-yellow-300 flex hidden  rounded-md overflow-hidden sm:w-72 sm:h-48 md:w-62 md:h-38">
+				<figure class="bg-yellow-300 hidden md:flex rounded-md overflow-hidden w-72 h-48 w-62">
 					<img
 						class="w-full justify-self-center self-center shadow-sm"
 						:src="sandwich.image"
 						:alt="sandwich.name"
 					/>
 				</figure>
-				
+				<button
+					class="w-full text-xl bg-red-500 text-white font-semibold rounded-md p-4 shadow-sm"
+					@click="addToCart()"
+				>
+					Add to Cart (€ {{ sandwich.price.toFixed(2) }})
+				</button>
 			</section>
 		</div>
 	</div>

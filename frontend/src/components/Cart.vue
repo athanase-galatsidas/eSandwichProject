@@ -53,9 +53,8 @@ export default defineComponent({
 			shadow-md
 			flex flex-col flex-shrink-0 flex-grow-0
 			rounded-md
-			max-w-full
-			mx-8
-			lg:mx-0 lg:w-80
+			w-full
+			lg:max-w-full lg:mx-0 lg:w-80
 			self-start
 		"
 	>

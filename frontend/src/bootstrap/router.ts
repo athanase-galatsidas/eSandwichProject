@@ -49,8 +49,6 @@ const routes: RouteRecordRaw[] = [
 			guest: true,
 		},
 		beforeEnter(to, from, next) {
-			console.log(to.params.orderId);
-
 			if (!to.params.orderId) next('not-found');
 			else next();
 		},
@@ -79,6 +77,14 @@ const routes: RouteRecordRaw[] = [
 		name: 'not-found',
 		path: '/:pathMatch(.*)*',
 		component: () => import('@/screens/404.vue'),
+		meta: {
+			guest: true,
+		},
+	},
+	{
+		name: 'forgotPassword',
+		path: '/forgotPassword',
+		component: () => import('@/screens/ForgotPassword.vue'),
 		meta: {
 			guest: true,
 		},

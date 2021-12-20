@@ -15,10 +15,18 @@ services:
 
     backend:
         image: sandwitches-backend
-        build: .
+        build: ./express
         ports:
             - 31001:31001
         env_file:
-          - docker.ormconfig.env
+            - ./express/docker.ormconfig.env
         depends_on:
-          - db
+            - db
+
+    socket:
+        image: sandwitches-socket
+        build: ./socket
+        ports:
+            - 31002:31002
+        depends_on:
+            - backend

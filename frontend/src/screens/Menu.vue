@@ -53,10 +53,20 @@ export default defineComponent({
 	<div>
 		<DetailOverlay v-if="selectedSandwich" :sandwich="selectedSandwich" @closePopup="handlePopupClose()" />
 		<AppHeader title="Menu" />
-		<div class="mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
+		<div class="mx-8 lg:mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
 			<div
 				v-if="menuItems.length > 0"
-				class="-mt-2 mx-6 mb-6 lg:mb-0 lg:mx-auto flex flex-row flex-wrap items-center content-center"
+				class="
+					-mt-2
+					-mx-2
+					mb-6
+					lg:mb-0 lg:mx-auto
+					flex flex-row flex-wrap
+					justify-between
+					lg:justify-start
+					items-center
+					content-center
+				"
 			>
 				<MenuItem
 					v-for="(value, key) of menuItems"

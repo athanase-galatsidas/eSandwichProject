@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
+// @ts-ignore
 import useFirebase from '@/composable/useFirebase';
 
 export default defineComponent({

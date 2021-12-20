@@ -1,20 +1,15 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
 import { UserIcon, LockClosedIcon } from '@heroicons/vue/outline';
-//@ts-ignore
 import InputGroup from '@/components/InputGroup.vue';
-//@ts-ignore
 import AppHeader from '@/components/AppHeader.vue';
-//@ts-ignore
 import router from '@/bootstrap/router';
-//@ts-ignore
 import useFirebase from '@/composable/useFirebase';
 import { useRouter } from 'vue-router';
-//@ts-ignore
 import { User } from '@/interfaces/User';
 
 export default defineComponent({
-	name: 'Login',
+	name: 'ForgotPassword',
 	props: {
 		signup: {
 			type: Boolean,
@@ -23,19 +18,18 @@ export default defineComponent({
 	},
 	setup(props) {
 		const showSignUp = ref(props.signup);
-		const { login } = useFirebase();
+		const { resetPassword } = useFirebase();
 		const { push } = useRouter();
-		const loginInput: User = reactive({ email: '', password: '' });
+		const loginInput = reactive({ email: ''});
 		const loginUser = (event: Event) => {
 			event.preventDefault();
 
 			// TODO: error handling
 			console.log(loginInput.email);
 
-			if (loginInput.email && loginInput.password) {
-				login(loginInput.email, loginInput.password).then((success: boolean) => {
-					if (success) push('/menu');
-				});
+			if (loginInput.email) {
+				resetPassword(loginInput.email)
+				push('/login')
 			}
 		};
 		return {
@@ -56,7 +50,7 @@ export default defineComponent({
 
 <template>
 	<div>
-		<AppHeader title="Login" />
+		<AppHeader title="Forgot Password" />
 		<form
 			@submit="loginUser($event)"
 			class="
@@ -73,26 +67,18 @@ export default defineComponent({
 				mt-16
 			"
 		>
-			<h3 class="text-2xl mb-2 dark:text-white">Log In</h3>
+			<h3 class="text-2xl mb-2 dark:text-white">Reset Password</h3>
 
 			<InputGroup
 				id="username"
 				@onInput="loginInput.email = $event"
 				model="loginInput.email"
 				text="Username / Email"
+				type="email"
 			>
 				<UserIcon class="h-6 w-6 mr-2" />
 			</InputGroup>
 
-			<InputGroup
-				id="password"
-				@onInput="loginInput.password = $event"
-				model="loginInput.password"
-				text="Password"
-				type="password"
-			>
-				<LockClosedIcon class="h-6 w-6 mr-2" />
-			</InputGroup>
 
 			<!-- <label class="font-bold block mb-3" for="email">Email address</label>
 		<input
@@ -126,7 +112,7 @@ export default defineComponent({
 			type="password"
 			id="password"
 		/> -->
-			<router-link to="/forgotPassword" class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)"> Forgot password? </router-link>
+			
 
 			<input
 				class="
@@ -144,12 +130,12 @@ export default defineComponent({
 					shadow-sm
 				"
 				type="submit"
-				value="Log In"
+				value="Reset Password"
 			/>
 
 			<p class="cursor-default dark:text-white">
-				Don't have an account?
-				<router-link to="/signup" class="cursor-pointer text-red-600 font-semibold"> Sign up now! </router-link>
+				Remembered your password?
+				<router-link to="/signup" class="cursor-pointer text-red-600 font-semibold"> Log in now! </router-link>
 			</p>
 		</form>
 	</div>
