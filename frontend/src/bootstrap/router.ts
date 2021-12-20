@@ -81,6 +81,14 @@ const routes: RouteRecordRaw[] = [
 			guest: true,
 		},
 	},
+	{
+		name: 'forgotPassword',
+		path: '/forgotPassword',
+		component: () => import('@/screens/ForgotPassword.vue'),
+		meta: {
+			guest: true,
+		},
+	},
 ];
 
 const router: Router = createRouter({
