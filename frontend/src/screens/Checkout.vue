@@ -44,7 +44,7 @@ export default defineComponent({
 <template>
 	<div>
 		<AppHeader title="Checkout" />
-		<div class="mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
+		<div class="mx-8 lg:mx-auto flex flex-col lg:max-w-6xl lg:flex-row mt-8">
 			<form
 				class="
 					flex flex-col
@@ -52,7 +52,7 @@ export default defineComponent({
 					bg-white
 					dark:bg-gray-700
 					w-full
-					mx-6
+					lg:mx-6
 					mb-6
 					p-4
 					lg:mb-0
