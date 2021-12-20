@@ -90,6 +90,29 @@ export default defineComponent({
 			>
 				Sign Up
 			</router-link>
+			<router-link
+				v-if="user?.email == 'tibo.verbeke@gmail.com' || user?.email == 'docent@howest.be'"
+				to="/admin"
+				class="
+					flex
+					justify-center
+					items-center
+					bg-white
+					hover:bg-gray-200
+					dark:bg-gray-800 dark:hover:bg-gray-900
+					text-black
+					dark:text-gray-50
+					shadow-sm
+					transition-colors
+					font-semibold
+					rounded-md
+					px-4
+					ml-4
+					w-24
+				"
+			>
+				Admin
+			</router-link>
 			<button
 				v-if="user"
 				class="

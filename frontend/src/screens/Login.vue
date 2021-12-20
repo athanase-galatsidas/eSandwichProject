@@ -23,7 +23,7 @@ export default defineComponent({
 	},
 	setup(props) {
 		const showSignUp = ref(props.signup);
-		const { login } = useFirebase();
+		const { login, user } = useFirebase();
 		const { push } = useRouter();
 		const loginInput: User = reactive({ email: '', password: '' });
 		const loginUser = (event: Event) => {
@@ -34,7 +34,15 @@ export default defineComponent({
 
 			if (loginInput.email && loginInput.password) {
 				login(loginInput.email, loginInput.password).then((success: boolean) => {
-					if (success) push('/menu');
+					if (success)
+						if (
+							user?.value?.email == 'tibo.verbeke@gmail.com' ||
+							user?.value?.email == 'docent@howest.be'
+						) {
+							push('/admin');
+						} else {
+							push('/menu');
+						}
 				});
 			}
 		};
@@ -126,7 +134,9 @@ export default defineComponent({
 			type="password"
 			id="password"
 		/> -->
-			<router-link to="/forgotPassword" class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)"> Forgot password? </router-link>
+			<router-link to="/forgotPassword" class="cursor-pointer text-red-600 text-sm" @click="toggleSignin(false)">
+				Forgot password?
+			</router-link>
 
 			<input
 				class="

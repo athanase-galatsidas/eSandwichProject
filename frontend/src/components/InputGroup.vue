@@ -1,10 +1,22 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
 	name: 'InputGroup',
 	emits: {
 		onInput: String,
+	},
+	data() {
+		return {
+			inputfield: '',
+		};
+	},
+	setup() {
+		const valid = ref(true);
+
+		return {
+			valid,
+		};
 	},
 	props: {
 		id: {
@@ -23,40 +35,52 @@ export default defineComponent({
 	},
 	methods: {
 		emitInputStateChanged(e: Event) {
-			this.$emit('onInput', (e.currentTarget as HTMLInputElement).value);
+			// validate input
+			this.inputfield = this.inputfield.trim();
+			this.valid = this.inputfield != '';
+
+			this.$emit('onInput', this.inputfield);
 		},
 	},
 });
 </script>
 
 <template>
-	<div class="relative my-2">
-		<input
-			:id="id"
-			:type="type"
-			@change="emitInputStateChanged($event)"
-			placeholder=" "
-			class="hide-on-input p-2 h-9 w-64 bg-gray-100 dark:bg-gray-800 dark:text-white rounded-md shadow-sm"
-		/>
-		<label
-			:for="id"
-			class="
-				cursor-text
-				absolute
-				h-9
-				px-2
-				left-0
-				top-0
-				flex
-				items-center
-				text-gray-500
-				dark:text-white
-				select-none
-			"
-		>
-			<slot></slot>
-			{{ text }}
-		</label>
+	<div class="flex flex-col-reverse">
+		<section class="relative my-2">
+			<input
+				:id="id"
+				:type="type"
+				v-model="inputfield"
+				v-bind:class="{ 'bg-opacity-25 bg-red-500 dark:bg-red-500 border text-red-600 border-red-500': !valid }"
+				@blur="emitInputStateChanged($event)"
+				placeholder=" "
+				class="hide-on-input p-2 h-9 w-64 bg-gray-100 dark:bg-gray-800 dark:text-white rounded-md shadow-sm"
+			/>
+			<label
+				:for="id"
+				v-bind:class="{ 'text-red-600': !valid }"
+				class="
+					cursor-text
+					absolute
+					h-9
+					px-2
+					left-0
+					top-0
+					flex
+					items-center
+					text-gray-500
+					dark:text-white
+					select-none
+				"
+			>
+				<slot></slot>
+				{{ text }}
+			</label>
+		</section>
+		<span v-bind:class="{ hidden: valid }" class="text-red-600 text-center text-sm w-full font-medium">
+			invalid {{ text }}!
+		</span>
 	</div>
 </template>
 

@@ -68,6 +68,7 @@ const routes: RouteRecordRaw[] = [
 	{
 		name: 'admin',
 		path: '/admin',
+		beforeEnter: checkAdminRights,
 		component: () => import('@/screens/Admin.vue'),
 		props: { signup: true },
 		// Uncomment when admin login is implemented
@@ -90,6 +91,16 @@ const routes: RouteRecordRaw[] = [
 		},
 	},
 ];
+function checkAdminRights(to, from, next) {
+	// check if the user is admin
+	if (user?.value?.email != 'tibo.verbeke@gmail.com' && user?.value?.email != 'docent@howest.be') {
+		
+	
+		next({ path: '/' });
+	}
+	else
+	next()
+}
 
 const router: Router = createRouter({
 	history: createWebHistory(),
