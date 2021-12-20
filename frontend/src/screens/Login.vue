@@ -59,6 +59,11 @@ export default defineComponent({
 		LockClosedIcon,
 		AppHeader,
 	},
+	methods: {
+		validate(reference: string) {
+			this.$refs[reference]?.invalidate();
+		},
+	},
 });
 </script>
 
@@ -84,15 +89,18 @@ export default defineComponent({
 			<h3 class="text-2xl mb-2 dark:text-white">Log In</h3>
 
 			<InputGroup
-				id="username"
+				ref="email"
+				id="email"
+				type="email"
 				@onInput="loginInput.email = $event"
 				model="loginInput.email"
-				text="Username / Email"
+				text="Email"
 			>
 				<UserIcon class="h-6 w-6 mr-2" />
 			</InputGroup>
 
 			<InputGroup
+				ref="password"
 				id="password"
 				@onInput="loginInput.password = $event"
 				model="loginInput.password"
@@ -137,7 +145,7 @@ export default defineComponent({
 			<router-link
 				to="/forgotPassword"
 				class="cursor-pointer text-red-600 font-medium text-sm"
-				@click="toggleSignin(false)"
+				
 			>
 				Forgot password?
 			</router-link>
