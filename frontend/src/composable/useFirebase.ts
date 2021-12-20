@@ -58,15 +58,18 @@ export default () => {
 				user.value = userCredential.user;
 			})
 			.catch((error) => {
-				console.log({ error });
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				alert(errorMessage);
 			});
 	};
 
 	const login = (email: string, password: string): Promise<boolean> => {
 		return new Promise((resolve, reject) => {
+		
 			signInWithEmailAndPassword(auth, email, password)
 				.then(async (userCredential) => {
-					console.log(await userCredential.user.getIdToken());
+					// console.log(await userCredential.user.getIdToken());
 
 					user.value = userCredential.user;
 					resolve(true);
@@ -74,7 +77,7 @@ export default () => {
 				.catch((error) => {
 					const errorCode = error.code;
 					const errorMessage = error.message;
-					reject(error);
+					alert(errorMessage);
 				});
 		});
 	};
@@ -82,19 +85,16 @@ export default () => {
 		return signOut(auth);
 	};
 
-	const resetPassword = (email: string)  => {
-		
-			sendPasswordResetEmail(auth, email)
-		
-	
-}
-return {
-	createUser,
-	restoreAuth,
-	login,
-	logout,
-	resetPassword,
+	const resetPassword = (email: string) => {
+		sendPasswordResetEmail(auth, email);
+	};
+	return {
+		createUser,
+		restoreAuth,
+		login,
+		logout,
+		resetPassword,
 
-	user: readonly(user),
-};
+		user: readonly(user),
+	};
 };

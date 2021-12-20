@@ -4,12 +4,20 @@ import store from '@/bootstrap/store';
 import AppHeader from '@/components/AppHeader.vue';
 import LoadingBar from '@/components/LoadingBar.vue';
 import useSocket from '@/composable/useSocket';
+import store from '@/bootstrap/store';
 import { ClipboardListIcon, CogIcon, LocationMarkerIcon } from '@heroicons/vue/outline';
 import { StarIcon } from '@heroicons/vue/solid';
 
 export default defineComponent({
 	name: 'Track',
 	setup() {},
+	props: {
+		checkout: {
+			type: Boolean,
+			required: false,
+			default: false,
+		},
+	},
 	mounted() {
 		const { emit, on } = useSocket();
 
@@ -41,7 +49,14 @@ export default defineComponent({
 			// return store.state.trackStage.estimatedDuration;
 			return 5;
 		},
+		cartItems() {
+			return store.state.cart;
+		},
+		subTotal() {
+			return store.state.cart.reduce((total, value) => total + value.price, 0).toFixed(2);
+		},
 	},
+
 	methods: {
 		updateStage(stage: number) {
 			// testing untill socker server works
@@ -103,6 +118,7 @@ export default defineComponent({
 			<h3 class="text-2xl text-center font-medium">Your order has arrived!</h3>
 			<p class="text-lg text-center">Please rate us</p>
 			<div class="flex flex-row-reverse justify-center h-12 text-yellow-400">
+				
 				<StarIcon class="star opacity-50" />
 				<StarIcon class="star opacity-50" />
 				<StarIcon class="star opacity-50" />
@@ -110,12 +126,26 @@ export default defineComponent({
 				<StarIcon class="star opacity-50" />
 			</div>
 		</div>
+		<div class="max-w-lg justify-center mx-auto mt-20 rounded-2xl bg-gray-700 p-5">
+			<h4
+				v-for="(value, key) of cartItems"
+				:key="key"
+				v-bind:class="{ 'bg-gray-200 dark:bg-gray-900': key % 2 == 0 }"
+				class="px-4 text-lg font-medium flex justify-between text-white"
+			>
+				{{ value.name }}
+				<span class="text-right font-normal flex justify-center"> € {{ value.price }} </span>
+			</h4>
+		</div>
 	</div>
 </template>
 
 <style scoped>
 .star:hover,
 .star:hover ~ .star {
+	opacity: 1;
+}
+.star:checked ~ .star {
 	opacity: 1;
 }
 </style>
