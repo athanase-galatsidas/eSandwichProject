@@ -43,6 +43,9 @@ export default defineComponent({
 			this.inputfield = this.inputfield.trim();
 			this.valid = this.inputfield != '';
 		},
+		invalidate() {
+			this.valid = false;
+		},
 	},
 });
 </script>
