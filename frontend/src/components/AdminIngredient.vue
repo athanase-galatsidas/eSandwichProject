@@ -24,7 +24,7 @@ export default defineComponent({
 <template>
 	<div class="flex w-full overflow-hidden bg-white dark:bg-gray-700 rounded-md shadow-md my-2">
 		<figure class="w-24 p-4 flex-shrink-0 overflow-hidden">
-			<img class="w-full" src="@/assets/404_xl.png" :alt="name" />
+			<img class="w-full rounded-md" :src="image" :alt="name" />
 		</figure>
 		<div class="py-2 px-4 w-full">
 			<span class="px-2 rounded-md border border-red-900 text-red-900 bg-red-200 bg-opacity-50" v-if="count < 5">

@@ -14,31 +14,37 @@ export const seedDatabase = async (connection: Connection) => {
 			const bread = new Ingredient();
 			bread.name = 'bread';
 			bread.count = 12;
+			bread.image = '/img/bread.webp';
 			await connection.manager.save(bread);
 
 			const cheese = new Ingredient();
 			cheese.name = 'cheese';
 			cheese.count = 6;
+			cheese.image = '/img/cheese.webp';
 			await connection.manager.save(cheese);
 
 			const ham = new Ingredient();
 			ham.name = 'ham';
 			ham.count = 14;
+			ham.image = '/img/ham.webp';
 			await connection.manager.save(ham);
 
 			const tomato = new Ingredient();
 			tomato.name = 'tomato';
 			tomato.count = 15;
+			tomato.image = '/img/tomato.webp';
 			await connection.manager.save(tomato);
 
 			const pineapple = new Ingredient();
 			pineapple.name = 'pineapple';
 			pineapple.count = 0;
+			pineapple.image = '/img/pineapple.webp';
 			await connection.manager.save(pineapple);
 
 			const salad = new Ingredient();
 			salad.name = 'salad';
 			salad.count = 16;
+			salad.image = '/img/salad.webp';
 			await connection.manager.save(salad);
 
 			// seed sandwiches
@@ -99,7 +105,7 @@ export const seedDatabase = async (connection: Connection) => {
 			const blt = new Sandwich();
 			blt.name = 'BLT Sandwich';
 			blt.description = 'Bacon Letuce Tomato.';
-			blt.image = '/img/vege.webp';
+			blt.image = '/img/blt.webp';
 			blt.price = 12.99;
 			blt.rating = 8;
 			blt.ingredients = Promise.resolve([bread, salad, tomato, ham]);
@@ -108,7 +114,7 @@ export const seedDatabase = async (connection: Connection) => {
 			const Chicken = new Sandwich();
 			Chicken.name = 'Chicken Sandwich';
 			Chicken.description = 'Sandwich with chicken.';
-			Chicken.image = '/img/vege.webp';
+			Chicken.image = '/img/chicken.webp';
 			Chicken.price = 12.99;
 			Chicken.rating = 6;
 			Chicken.ingredients = Promise.resolve([bread, salad, ham]);
@@ -117,7 +123,7 @@ export const seedDatabase = async (connection: Connection) => {
 			const Ham = new Sandwich();
 			Ham.name = 'Ham Sandwich';
 			Ham.description = 'Sandwich with Ham.';
-			Ham.image = '/img/vege.webp';
+			Ham.image = '/img/hamsandwich.webp';
 			Ham.price = 12.99;
 			Ham.rating = 7;
 			Ham.ingredients = Promise.resolve([bread, salad, ham]);

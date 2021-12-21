@@ -14,16 +14,16 @@ De bestelling zal gepost worden naar de backend. Hier zal die worden opgeslagen 
 
 Er zal ook ingelogd kunnen worden. Als de ingelogde user een admin is zal hij geredirect worden naar de admin page. Voor gewone users zullen die op een about page een lijst van hun orders te zien krijgen. Voor ingelogde users die bestellingen plaatsen zullen bepaalde velden in de checkout page automatisch ingevuld worden *(zoals adres, payment methods, etc)*.
 
-### Nodige paswoorden
+### 🔑 Nodige paswoorden
 
-| User      | Password          |
-|-----------|-------------------|
-| Sql Admin | ```paswoord123``` |
-| Web Admin | ```paswoord123``` |
-| Sql Root  | ```paswoord1234```|
+|           | User             | Password          |
+|-----------|------------------|-------------------|
+| Sql Admin | admin            | ```paswoord123``` |
+| Sql Root  | root             | ```paswoord1234```|
+| Web Admin | docent@howest.be | ```P@ssw0rd```    |
 
 
-### Werkverdeling
+### Geplande Werkverdeling
 
 |              | Athanase     | Tibo       |
 |--------------|--------------|------------|
@@ -34,26 +34,64 @@ Er zal ook ingelogd kunnen worden. Als de ingelogde user een admin is zal hij ge
 |              |              |            |
 | Totaal werk  | ~50 %        | ~50 %      |
 
+### Uiteidelijke Werkverdeling
+
+|              | Athanase     | Tibo       |
+|--------------|--------------|------------|
+| Backend      | 95 %         | 5 %        |
+| Frontend     | 75 %         | 25 %       |
+| Design       | 40 %         | 60 %       |
+| Project werk | 70 %         | 30 %       |
+|              |              |            |
+| Totaal werk  | ~70 %        | ~30 %      |
 
 ## Milestones
 
 Gedetaileerde lijst van geplande milestones voor dit project staan op [trello](https://trello.com/b/AwKfylrI/esandwich).
 
-### General
-- [x] Trello in orde brengen
-
 ### Backend
-- [x] Database
-- [x] Docker setup
-- [ ] Api
-- [ ] User authentication
-- [ ] Process orders
-- [ ] Keep check of ingredient count
+- [x] Sql Database
+- [x] Docker
+- [x] Graphql Api
+- [ ] Kubernatis
+- [x] User authentication
+- [x] Ingredient count
+- [x] Process orders
+- [x] Socket
 
 ### Frontend
 - [x] Basic frontend design (zie [figma](https://www.figma.com/file/d2dDQDZkVPz6MLHEAYZQXa/Untitled?node-id=0%3A1))
 - [x] Front page
 - [x] Menu/Order page
-- [ ] Details/Customize sandwich page
+- [x] Details/Customize sandwich page
 - [x] Checkout
+- [x] Tracking
 - [x] Admin page
+
+## ✔  Gehaalde milestones
+
+- Bestellingen plaatsen met meerdere items
+- Realtime updates op tracking page
+- Sandwichen zijn wel of niet beschikbaar afhankelijk van ingredient count
+- Users kunnen reviews achterlaten
+- Mobile versie
+- PWA support
+- User/Admin login
+
+## ❌ Niet gehaalde milestones
+
+- Sandwichen aanpassen (ingredienten toevoegen)
+- User accounts hebben geen nuttige functionaliteit
+- Kubernetis deployment
+
+## Toekomst
+
+In de toekomst zouden we de Admin page nog wat kunnen uitbrijden. Momenteel dient deze pagina meer als een overzicht dan als effectieve dashboard.
+
+We zouden ook user accounts meer nut geven. We zouden kunnen zorgen dat users hun order history kunnen zien en gemakelijker hun favoriete sandwiches kunnen bestellen.
+
+## Evraring
+
+Het moeilijkste deel van dit project was de planning. Het begon goed maar tegen het einde liep het in het 100.
+
+Werkverdeling kon ook wat beter.

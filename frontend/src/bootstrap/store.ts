@@ -5,7 +5,7 @@ import useGraphql from '@/composable/useGraphql';
 import { Ingredient } from '@/interfaces/Ingredient';
 import { Review } from '@/interfaces/review';
 
-const imgUrl = 'http://localhost:31001';
+const imgUrl = 'http://localhost:31003';
 const { query } = useGraphql();
 
 const store = createStore({
@@ -81,11 +81,14 @@ const store = createStore({
 					getIngredients {
 						ingredientId,
 						name,
-						count
+						count,
+						image,
 					  }
 				}`,
 			).then((data) => {
 				const ingredients: Ingredient[] = data.map((res: Object) => res as Ingredient);
+				ingredients.forEach((ingredients) => (ingredients.image = `${imgUrl}${ingredients.image}`));
+
 				this.commit('setIngredients', ingredients);
 			});
 

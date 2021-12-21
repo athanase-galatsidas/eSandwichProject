@@ -15,4 +15,8 @@ export class Ingredient extends BaseEntity {
 	@Field((type) => Int)
 	@Column('int')
 	count?: number;
+
+	@Field()
+	@Column('text')
+	image?: string;
 }

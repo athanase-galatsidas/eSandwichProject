@@ -40,7 +40,13 @@ export default defineComponent({
 
 		<div class="flex flex-col mx-auto max-w-screen-md">
 			<h3 class="text-2xl text-center my-4 dark:text-white">Stock</h3>
-			<AdminIngredient v-for="(value, key) of ingredients" :key="key" :name="value.name" :count="value.count" />
+			<AdminIngredient
+				v-for="(value, key) of ingredients"
+				:key="key"
+				:name="value.name"
+				:count="value.count"
+				:image="value.image"
+			/>
 		</div>
 
 		<div class="mx-auto max-w-screen-md mt-8">

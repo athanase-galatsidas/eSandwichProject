@@ -26,7 +26,7 @@ export default defineConfig({
 				description: 'A service for sandwiches.',
 				theme_color: '#ffffff',
 				background_color: '#ffffff',
-				start_url: '/menu',
+				start_url: '/',
 				display: 'standalone',
 				icons: [
 					{

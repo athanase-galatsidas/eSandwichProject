@@ -50,12 +50,8 @@ import { ReviewResolver } from './resolvers/reviewResolver';
 
 					// MIDDLEWARE
 					app.use(express.json());
-					app.use(
-						cors({
-							origin: '*',
-						}),
-					);
-					app.use('/img', express.static(`${__dirname}/assets/images`));
+					app.use(cors());
+					// app.use('/img', express.static(`${__dirname}/assets/images`));
 					app.use(
 						'/v1/',
 						graphqlHTTP((req, res) => ({

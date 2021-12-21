@@ -57,6 +57,6 @@ export default defineComponent({
 				v-bind:style="{ width: `${10 - review.rating}0%` }"
 			/>
 		</div>
-		<span v-if="review.comment" class="py-2">"{{ review.comment }}"</span>
+		<span v-if="review.comment" class="py-2 dark:text-white">"{{ review.comment }}"</span>
 	</div>
 </template>

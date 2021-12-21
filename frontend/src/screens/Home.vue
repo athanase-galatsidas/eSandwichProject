@@ -66,7 +66,7 @@ export default defineComponent({
 			</router-link>
 		</div>
 
-		<LandingItem title="Handled with care" image="src/assets/images/landing_cook.jpeg">
+		<LandingItem title="Handled with care" image="http://localhost:31003/img/landing_cook.jpeg">
 			<p class="dark:text-gray-300 text-left md:pl-4 text-sm md:text-lg">
 				When you order a Sandwitch Sandwichservice Sandwich you are
 				<span class="underline">guaranteed</span> the best quality sandwich created by our beloved below-minimum
@@ -76,14 +76,18 @@ export default defineComponent({
 
 		<div class="bg-yellow-400 dark:bg-gray-700 absolute w-full h-64 -z-10 transform skew-y-6"></div>
 
-		<LandingItem title="Only the best ingredients" image="src/assets/images/landing_food.jpeg" inverted="true">
+		<LandingItem
+			title="Only the best ingredients"
+			image="http://localhost:31003/img/landing_food.jpeg"
+			inverted="true"
+		>
 			<p class="dark:text-gray-300 text-sm md:pl-4 md:text-lg">
 				Our sandwiches are crafted with only <span class="underline">the best</span> hand picked ingredients
 				that we could find at the local discount market.
 			</p>
 		</LandingItem>
 
-		<LandingItem title="Shipped right to your doorstep" image="src/assets/images/landing_delivery.jpeg">
+		<LandingItem title="Shipped right to your doorstep" image="http://localhost:31003/img/landing_delivery.jpeg">
 			<p class="dark:text-gray-300 text-center md:text-left md:pl-4 text-sm md:text-lg">
 				We are commited to delivering our sandwiches to your doorstep so that you can enjoy our sandwiches from
 				the comfort of your own home.
@@ -143,7 +147,10 @@ export default defineComponent({
 				</a>
 			</div>
 
-			<p>images from <a class="underline" href="https://www.pexels.com/nl-nl/">pexels.com</a></p>
+			<div>
+				<p>images from <a class="underline" href="https://www.pexels.com/nl-nl/">pexels.com</a></p>
+				<router-link to="/this_page_does_not_exist">404 test</router-link>
+			</div>
 		</footer>
 	</div>
 </template>
