@@ -6,10 +6,27 @@ import LoadingBar from '@/components/LoadingBar.vue';
 import useSocket from '@/composable/useSocket';
 import { ClipboardListIcon, CogIcon, LocationMarkerIcon } from '@heroicons/vue/outline';
 import { StarIcon } from '@heroicons/vue/solid';
+import useGraphql from '@/composable/useGraphql';
 
 export default defineComponent({
 	name: 'Track',
-	setup() {},
+	data() {
+		return {
+			comment: '',
+		};
+	},
+	setup() {
+		const status = ref(0);
+		const rating = ref(0);
+		const ratingSubmitted = ref(false);
+
+		return {
+			rating,
+			status,
+			ratingSubmitted,
+		};
+	},
+	props: {},
 	mounted() {
 		const { emit, on } = useSocket();
 
@@ -44,10 +61,30 @@ export default defineComponent({
 	},
 	methods: {
 		updateStage(stage: number) {
-			// testing untill socker server works
-			store.commit('setOrderStage', { stage: stage, estimatedDuration: 10 });
+			store.commit('setOrderStage', { stage: stage, estimatedDuration: 45 });
 			// @ts-ignore
 			this.$refs[`bar-${stage}`]?.init();
+
+			if (stage != 0)
+				// @ts-ignore
+				this.$refs[`bar-${stage - 1}`]?.speedUp();
+		},
+
+		rate(value: number) {
+			this.rating = value;
+		},
+
+		async submitRating() {
+			const { mutation } = useGraphql();
+
+			await mutation(
+				'addReview',
+				`mutation DddReview { addReview(data: {
+				rating: ${this.rating * 2},
+				comment: "${this.comment.trim()}" }) {reviewId} }`,
+			);
+
+			this.ratingSubmitted = true;
 		},
 	},
 });
@@ -101,14 +138,59 @@ export default defineComponent({
 
 		<div v-show="orderStage == 3" class="max-w-lg mx-auto mt-16 bg-white rounded-md shadow-md p-8 appear">
 			<h3 class="text-2xl text-center font-medium">Your order has arrived!</h3>
-			<p class="text-lg text-center">Please rate us</p>
-			<div class="flex flex-row-reverse justify-center h-12 text-yellow-400">
-				<StarIcon class="star opacity-50" />
-				<StarIcon class="star opacity-50" />
-				<StarIcon class="star opacity-50" />
-				<StarIcon class="star opacity-50" />
-				<StarIcon class="star opacity-50" />
+			<div v-if="!ratingSubmitted">
+				<p class="text-lg text-center mb-4">Please rate us</p>
+				<div class="flex flex-row-reverse justify-center h-12 text-yellow-400">
+					<StarIcon @click="rate(5)" v-bind:class="{ highlight: rating == 5 }" class="star opacity-50" />
+					<StarIcon @click="rate(4)" v-bind:class="{ highlight: rating == 4 }" class="star opacity-50" />
+					<StarIcon @click="rate(3)" v-bind:class="{ highlight: rating == 3 }" class="star opacity-50" />
+					<StarIcon @click="rate(2)" v-bind:class="{ highlight: rating == 2 }" class="star opacity-50" />
+					<StarIcon @click="rate(1)" v-bind:class="{ highlight: rating == 1 }" class="star opacity-50" />
+				</div>
+				<div>
+					<label class="hidden" for="comment">comment</label>
+					<textarea
+						id="comment"
+						v-model="comment"
+						placeholder="comment (optional)"
+						class="
+							p-2
+							h-10
+							my-4
+							resize-y
+							w-full
+							bg-gray-100
+							dark:bg-gray-800 dark:text-white
+							rounded-md
+							shadow-sm
+						"
+						autocomplete="off"
+					/>
+					<button
+						v-bind:class="{ 'opacity-50 hover:bg-red-500 cursor-not-allowed': rating == 0 }"
+						:disabled="rating == 0"
+						class="
+							block
+							bg-red-500
+							hover:bg-red-400
+							transition-colors
+							text-white
+							font-semibold
+							shadow-sm
+							p-2
+							m-4
+							mx-auto
+							w-32
+							rounded-md
+							text-center
+						"
+						@click="submitRating()"
+					>
+						Rate us!
+					</button>
+				</div>
 			</div>
+			<p v-else class="text-lg text-center mb-4">Thank you for rating us!</p>
 		</div>
 	</div>
 </template>
