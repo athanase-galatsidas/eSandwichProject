@@ -45,30 +45,11 @@ Er zal ook ingelogd kunnen worden. Als de ingelogde user een admin is zal hij ge
 |              |              |            |
 | Totaal werk  | ~70 %        | ~30 %      |
 
-## Milestones
+## 🕐 Milestones
 
 Gedetaileerde lijst van geplande milestones voor dit project staan op [trello](https://trello.com/b/AwKfylrI/esandwich).
 
-### Backend
-- [x] Sql Database
-- [x] Docker
-- [x] Graphql Api
-- [ ] Kubernatis
-- [x] User authentication
-- [x] Ingredient count
-- [x] Process orders
-- [x] Socket
-
-### Frontend
-- [x] Basic frontend design (zie [figma](https://www.figma.com/file/d2dDQDZkVPz6MLHEAYZQXa/Untitled?node-id=0%3A1))
-- [x] Front page
-- [x] Menu/Order page
-- [x] Details/Customize sandwich page
-- [x] Checkout
-- [x] Tracking
-- [x] Admin page
-
-## ✔  Gehaalde milestones
+### ✔  Gehaalde milestones
 
 - Bestellingen plaatsen met meerdere items
 - Realtime updates op tracking page
@@ -78,11 +59,32 @@ Gedetaileerde lijst van geplande milestones voor dit project staan op [trello](h
 - PWA support
 - User/Admin login
 
-## ❌ Niet gehaalde milestones
+### ❌ Niet gehaalde milestones
 
 - Sandwichen aanpassen (ingredienten toevoegen)
 - User accounts hebben geen nuttige functionaliteit
 - Kubernetis deployment
+
+### ☑ Checklist
+
+#### Backend
+- [x] Sql Database
+- [x] Docker
+- [x] Graphql Api
+- [ ] Kubernatis
+- [x] User authentication
+- [x] Ingredient count
+- [x] Process orders
+- [x] Socket
+
+#### Frontend
+- [x] Basic frontend design (zie [figma](https://www.figma.com/file/d2dDQDZkVPz6MLHEAYZQXa/Untitled?node-id=0%3A1))
+- [x] Front page
+- [x] Menu/Order page
+- [x] Details/Customize sandwich page
+- [x] Checkout
+- [x] Tracking
+- [x] Admin page
 
 ## Toekomst
 
@@ -90,8 +92,10 @@ In de toekomst zouden we de Admin page nog wat kunnen uitbrijden. Momenteel dien
 
 We zouden ook user accounts meer nut geven. We zouden kunnen zorgen dat users hun order history kunnen zien en gemakelijker hun favoriete sandwiches kunnen bestellen.
 
-## Evraring
+## Ervaring
 
 Het moeilijkste deel van dit project was de planning. Het begon goed maar tegen het einde liep het in het 100.
 
 Werkverdeling kon ook wat beter.
+
+We zouden heel wat problemen vermeden hebben als we onze devops flow iets vroeger in orde gekregen hadden.
