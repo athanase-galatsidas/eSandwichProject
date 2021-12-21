@@ -28,9 +28,11 @@ export class Sandwich extends BaseEntity {
 	@Field()
 	@Column('text')
 	image?: string;
-	@Field()
-	@Column('bool')
+
+	@Field((type) => Boolean)
+	// @Column('bool')
 	available?: boolean;
+
 	@Field()
 	@Column('double')
 	price?: number;

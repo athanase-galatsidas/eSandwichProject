@@ -31,12 +31,12 @@ export default defineComponent({
 				ids.push(`"${sandwich.sandwichId}"`); // graphql wants VERY specific string formats
 			});
 
-			// TODO: if user is logged in add user id
 			await mutation(
 				'addOrder',
-				`mutation AddOrder { addOrder(data: { userId: ${
-					user.value?.uid != undefined ? `"${user.value?.uid}"` : null
-				}, sandwiches: [${ids}] }) {orderId} }`,
+				`mutation AddOrder { 
+					addOrder(data: 
+					{ userId: ${user.value?.uid != undefined ? `"${user.value?.uid}"` : null},
+					sandwiches: [${ids}] }) {orderId} }`,
 			).then((data) => {
 				router.push({ name: 'track', params: { orderId: data.orderId } });
 			});

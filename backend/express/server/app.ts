@@ -32,7 +32,12 @@ import { ReviewResolver } from './resolvers/reviewResolver';
 
 					let schema: GraphQLSchema = {} as GraphQLSchema;
 					await buildSchema({
-						resolvers: [SandwichResolver, IngredientResolver, OrderResolver],
+						resolvers: [
+							SandwichResolver,
+							IngredientResolver,
+							OrderResolver,
+							ReviewResolver,
+						],
 					}).then((_) => {
 						schema = _;
 					});

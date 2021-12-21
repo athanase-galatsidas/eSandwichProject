@@ -11,7 +11,6 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Sandwich } from './sandwich';
-import { User } from './user';
 
 @ObjectType()
 @InputType('OrderInput')
@@ -25,11 +24,6 @@ export class Order extends BaseEntity {
 	@CreateDateColumn({ type: 'timestamp', nullable: true })
 	date?: Date;
 
-	// @Field((type) => User, { nullable: true })
-	// @ManyToOne(() => User, (user) => user.orders)
-	// user?: Promise<User>;
-
-	// users are handled by firebase now...
 	@Field({ nullable: true })
 	@Column('varchar')
 	userId?: string;
@@ -48,7 +42,8 @@ export class Order extends BaseEntity {
 export class AddOrderInput {
 	@Field({ nullable: true })
 	userId?: string;
+
 	// @Field((type) => [Sandwich], { nullable: true })
-	@Field((type) => [String], { nullable: true }) // TODO: this needs to be a sandwich
+	@Field((type) => [String], { nullable: true })
 	sandwiches?: string[];
 }

@@ -20,8 +20,14 @@ export default defineComponent({
 			default: 10,
 		},
 	},
+	data() {
+		return {
+			fillSpeed: 10,
+		};
+	},
 	setup() {
 		const completed = ref(false);
+
 		return {
 			completed,
 		};
@@ -33,6 +39,9 @@ export default defineComponent({
 		// this.init();
 	},
 	methods: {
+		speedUp() {
+			this.fillSpeed = 1;
+		},
 		init() {
 			const c = this.$refs['c'] as HTMLCanvasElement;
 			const ctx = c.getContext('2d');
@@ -43,7 +52,7 @@ export default defineComponent({
 
 			let offset = 0;
 			let progress = 0;
-			const fillSpeed = 1 / this.duration;
+			this.fillSpeed = 1 / this.duration;
 
 			const bubbles = [
 				{ x: Math.random() * c.width, y: c.height, r: 4 },
@@ -90,7 +99,7 @@ export default defineComponent({
 
 				// animation stuff
 				offset += this.speed;
-				progress += fillSpeed;
+				progress += this.fillSpeed;
 				if (offset > width) offset = 0;
 
 				// for performance stop rendering when bar is full

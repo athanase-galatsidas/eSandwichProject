@@ -23,30 +23,24 @@ export class SocketController {
 			.then((res) => {
 				// and broadcast it
 				const status = res.data.data.getOrderById.status;
-				console.log(status);
-
-				this.socket.broadcast.emit(`order:${payload}`, status);
+				this.socket.broadcast.emit('order:update', { id: payload, status: status });
 			})
-			.catch((err) => console.error('error'));
+			.catch((err) => console.error(err));
 	};
 
 	changeOrderStatus = async (payload: any) => {
-		console.log(`received: ${payload}`);
+		try {
+			console.log(`received: ${payload}`);
 
-		// get the current status
-		await axios
-			.post(url, {
-				query: `{ getOrderById(id: "${payload}") {status} }`,
-			})
-			.then((res) => {
-				// and broadcast it
+			this.socket.broadcast.emit('order:update', payload);
 
-				// TODO: change order and mutate it
-				const status = res.data.data.getOrderById.status;
-				console.log(status);
-
-				this.socket.broadcast.emit(`order:${payload}`, status);
-			})
-			.catch((err) => console.error('error'));
+			await axios
+				.post(url, {
+					query: `{ setOrderStatus(id: "${payload.id}", status: "${payload.status}") {status} }`,
+				})
+				.catch((err) => console.error('error'));
+		} catch (error) {
+			console.log(error);
+		}
 	};
 }
