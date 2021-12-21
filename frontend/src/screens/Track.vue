@@ -17,9 +17,11 @@ export default defineComponent({
 	},
 	setup() {
 		const rating = ref(0);
+		const status = ref(0);
 
 		return {
 			rating,
+			status,
 		};
 	},
 	props: {},
@@ -32,8 +34,19 @@ export default defineComponent({
 		emit('order:status', this.$route.params.orderId);
 
 		// update when status changes
-		on(`order:${this.$route.params.orderId}`, (payload: any) => {
-			console.log(`received: ${payload}`);
+		on('order:update', (payload: any) => {
+			console.log(`received: ${payload.status}`);
+
+			// TODO: this broke the day before the presentation :/
+			// if (payload.id == this.$route.params.orderId) {
+			// 	if (this.status != payload.status) {
+			// 		this.status = payload.status;
+			// 		this.updateStage(payload.status);
+			// 	}
+			// }
+
+			this.status++;
+			this.updateStage(this.status);
 		});
 
 		this.updateStage(0);
@@ -52,7 +65,7 @@ export default defineComponent({
 		},
 		orderDuration() {
 			// return store.state.trackStage.estimatedDuration;
-			return 5;
+			return 30;
 		},
 		cartItems() {
 			return store.state.cart;
@@ -64,9 +77,13 @@ export default defineComponent({
 	methods: {
 		updateStage(stage: number) {
 			// testing untill socker server works
-			store.commit('setOrderStage', { stage: stage, estimatedDuration: 10 });
+			store.commit('setOrderStage', { stage: stage, estimatedDuration: 60 });
 			// @ts-ignore
 			this.$refs[`bar-${stage}`]?.init();
+
+			if (stage != 0)
+				// @ts-ignore
+				this.$refs[`bar-${stage - 1}`]?.speedUp();
 		},
 
 		rate(value: number) {
@@ -97,7 +114,6 @@ export default defineComponent({
 					:duration="orderDuration"
 					ref="bar-0"
 					class="w-32 h-32 p-2 transition-transform transform"
-					@onComplete="updateStage(1)"
 				>
 					<ClipboardListIcon />
 				</LoadingBar>
@@ -106,7 +122,6 @@ export default defineComponent({
 					:duration="orderDuration"
 					ref="bar-1"
 					class="w-32 h-32 p-2 transition-transform transform"
-					@onComplete="updateStage(2)"
 				>
 					<CogIcon />
 				</LoadingBar>
@@ -115,7 +130,6 @@ export default defineComponent({
 					:duration="orderDuration"
 					ref="bar-2"
 					class="w-32 h-32 p-2 transition-transform transform"
-					@onComplete="updateStage(3)"
 				>
 					<LocationMarkerIcon />
 				</LoadingBar>

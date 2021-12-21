@@ -1,6 +1,7 @@
 import { Connection, getRepository } from 'typeorm';
 import { Config } from '../entities/config';
 import { Ingredient } from '../entities/ingredient';
+import { Review } from '../entities/review';
 import { Sandwich } from '../entities/sandwich';
 
 export const seedDatabase = async (connection: Connection) => {
@@ -121,6 +122,22 @@ export const seedDatabase = async (connection: Connection) => {
 			Ham.rating = 7;
 			Ham.ingredients = Promise.resolve([bread, salad, ham]);
 			await connection.manager.save(Ham);
+
+			// seed reviews
+			const review0 = new Review();
+			review0.rating = 8;
+			review0.comment = 'Very good sandwiches!';
+			await connection.manager.save(review0);
+
+			const review1 = new Review();
+			review1.rating = 6;
+			review1.comment = 'Fast delivery!';
+			await connection.manager.save(review1);
+
+			const review2 = new Review();
+			review2.rating = 8;
+			review2.comment = 'Awesome!';
+			await connection.manager.save(review2);
 
 			// save seeded status
 			const seeded = new Config();
