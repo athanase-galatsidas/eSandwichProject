@@ -3,6 +3,7 @@ import { Sandwich } from '@/interfaces/Sandwich';
 import { OrderTrackStage } from '@/interfaces/OrderTrackStage';
 import useGraphql from '@/composable/useGraphql';
 import { Ingredient } from '@/interfaces/Ingredient';
+import { Review } from '@/interfaces/review';
 
 const imgUrl = 'http://localhost:31001';
 const { query } = useGraphql();
@@ -10,17 +11,22 @@ const { query } = useGraphql();
 const store = createStore({
 	state: {
 		sandwitches: Array<Sandwich>(),
-		ingredients: Array<Ingredient>(),
 		cart: Array<Sandwich>(),
 		trackStage: {} as OrderTrackStage,
+
+		ingredients: Array<Ingredient>(),
+		reviews: Array<Review>(),
 	},
 
 	mutations: {
 		setData(state, payload: any) {
 			state.sandwitches = payload;
 		},
-		setAdminData(state, payload: any) {
+		setIngredients(state, payload: any) {
 			state.ingredients = payload;
+		},
+		setReviews(state, payload: any) {
+			state.reviews = payload;
 		},
 
 		addCartItem(state, payload: Sandwich) {
@@ -80,7 +86,20 @@ const store = createStore({
 				}`,
 			).then((data) => {
 				const ingredients: Ingredient[] = data.map((res: Object) => res as Ingredient);
-				this.commit('setAdminData', ingredients);
+				this.commit('setIngredients', ingredients);
+			});
+
+			await query(
+				'getReviews',
+				`{
+					getReviews {
+						rating,
+						comment,
+					  }
+				}`,
+			).then((data) => {
+				const reviews: Review[] = data.map((res: Object) => res as Review);
+				this.commit('setReviews', reviews);
 			});
 		},
 	},
