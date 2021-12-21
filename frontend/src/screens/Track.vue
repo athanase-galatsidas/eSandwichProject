@@ -4,9 +4,9 @@ import store from '@/bootstrap/store';
 import AppHeader from '@/components/AppHeader.vue';
 import LoadingBar from '@/components/LoadingBar.vue';
 import useSocket from '@/composable/useSocket';
+import useGraphql from '@/composable/useGraphql';
 import { ClipboardListIcon, CogIcon, LocationMarkerIcon } from '@heroicons/vue/outline';
 import { StarIcon } from '@heroicons/vue/solid';
-import useGraphql from '@/composable/useGraphql';
 
 export default defineComponent({
 	name: 'Track',
@@ -36,8 +36,19 @@ export default defineComponent({
 		emit('order:status', this.$route.params.orderId);
 
 		// update when status changes
-		on(`order:${this.$route.params.orderId}`, (payload: any) => {
-			console.log(`received: ${payload}`);
+		on('order:update', (payload: any) => {
+			console.log(`received: ${payload.status}`);
+
+			// TODO: this broke the day before the presentation :/
+			// if (payload.id == this.$route.params.orderId) {
+			// 	if (this.status != payload.status) {
+			// 		this.status = payload.status;
+			// 		this.updateStage(payload.status);
+			// 	}
+			// }
+
+			this.status++;
+			this.updateStage(this.status);
 		});
 
 		this.updateStage(0);
@@ -56,12 +67,18 @@ export default defineComponent({
 		},
 		orderDuration() {
 			// return store.state.trackStage.estimatedDuration;
-			return 5;
+			return 30;
+		},
+		cartItems() {
+			return store.state.cart;
+		},
+		subTotal() {
+			return store.state.cart.reduce((total, value) => total + value.price, 0).toFixed(2);
 		},
 	},
 	methods: {
 		updateStage(stage: number) {
-			store.commit('setOrderStage', { stage: stage, estimatedDuration: 45 });
+			store.commit('setOrderStage', { stage: stage, estimatedDuration: 60 });
 			// @ts-ignore
 			this.$refs[`bar-${stage}`]?.init();
 
@@ -100,7 +117,6 @@ export default defineComponent({
 					:duration="orderDuration"
 					ref="bar-0"
 					class="w-32 h-32 p-2 transition-transform transform"
-					@onComplete="updateStage(1)"
 				>
 					<ClipboardListIcon />
 				</LoadingBar>
@@ -109,7 +125,6 @@ export default defineComponent({
 					:duration="orderDuration"
 					ref="bar-1"
 					class="w-32 h-32 p-2 transition-transform transform"
-					@onComplete="updateStage(2)"
 				>
 					<CogIcon />
 				</LoadingBar>
@@ -118,7 +133,6 @@ export default defineComponent({
 					:duration="orderDuration"
 					ref="bar-2"
 					class="w-32 h-32 p-2 transition-transform transform"
-					@onComplete="updateStage(3)"
 				>
 					<LocationMarkerIcon />
 				</LoadingBar>
@@ -136,7 +150,10 @@ export default defineComponent({
 			</div>
 		</div>
 
-		<div v-show="orderStage == 3" class="max-w-lg mx-auto mt-16 bg-white rounded-md shadow-md p-8 appear">
+		<div
+			v-show="orderStage == 3"
+			class="max-w-lg mx-auto mt-16 bg-white dark:bg-gray-700 dark:text-white rounded-md shadow-md p-8 appear"
+		>
 			<h3 class="text-2xl text-center font-medium">Your order has arrived!</h3>
 			<div v-if="!ratingSubmitted">
 				<p class="text-lg text-center mb-4">Please rate us</p>
@@ -192,12 +209,42 @@ export default defineComponent({
 			</div>
 			<p v-else class="text-lg text-center mb-4">Thank you for rating us!</p>
 		</div>
+
+		<div
+			class="
+				max-w-lg
+				justify-center
+				mx-auto
+				mt-20
+				rounded-md
+				dark:text-white
+				bg-white
+				dark:bg-gray-700
+				shadow-md
+				p-5
+			"
+		>
+			<h4
+				v-for="(value, key) of cartItems"
+				:key="key"
+				v-bind:class="{ 'bg-gray-200 dark:bg-gray-900': key % 2 == 0 }"
+				class="px-4 text-lg font-medium flex justify-between"
+			>
+				{{ value.name }}
+				<span class="text-right font-normal flex justify-center"> € {{ value.price }} </span>
+			</h4>
+		</div>
 	</div>
 </template>
 
 <style scoped>
 .star:hover,
 .star:hover ~ .star {
+	opacity: 1;
+}
+
+.highlight,
+.highlight ~ .star {
 	opacity: 1;
 }
 </style>

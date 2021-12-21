@@ -56,4 +56,25 @@ export class OrderResolver {
 			console.log(error);
 		}
 	}
+
+	@Mutation(() => Order)
+	async setOrderStatus(
+		@Arg('id') id: string,
+		@Arg('status') status: string,
+	): Promise<Order | undefined | null> {
+		try {
+			console.log(`received order: ${id} => ${status}`);
+
+			const order = await this.orderRepo.findOne(id);
+
+			if (!order) return undefined;
+
+			order.status = status;
+			this.orderRepo.save(order);
+
+			return order;
+		} catch (error) {
+			console.log(error);
+		}
+	}
 }

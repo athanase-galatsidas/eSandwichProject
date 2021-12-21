@@ -37,7 +37,7 @@ export default defineComponent({
 	},
 	methods: {
 		showPopup(sandwich: Sandwich) {
-			this.selectedSandwich = sandwich;
+			if (sandwich.available) this.selectedSandwich = sandwich;
 		},
 		handlePopupClose() {
 			this.selectedSandwich = undefined;
@@ -79,7 +79,7 @@ export default defineComponent({
 			</div>
 
 			<div v-else class="-mt-2 mx-6 mb-6 lg:mb-0 lg:mx-auto flex flex-row flex-wrap items-start content-start">
-				<MenuItemSkeleton v-for="i in 12" :key="i" />
+				<MenuItemSkeleton v-for="i in 9" :key="i" />
 			</div>
 			<Cart text="Checkout" @onCheckout="redirectToCheckout()" />
 		</div>
