@@ -38,10 +38,10 @@ Er zal ook ingelogd kunnen worden. Als de ingelogde user een admin is zal hij ge
 
 |              | Athanase     | Tibo       |
 |--------------|--------------|------------|
-| Backend      | 95 %         | 5 %        |
-| Frontend     | 75 %         | 25 %       |
+| Backend      | 75 %         | 25 %       |
+| Frontend     | 55 %         | 45 %       |
 | Design       | 40 %         | 60 %       |
-| Project werk | 70 %         | 30 %       |
+| Project werk | 60 %         | 40 %       |
 |              |              |            |
 | Totaal werk  | ~70 %        | ~30 %      |
 
@@ -71,7 +71,7 @@ Gedetaileerde lijst van geplande milestones voor dit project staan op [trello](h
 - [x] Sql Database
 - [x] Docker
 - [x] Graphql Api
-- [ ] Kubernatis
+- [ ] Kubernetis
 - [x] User authentication
 - [x] Ingredient count
 - [x] Process orders
@@ -88,9 +88,9 @@ Gedetaileerde lijst van geplande milestones voor dit project staan op [trello](h
 
 ## Toekomst
 
-In de toekomst zouden we de Admin page nog wat kunnen uitbrijden. Momenteel dient deze pagina meer als een overzicht dan als effectieve dashboard.
+In de toekomst zouden we de Admin page nog wat kunnen uitbreiden. Momenteel dient deze pagina meer als een overzicht dan als effectieve dashboard.
 
-We zouden ook user accounts meer nut geven. We zouden kunnen zorgen dat users hun order history kunnen zien en gemakelijker hun favoriete sandwiches kunnen bestellen.
+We zouden ook user accounts meer nut kunnen geven. We zouden kunnen zorgen dat users hun order history kunnen zien en gemakelijker hun favoriete sandwiches kunnen bestellen.
 
 ## Ervaring
 
