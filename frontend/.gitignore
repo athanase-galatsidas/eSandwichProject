@@ -4,4 +4,4 @@ dist
 dist-ssr
 *.local
 src/config.js
-src/config.ts
+# src/config.ts
