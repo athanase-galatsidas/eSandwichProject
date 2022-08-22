@@ -71,7 +71,7 @@ Gedetaileerde lijst van geplande milestones voor dit project staan op [trello](h
 - [x] Sql Database
 - [x] Docker
 - [x] Graphql Api
-- [ ] Kubernetis
+- 50/50 Kubernetes
 - [x] User authentication
 - [x] Ingredient count
 - [x] Process orders
