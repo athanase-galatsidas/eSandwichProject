@@ -72,7 +72,7 @@ export default defineComponent({
 				<InputGroup id="street" text="Street Name">
 					<LocationMarkerIcon class="h-6 w-6 mr-2" />
 				</InputGroup>
-				<InputGroup id="adress" text="Adress" type="number">
+				<InputGroup id="adress" text="Address" type="number">
 					<LocationMarkerIcon class="h-6 w-6 mr-2" />
 				</InputGroup>
 

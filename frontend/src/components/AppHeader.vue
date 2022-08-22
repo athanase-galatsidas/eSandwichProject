@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, Ref } from 'vue';
 import { useRouter } from 'vue-router';
 // @ts-ignore
 import useFirebase from '@/composable/useFirebase';
@@ -14,8 +14,16 @@ export default defineComponent({
 	},
 	setup() {
 		const { user, logout } = useFirebase();
+		var loggedIn: Ref<boolean>  = ref<boolean>(false);
 		const { push } = useRouter();
-
+		const checkLogin= () =>{
+			if (user){
+				loggedIn = ref<boolean>(true) ;
+			}
+			else if (!user){
+				loggedIn = ref<boolean>(false) ;
+			}
+		}
 		const logOutAndRedirect = () => {
 			logout()
 				.then(() => {
@@ -28,9 +36,11 @@ export default defineComponent({
 		return {
 			user,
 			logOutAndRedirect,
+			loggedIn,
 		};
 	},
 });
+
 </script>
 
 <template>
@@ -64,6 +74,7 @@ export default defineComponent({
 					ml-4
 					w-24
 				"
+				
 			>
 				Log In
 			</router-link>
@@ -93,6 +104,7 @@ export default defineComponent({
 			<router-link
 				v-if="user?.email == 'tibo.verbeke@gmail.com' || user?.email == 'docent@howest.be'"
 				to="/admin"
+				
 				class="
 					flex
 					justify-center
@@ -115,6 +127,8 @@ export default defineComponent({
 			</router-link>
 			<button
 				v-if="user"
+				id="test1"
+				v-show="loggedIn"
 				class="
 					flex
 					justify-center

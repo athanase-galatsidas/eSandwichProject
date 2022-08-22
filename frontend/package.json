@@ -4,13 +4,18 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"serve": "vite preview"
+		"serve": "vite preview",
+		"test": "vitest",
+		"coverage": "vitest run --coverage",
+		"test:unit": "vitest run --environment jsdom"
 	},
 	"dependencies": {
+		"@vue/cli-service": "^4.5.15",
 		"@heroicons/vue": "^1.0.5",
 		"firebase": "^9.4.1",
 		"socket.io-client": "^4.4.0",
 		"vue": "^3.2.16",
+		"vue-jest": "^5.0.0-alpha.10",
 		"vue-router": "^4.0.11",
 		"vue3-animate-onscroll": "^1.0.6",
 		"vue3-lazyload": "^0.2.5-beta",
@@ -18,14 +23,19 @@
 	},
 	"devDependencies": {
 		"@mdi/font": "^6.5.95",
+		"@types/jest": "^28.1.7",
 		"@vitejs/plugin-vue": "^1.9.2",
+		"@vue/cli-plugin-unit-jest": "~4.5.0",
+		"@vue/test-utils": "^2.0.2",
 		"autoprefixer": "^10.3.6",
 		"font-awesome": "^4.7.0",
+		"jsdom": "^20.0.0",
 		"postcss": "^8.3.8",
 		"tailwindcss": "^2.2.16",
 		"typescript": "^4.4.3",
 		"vite": "^2.6.0",
 		"vite-plugin-pwa": "^0.11.12",
+		"vitest": "^0.22.1",
 		"vue-tsc": "^0.3.0",
 		"workbox-precaching": "^6.4.2"
 	}
