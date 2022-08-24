@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-api
+  namespace: default # Change to your own namespace!
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-verbeke-tibo-express-api # Change to anything you like, but keep it same as line 15
+  template:
+    metadata:
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-verbeke-tibo-express-api # Change to anything you like, but keep it same as line 11
+    spec:
+      containers:
+      - envFrom:
+        - secretRef:
+            name: db-connection-typeorm
+        image: ghcr.io/verbeketibo/esandwichproject_backend_express:main # Change to your image
+        name: api-container
+        ports:
+        - containerPort: 3306 # The interal port of the app
+          name: 3306tcp
+          protocol: TCP
+
+      nodeName: docker-desktop # Change the name of your node!
